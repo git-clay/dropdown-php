@@ -1,0 +1,1 @@
+$('#container').addClass('col-10-md')
