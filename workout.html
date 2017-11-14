@@ -69,10 +69,12 @@
         margin: 0px 6px;
       }
       .resistance-drop{
-        
         height: 36px;
         margin: 0px 6px;
         padding: 0px;
+      }
+      .display-content p {
+        text-align: center;
       }
     </style>
     </head>
@@ -134,9 +136,9 @@
         <div class="row display-row">
           <span class="label label-default">Core</span><br>
           <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="core-refresh"></button>
-            <div class="col-sm-8 clearfix display-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="core-add"></button>
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="core-r"></button>
+            <div class="col-sm-8 clearfix display-content" id="core-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="core-a"></button>
           </div> 
         </div>
         <!--End Core-->
@@ -145,9 +147,9 @@
         <div class="row display-row">
           <span class="label label-default">Balance</span><br>
           <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="balance-refresh"></button>
-            <div class="col-sm-8 clearfix display-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="balance-add"></button>
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="balance-r"></button>
+            <div class="col-sm-8 clearfix display-content" id="balance-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="balance-a"></button>
           </div>
         </div>
 
@@ -157,9 +159,9 @@
         <div class="row display-row">
           <span class="label label-default">SAQ</span><br>
           <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="saq-refresh"></button>
-            <div class="col-sm-8 clearfix display-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="saq-add"></button>
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saq-r"></button>
+            <div class="col-sm-8 clearfix display-content" id="saq-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saq-a"></button>
           </div>
         </div>
 
@@ -169,10 +171,10 @@
         <div class="row display-row">
           <span class="label label-default">Resistance</span><br>
           <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="resistance-refresh"></button>
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
             <div class="col-sm-8 clearfix resistance-drop dropdown">
                 <button class="btn btn-default dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  Dropdown
+                  Resistance Options
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -183,7 +185,7 @@
                   <li><a href="#">Separated link</a></li>
                 </ul>
               </div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="resistance-add"></button>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="resistance-a"></button>
           </div>
         </div>
 
@@ -193,9 +195,9 @@
         <div class="row display-row">
           <span class="label label-default">Cardio</span><br>
           <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="cardio-refresh"></button>
-            <div class="col-sm-8 clearfix display-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="cardio-add"></button>
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="cardio-r"></button>
+            <div class="col-sm-8 clearfix display-content"><p id="cardio-content"></p></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="cardio-a"></button>
           </div>
         </div>
         <!--End cardio-->
@@ -205,6 +207,19 @@
         $(document).ready(function(){
           $('.wo').on("click", function(e){
 
+          })
+
+          $('.refresh').on("click", function(e){
+            var n = this.id
+            n = n.slice(0,-2)
+            var content = '#' + n + '-content'
+            $(content).text("refresh "+n)
+          })
+          $('.add').on("click", function(e){
+            var n = this.id
+            n = n.slice(0,-2)
+            var content = '#' + n + '-content'
+            $(content).text("add "+n)
           })
         });
       </script>
