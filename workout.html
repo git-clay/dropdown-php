@@ -50,70 +50,163 @@
       -moz-border-radius: 6px 0 6px 6px;
       border-radius: 6px 0 6px 6px;
       }
+      .label{
+        margin: 0px 4px;
+      }
+      .display-row{
+        margin:5px 0px;
+      }
+      .display-box{
+        height: 42px;
+        padding: 2px 4px;
+      }
+      .display-content{
+        color: #333;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        height: 36px;
+        margin: 0px 6px;
+      }
+      .resistance-drop{
+        
+        height: 36px;
+        margin: 0px 6px;
+        padding: 0px;
+      }
     </style>
     </head>
     <body>
+
       <div class="container">
-        <div class="row">
-          <button class="glyphicon glyphicon-refresh btn btn-warning"></button>  
-        </div>
-        <div class="row">
-          <button class="glyphicon glyphicon-refresh btn btn-warning"></button>  
+
+
+        <!--Dropdown-->
+        <div class="row display-row">
           <div class="dropdown" style="display: inline-block;">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create Workout<span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Level 1</a></li>
-                  <li><a href="#">Level 2</a></li>
+                  <li><a class="wo" value="">Level 1</a></li>
+                  <li><a class="wo" value="">Level 2</a></li>
+                  <li><a class="wo" value="">Cardio</a></li>
                 </ul>
               </li>
               <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Novice</a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Novice</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Functional/Fat-Loss</a></li>
-                  <li><a href="#">Endurance/Fat-Loss</a></li>
-                  <li><a href="#">Hypertrophy</a></li>
-                  <li><a href="#">Strength</a></li>
+                  <li><a class="wo" value="">Functional/Fat-Loss</a></li>
+                  <li><a class="wo" value="">Endurance/Fat-Loss</a></li>
+                  <li><a class="wo" value="">Hypertrophy</a></li>
+                  <li><a class="wo" value="">Strength</a></li>
+                  <li><a class="wo" value="">Cardio</a></li>
                 </ul>
               </li>
               <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Functional/Fat-Loss</a></li>
-                  <li><a href="#">Endurance/Fat-Loss</a></li>
-                  <li><a href="#">Hypertrophy</a></li>
-                  <li><a href="#">Strength</a></li>
-                  <li><a href="#">Power</a></li>
+                  <li><a class="wo" value="">Functional/Fat-Loss</a></li>
+                  <li><a class="wo" value="">Endurance/Fat-Loss</a></li>
+                  <li><a class="wo" value="">Hypertrophy</a></li>
+                  <li><a class="wo" value="">Strength</a></li>
+                  <li><a class="wo" value="">Power</a></li>
+                  <li><a class="wo" value="">Cardio</a></li>
                 </ul>
               </li>
               <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Endurance/Fat-Loss</a></li>
-                  <li><a href="#">Hypertrophy</a></li>
-                  <li><a href="#">Strength</a></li>
-                  <li><a href="#">Power</a></li>
+                  <li><a class="wo" value="">Endurance/Fat-Loss</a></li>
+                  <li><a class="wo" value="">Hypertrophy</a></li>
+                  <li><a class="wo" value="">Strength</a></li>
+                  <li><a class="wo" value="">Power</a></li>
+                  <li><a class="wo" value="">Cardio</a></li>
                 </ul>
               </li>
             </ul>
           </div>
         </div>
+        <!--End dropdown-->
+
+        <!--Start Core-->
+        <div class="row display-row">
+          <span class="label label-default">Core</span><br>
+          <div class="col-sm-3 display-box">
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="core-refresh"></button>
+            <div class="col-sm-8 clearfix display-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="core-add"></button>
+          </div> 
+        </div>
+        <!--End Core-->
+
+        <!--Start Balance-->
+        <div class="row display-row">
+          <span class="label label-default">Balance</span><br>
+          <div class="col-sm-3 display-box">
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="balance-refresh"></button>
+            <div class="col-sm-8 clearfix display-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="balance-add"></button>
+          </div>
+        </div>
+
+        <!--End Balance-->
+
+        <!--Start SAQ-->
+        <div class="row display-row">
+          <span class="label label-default">SAQ</span><br>
+          <div class="col-sm-3 display-box">
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="saq-refresh"></button>
+            <div class="col-sm-8 clearfix display-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="saq-add"></button>
+          </div>
+        </div>
+
+        <!--End SAQ-->
+
+        <!--Start Resistance-->
+        <div class="row display-row">
+          <span class="label label-default">Resistance</span><br>
+          <div class="col-sm-3 display-box">
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="resistance-refresh"></button>
+            <div class="col-sm-8 clearfix resistance-drop dropdown">
+                <button class="btn btn-default dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Dropdown
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="resistance-add"></button>
+          </div>
+        </div>
+
+        <!--End Resistance-->
+
+        <!--Start cardio-->
+        <div class="row display-row">
+          <span class="label label-default">Cardio</span><br>
+          <div class="col-sm-3 display-box">
+            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left" id="cardio-refresh"></button>
+            <div class="col-sm-8 clearfix display-content"></div>
+            <button class="glyphicon glyphicon-plus btn btn-success pull-right" id="cardio-add"></button>
+          </div>
+        </div>
+        <!--End cardio-->
       </div>
+
       <script>
-        // $(document).ready(function(){
-        //   $('.dropdown-submenu a.test').on("click", function(e){
-        //     $(this).next('ul').toggle();
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        //   });
-        //  //  $('.dropdown-item').hover(function(){ 
-        // 	//   $('.dropdown-item', this).trigger('click'); 
-        // 	// });
-        
-        
-        // });
+        $(document).ready(function(){
+          $('.wo').on("click", function(e){
+
+          })
+        });
       </script>
   </body>
 </html>
