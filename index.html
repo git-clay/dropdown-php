@@ -77,6 +77,9 @@
       .blank{
         display: none;
       }
+      .hidden-box{
+        display: none;
+      }
 
     </style>
     </head>
@@ -84,7 +87,7 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-sm-5"
+          <div class="col-sm-5">
         <!--Dropdown-->
         <div class="row display-row">
           <div class="dropdown" style="display: inline-block;">
@@ -133,7 +136,7 @@
           </div>
         </div>
         <!--End dropdown-->
-
+        <div class="hidden-box">
         <!--Start Core-->
         <div class="row display-row">
           <span class="label label-default">Core</span><br>
@@ -201,7 +204,9 @@
 
         <!--End Resistance-->
         </div>
+        </div>
       <div class="col-sm-5">
+        <div class="">
         <div class="row table-responsive">
           <table class="table table-striped">
             <thead>
@@ -236,6 +241,7 @@
       </div>
       </div>
       </div>
+      </div>
 
       <script>
         var resEdit = false;
@@ -245,6 +251,7 @@
             var n = this.text
             var level = $(this).parent().parent().parent().children()[0].text
             $('#create-wo').text(level).append('<small>'+' ('+n + ') ').append('<span class="caret"></span>')
+            $('.hidden-box').show()
             if(expSelected){
               $('.expbased').remove()
             }
