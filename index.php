@@ -169,8 +169,7 @@
 
         <!--Start Resistance-->
         <div class="row display-row">
-          <span class="label label-default">Resistance</span>
-          <span id="resistance-selected" class="label label-default"></span><br>
+          <span class="label label-default">Resistance</span><br>
           <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
             <div class="col-sm-8 clearfix resistance-drop dropdown">
@@ -238,19 +237,15 @@
       </div>
       </div>
       </div>
-
+<?php
+global $wpdb;
+?>
       <script>
         $(document).ready(function(){
           $('.wo').on("click", function(e){
-            // <?php
-            //   $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_id = 1', OBJECT );
-            // ?>
-          })
-          $('.resistance-wo').on("click", function(e){
-            var n = this.text
-            console.log(n)
-            $('#resistance-selected').text(n)
-            $('#dropdownMenu1').text('current workout')
+            <?php
+              $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_id = 1', OBJECT );
+            ?>
           })
 
           $('.refresh').on("click", function(e){
@@ -264,7 +259,7 @@
             n = n.slice(0,-2)
             $('#workout-table tr:last').after('<tr><td>'+n+'</td></tr>')
           })
- 
+
         });
       </script>
   </body>
