@@ -23,8 +23,8 @@
       }
       .dropdown-submenu:hover>.dropdown-menu {
       display: block;
-      }
-      .dropdown-submenu>a:after {
+      }   
+      .wo>a:after {
       display: block;
       content: " ";
       float: right;
@@ -69,7 +69,7 @@
         margin: 0px 6px;
         text-align: center;
       }
-      .resistance-drop{
+      #resistance-drop{
         height: 36px;
         margin: 0px 6px;
         padding: 0px;
@@ -98,7 +98,7 @@
         <div class="row display-row">
           <div class="dropdown" style="display: inline-block;">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create Workout <span class="caret"></span></button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" id="expDropdown">
               <li class="dropdown-submenu">
                 <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
                 <ul class="dropdown-menu">
@@ -184,7 +184,7 @@
           <span id="resistance-selected" class="label label-default"></span><br>
           <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
-            <div class="col-sm-8 clearfix resistance-drop dropdown">
+            <div class="col-sm-8 clearfix  dropdown" id="resistance-drop">
                 <button class="btn btn-default dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   Resistance Options
                   <span class="caret"></span>
@@ -255,10 +255,22 @@
       </div>
       </div>
       </div>
+<script>
+if (("ontouchstart" in document.documentElement)) {
 
+  $('.dropdown-submenu').on("click",function(e){
+    e.stopPropagation(); 
+    $(this.children[1]).toggle().show()
+  })
+  $('.wo').on("click", function(e){
+    $('#create-wo').dropdown('toggle')
+  })
+}
+</script>
       <script>
         var resEdit = false;
         var expSelected = false;
+
         $(document).ready(function(){
           var refresh = function(n){
             var content = '#' + n + '-content'
