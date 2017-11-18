@@ -81,8 +81,8 @@
     <body>
 
       <div class="container">
-
-
+        <div class="row">
+          <div class="col-sm-5"
         <!--Dropdown-->
         <div class="row display-row">
           <div class="dropdown" style="display: inline-block;">
@@ -135,7 +135,7 @@
         <!--Start Core-->
         <div class="row display-row">
           <span class="label label-default">Core</span><br>
-          <div class="col-sm-3 display-box">
+          <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="core-r"></button>
             <div class="col-sm-8 clearfix display-content" id="core-content"></div>
             <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="core-a"></button>
@@ -146,7 +146,7 @@
         <!--Start Balance-->
         <div class="row display-row">
           <span class="label label-default">Balance</span><br>
-          <div class="col-sm-3 display-box">
+          <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="balance-r"></button>
             <div class="col-sm-8 clearfix display-content" id="balance-content"></div>
             <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="balance-a"></button>
@@ -158,7 +158,7 @@
         <!--Start SAQ-->
         <div class="row display-row">
           <span class="label label-default">SAQ</span><br>
-          <div class="col-sm-3 display-box">
+          <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saq-r"></button>
             <div class="col-sm-8 clearfix display-content" id="saq-content"></div>
             <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saq-a"></button>
@@ -170,7 +170,7 @@
         <!--Start Resistance-->
         <div class="row display-row">
           <span class="label label-default">Resistance</span><br>
-          <div class="col-sm-3 display-box">
+          <div class="col-sm-8 display-box">
             <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
             <div class="col-sm-8 clearfix resistance-drop dropdown">
                 <button class="btn btn-default dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -180,6 +180,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li><a>Arms</a></li>
                   <li><a>Back</a></li>
+                  <li><a>Cardio</a></li>
                   <li><a>Chest</a></li>
                   <li><a>Core</a></li>
                   <li><a>Functional</a></li>
@@ -196,17 +197,34 @@
         </div>
 
         <!--End Resistance-->
-
-        <!--Start cardio-->
-        <div class="row display-row">
-          <span class="label label-default">Cardio</span><br>
-          <div class="col-sm-3 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="cardio-r"></button>
-            <div class="col-sm-8 clearfix display-content"><p id="cardio-content"></p></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="cardio-a"></button>
-          </div>
         </div>
-        <!--End cardio-->
+      <div class="col-sm-5">
+        <div class="row warm-up">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="workouts">
+          <table>
+            <tbody id="workout-table">
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row cool-down">
+
+        </div>
+      </div>
+      </div>
       </div>
 
       <script>
@@ -226,7 +244,10 @@
             n = n.slice(0,-2)
             var content = '#' + n + '-content'
             $(content).text("add "+n)
+            $('#workout-table tr:last').after('<tr><td>'+n+'</td></tr>')
+            console.log()
           })
+
         });
       </script>
   </body>
