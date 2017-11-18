@@ -67,15 +67,17 @@
         border-radius: 3px;
         height: 36px;
         margin: 0px 6px;
+        text-align: center;
       }
       .resistance-drop{
         height: 36px;
         margin: 0px 6px;
         padding: 0px;
       }
-      .display-content p {
-        text-align: center;
+      .blank{
+        display: none;
       }
+
     </style>
     </head>
     <body>
@@ -86,7 +88,7 @@
         <!--Dropdown-->
         <div class="row display-row">
           <div class="dropdown" style="display: inline-block;">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create Workout<span class="caret"></span></button>
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create Workout <span class="caret"></span></button>
             <ul class="dropdown-menu">
               <li class="dropdown-submenu">
                 <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
@@ -200,38 +202,34 @@
         <!--End Resistance-->
         </div>
       <div class="col-sm-5">
-        <div class="row warm-up table-responsive">
+        <div class="row table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Warm Up</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
+            <tbody id="warmup">
+              <tr class="blank"></tr>
             </tbody>
           </table>
         </div>
         <div class="workouts table-responsive">
           <table class="table table-striped">
             <tbody id="workout-table">
-              <tr></tr>
+              <tr class="blank"></tr>
             </tbody>
           </table>
         </div>
-        <div class="row cool-down table-responsive">
+        <div class="row table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>Cool Down</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
+            <tbody id="cooldown">
+              <tr class="blank"></tr>
             </tbody>
           </table>
         </div>
@@ -240,19 +238,35 @@
       </div>
 
       <script>
+        var resEdit = false;
+        var expSelected = false;
         $(document).ready(function(){
           $('.wo').on("click", function(e){
+            var n = this.text
+            var level = $(this).parent().parent().parent().children()[0].text
+            $('#create-wo').text(level).append('<small>'+' ('+n + ') ').append('<span class="caret"></span>')
+            if(expSelected){
+              $('.expbased').remove()
+            }
+            expSelected = true;
+            $('#warmup tr:last').after('<tr class="expbased"><td>'+ "workout" +'</td></tr>')
+            $('#cooldown tr:last').after('<tr class="expbased"><td>'+ "workout" +'</td></tr>')
+
             // <?php
             //   $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_id = 1', OBJECT );
             // ?>
           })
           $('.resistance-wo').on("click", function(e){
             var n = this.text
-            console.log(n)
             $('#resistance-selected').text(n)
-            $('#dropdownMenu1').text('current workout')
+            $('#dropdownMenu1').text('current workout ').append('<span class="caret"></span>')
+            resEdit=true;
           })
-
+          $('#resistance-r').on("click", function(e){
+            if(resEdit){
+              $('#dropdownMenu1').text('workout refresh ').append('<span class="caret"></span>')
+            }
+          })
           $('.refresh').on("click", function(e){
             var n = this.id
             n = n.slice(0,-2)
