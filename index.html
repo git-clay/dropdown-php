@@ -80,6 +80,12 @@
       .hidden-box{
         display: none;
       }
+      table{
+        font-size:1.2rem;
+      }
+      tbody{
+        text-align: center;
+      }
 
     </style>
     </head>
@@ -205,10 +211,10 @@
         <!--End Resistance-->
         </div>
         </div>
-      <div class="col-sm-5">
+      <div class="col-sm-2">
         <div class="">
         <div class="row table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th>Warm Up</th>
@@ -219,15 +225,22 @@
             </tbody>
           </table>
         </div>
+
         <div class="row table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped table-bordered">
+             <thead>
+              <tr>
+                <th>Workout</th>
+              </tr>
+            </thead>
             <tbody id="workout-table">
               <tr class="blank"></tr>
             </tbody>
           </table>
         </div>
+
         <div class="row table-responsive">
-          <table class="table table-striped">
+          <table class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th>Cool Down</th>
@@ -247,6 +260,18 @@
         var resEdit = false;
         var expSelected = false;
         $(document).ready(function(){
+          var refresh = function(n){
+            var content = '#' + n + '-content'
+            $(content).text("refresh "+n)
+          }
+          var addTr = function(n,toRefresh,optionalCls){
+            $('#'+toRefresh+ ' tr:last').after('<tr class="'+optionalCls+'"><td>'+n+'</td></tr>')
+            refresh(n)
+          }
+          var updateResOption = function(text){
+              $('#dropdownMenu1').text(text + ' ').append('<span class="caret"></span>')
+          }
+
           $('.wo').on("click", function(e){
             var n = this.text
             var level = $(this).parent().parent().parent().children()[0].text
@@ -256,36 +281,33 @@
               $('.expbased').remove()
             }
             expSelected = true;
-            $('#warmup tr:last').after('<tr class="expbased"><td>'+ "workout" +'</td></tr>')
-            $('#cooldown tr:last').after('<tr class="expbased"><td>'+ "workout" +'</td></tr>')
+            addTr("warmup workout","warmup","expbased")
+            addTr("cooldown workout","cooldown","expbased")
+        
 
             // <?php
             //   $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_id = 1', OBJECT );
             // ?>
           })
           $('.resistance-wo').on("click", function(e){
-            var n = this.text
-            $('#resistance-selected').text(n)
-            $('#dropdownMenu1').text('current workout ').append('<span class="caret"></span>')
+            $('#resistance-selected').text(this.text)
+            updateResOption('current workout')
             resEdit=true;
           })
           $('#resistance-r').on("click", function(e){
             if(resEdit){
-              $('#dropdownMenu1').text('workout refresh ').append('<span class="caret"></span>')
+              updateResOption('refresh workout')
             }
           })
+
           $('.refresh').on("click", function(e){
-            var n = this.id
-            n = n.slice(0,-2)
-            var content = '#' + n + '-content'
-            $(content).text("refresh "+n)
+            refresh(this.id.slice(0,-2))
           })
           $('.add').on("click", function(e){
-            var n = this.id
-            n = n.slice(0,-2)
-            $('#workout-table tr:last').after('<tr><td>'+n+'</td></tr>')
+            addTr(this.id.slice(0,-2),"workout-table","")
           })
- 
+
+
         });
       </script>
   </body>
