@@ -257,13 +257,15 @@
       </div>
 <script>
 if (("ontouchstart" in document.documentElement)) {
-
   $('.dropdown-submenu').on("click",function(e){
     e.stopPropagation(); 
     $(this.children[1]).toggle().show()
   })
   $('.wo').on("click", function(e){
     $('#create-wo').dropdown('toggle')
+  })  
+  $('.resistance-wo').on("click", function(e){
+    $('#dropdownMenu1').dropdown('toggle')
   })
 }
 </script>
