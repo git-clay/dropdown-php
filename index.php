@@ -264,3 +264,165 @@ global $wpdb;
       </script>
   </body>
 </html>
+
+
+
+
+
+<?php
+$fromPost = var_dump($_POST['workout']);
+$fromPost[0] = 'novice';
+$fromPost[1] = 'functional';
+// $fromPost[2] ='core';
+$fromPost[2] ='coreBtn';
+​
+//$post = file_get_contents('php://input'); //if JSON
+​
+$exp =  $fromPost[0];    //'novice'
+$type = $fromPost[1];    //'functional'
+$focus = $fromPost[2];   //'core'
+​
+​
+​
+$json = '{   
+    "beginner":{
+        "1":{
+            "back":"back_beginner_i",
+            "balance":"balanceplyometric_beginner_stabilization_i",
+            "chest":"chest_beginner_i",
+            "core":"core_beginner_i",
+            "legs":"legs_i"
+        },
+        "2":{
+            "back":"back_beginner_ii",
+            "balance":"balanceplyometric_beginner_stabilization_ii",
+            "chest":"chest_beginner_ii",
+            "core":"core_beginner_ii",
+            "legs":"legs_ii"
+        },
+        "cardio":"cardio_cardio"
+    },
+    "novice":{
+        "cardio":"cardio_cardio",
+        "functional":{
+            "balance":"back_functional_endurance_i",
+            "back":"back_functional_endurance_i",
+            "chest":"chest_functional_endurance_i",
+            "core":"core_functional_endurance_i",
+            "legs":"legs_functional_endurance_i",
+            "olympic":"olympic_lifts",
+            "total body":"fullbody"
+        },
+        "strength":{
+            "balance":"balanceplyometric_beginner_strength",
+            "back":"back_strength",
+            "chest":"chest_strength",
+            "core":"core_strength",
+            "legs":[
+                "legs_strength_hams",
+                "legs_strength_quads"
+                ]
+        }
+    },
+    "intermediate":{
+        "cardio":"cardio_cardio",
+        "functional":{
+            "balance":"back_functional_endurance_ii",
+            "back":"back_functional_endurance_ii",
+            "chest":"chest_functional_endurance_ii",
+            "core":"core_functional_endurance_ii",
+            "legs":"legs_functional_endurance_ii"
+        },
+        "power":{
+            "balance":"balanceplyometric_power",
+            "back":"back_power",
+            "chest":"chest_power",
+            "core":"core_power",
+            "legs":"legs_power"         
+        },
+        "strength":{
+            "balance":"balanceplyometric_strength",
+            "back":"back_strength",
+            "chest":"chest_strength",
+            "core":"core_strength",
+            "legs":[
+                "legs_strength_hams",
+                "legs_strength_quads"
+                ]
+        }
+    },
+    "advanced":{
+        "cardio":"cardio_cardio",
+        "functional":{
+            "balance":"back_functional_endurance_iii",
+            "back":"back_functional_endurance_iii",
+            "chest":"chest_functional_endurance_iii",
+            "core":"core_functional_endurance_iii",
+            "legs":"legs_functional_endurance_iii"
+        },
+        "power":{
+            "balance":"balanceplyometric_power",
+            "back":"back_power",
+            "chest":"chest_power",
+            "core":"core_power",
+            "legs":"legs_power"         
+        },
+        "strength":{
+            "balance":"balanceplyometric_strength",
+            "back":"back_strength",
+            "chest":"chest_strength",
+            "core":"core_strength",
+            "legs":[
+                "legs_strength_hams",
+                "legs_strength_quads"
+                ]
+        }
+    },
+    "coreBtn":  [
+                "low_back",
+                "med_ball_core",
+                "med_ball_power"
+                ],
+    "saqBtn":{
+
+    },
+    "arms":[
+            "biceps"
+            ,"compound"
+            ,"rear_delts"
+            ,"rear_shoulders"
+            ,"shoulders"
+            ,"shoulders_strength"
+            ,"triceps"
+            ],
+    
+    "warmup":
+        ["dyn_warmup_active_wrist"
+        ,"dyn_warmup_agility_ladder"
+        ,"dyn_warmup_cone_drill"
+        ,"dyn_warmup_hip_legs"
+        ,"dyn_warmup_spinal"
+        ,"dyn_warmup_general_mobility"
+        ,"dyn_warmup_general_strength"
+        ,"dyn_warmup_hops_and_bounds"
+        ,"dyn_warmup_hybrid"
+        ,"dyn_warmup_lower_leg"
+        ,"dyn_warmup_scapular_closed_chain"
+        ,"dyn_warmup_scapular_open_chain"
+        ,"dyn_warmup_scapulo_thoracic"
+        ,"dyn_warmup_scapulo_thoracic_hip"
+        ,"dyn_warmup_shoulder_scapula"
+        ,"dyn_warmup_thoracic_spine"
+        ,"dyn_warmup_thoracic_spine_mobility_smr"]
+
+    }
+';
+​
+$obj = json_decode($json,true);
+if($focus == 'coreBtn'){
+    echo $obj[$focus];
+    return true;
+}else{
+echo $obj[$exp][$type][$focus];
+}
+?>
