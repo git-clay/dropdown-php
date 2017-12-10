@@ -1,5 +1,10 @@
 .wrapper{
 padding:1%;
+
+}
+a{
+  text-decoration: none !important;
+
 }
 .dropdown-submenu {
 position: relative;
@@ -88,6 +93,13 @@ text-align: center;
 .addRes{
       right:16px;
 }
+.delete{
+      height:15px;
+      width:6px;
+      font-size: .6em;
+      text-align: center;
+      color: white !important;
+}
 .displayText{
       font-size: .8em;
 }
@@ -104,7 +116,7 @@ text-align: center;
   .display-row{
         height:70%;
   }
-  .btn-warning .btn-success{
+  .btn-warning .btn-success {
         height:85%;
         width:auto;
   }

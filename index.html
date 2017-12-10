@@ -10,7 +10,12 @@
 </head>
 <body>
 
-
+<script>
+  function rowDelete(link) {
+     var row = link.parentNode.parentNode;
+     var table = row.parentNode; 
+     table.removeChild(row);}
+</script>
   <div class="container wrapper">
     <!--Dropdown-->
     <div class="row display-row">
@@ -136,14 +141,52 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>Workout</th>
+                <th>Core</th>
               </tr>
             </thead>
-            <tbody id="workout-table" class="displayText">
+            <tbody id="workout-table-coreBtn" class="displayText">
               <tr class="blank"></tr>
             </tbody>
           </table>
         </div>
+          <div class="row table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="workout-table-balance" class="displayText">
+              <tr class="blank"></tr>
+            </tbody>
+          </table>
+        </div>
+                <div class="row table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Saq</th>
+              </tr>
+            </thead>
+            <tbody id="workout-table-saqBtn" class="displayText">
+              <tr class="blank"></tr>
+            </tbody>
+          </table>
+        </div>
+                <div class="row table-responsive">
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Resistance</th>
+              </tr>
+            </thead>
+            <tbody id="workout-table-resistance" class="displayText">
+              <tr class="blank"></tr>
+            </tbody>
+          </table>
+        </div>    
+
+
         <div class="row table-responsive">
           <table class="table table-striped table-bordered">
             <thead>

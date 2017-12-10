@@ -4,20 +4,21 @@
   var expSelected = false;
   var type, level, focus;
 
-
-
   $(document).ready(function() {
+    var mobile =window.matchMedia('screen and (max-width: 413px)').matches;
+
     //mobile dropdown functions
-    var mobile =window.matchMedia('screen and (max-width: 768px)').matches;
     if (mobile) {
       $('.dropdown-submenu').on("click", function(e) {
         e.stopPropagation();
         $(this.children[1]).toggle().show()
       })
       $('.wo').on("click", function(e) {
+        e.stopPropagation();
         $('#create-wo').dropdown('toggle')
       })
       $('.resistanceDropdown').on("click", function(e) {
+        e.stopPropagation();
         $('#dropdownMenu1').dropdown('toggle')
       })
     }
@@ -72,18 +73,15 @@
     function refresh(tempFocus) {
       var content = '#' + tempFocus + '-content'
       $(content).text("Loading...")
-      if(tempFocus == 'saqBtn'){
-        $(content).text("Coming Soon!")
-      }else{
-        getWo(tempFocus,function(newWorkout){
-          $(content).text(newWorkout)
-        });
-      }
+      getWo(tempFocus,function(newWorkout){
+        $(content).text(newWorkout)
+      });
     }
 
     function addTr(n, toRefresh, optionalCls) {
-      if(n == '' || n =="Coming Soon!"|| n =="Loading..."){return false}
-      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>' + n + '</td></tr>')
+      if(n == '' || n =="Loading..."){return false}
+      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>'+
+      n + "<a class='btn btn-danger delete pull-right' href='#' onclick='rowDelete(this); return false;'>X</a>"+'</td></tr>')
     }
 
     //core, balance, saq
@@ -92,7 +90,9 @@
     })
     $('.add').on("click", function(e) {
       var newWorkout = $('#'+this.id.slice(0, -2)+'-content').text()
-      addTr(newWorkout, "workout-table", "")
+      var workoutTable = "workout-table-"
+      workoutTable += this.id.slice(0, -2)
+      addTr(newWorkout, workoutTable, "")
       refresh(this.id.slice(0, -2))
     })
 
@@ -118,7 +118,7 @@
     //add
     $('.addRes').on("click", function(e) {
       if (resEdit) {
-        addTr($('#dropdownMenu1').text(), "workout-table", "")
+        addTr($('#dropdownMenu1').text(), "workout-table-resistance", "")
       }
     })
 
