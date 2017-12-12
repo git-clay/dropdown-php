@@ -10,15 +10,17 @@
 </head>
 <body>
 
-<script>
+
+  <div class="container wrapper">
+    <script>
+      
   function rowDelete(link) {
      var row = link.parentNode.parentNode;
      var table = row.parentNode; 
      table.removeChild(row);}
 </script>
-  <div class="container wrapper">
     <!--Dropdown-->
-    <div class="row display-row">
+    <div class="row display-row hidden-xs">
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create Workout <span class="caret"></span></button>
         <ul class="dropdown-menu list-unstyled" id="expDropdown">
@@ -64,6 +66,33 @@
         </ul>
       </div>
     </div>
+
+    <!--Mobile dropdown-->
+    <div class="row display-row hidden-sm hidden-md hidden-lg">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="exp-m">Experience level <span class="caret"></span></button>
+        <ul class="dropdown-menu list-unstyled">
+          <li><a href='#' class="dropdown-toggle m-exp" value="beginner">Beginner</a></li>
+          <li><a href='#' class="dropdown-toggle m-exp" value="novice">Novice</a></li>
+          <li><a href='#' class="dropdown-toggle m-exp" value="intermediate">Intermediate</a></li>
+          <li><a href='#' class="dropdown-toggle m-exp" value="advanced">Advanced</a></li>
+        </ul>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo-m">Type of training <span class="caret"></span></button>
+        <ul class="dropdown-menu list-unstyled">
+              <li class="dropdown-submenu"><a href="#" class="wo" id='1' value="1">Level 1</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='2' value="2">Level 2</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='functional' value="functional">Functional/Fat-Loss</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='endurance' value="functional">Endurance/Fat-Loss</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='strength' value="strength">Strength</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='power' value="power">Power</a></li>
+              <li class="dropdown-submenu"><a href="#" class="wo" id='cardio' value="cardio">Cardio</a></li>
+        </ul>
+      </div>
+    </div>
+
+
     <!--End dropdown-->
     <div class="col-xs-12 col-sm-3 hidden-box" id="actionBox">
       <!--Start Core-->
@@ -165,7 +194,7 @@
           <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                <th>Saq</th>
+                <th>SAQ</th>
               </tr>
             </thead>
             <tbody id="workout-table-saqBtn" class="displayText">

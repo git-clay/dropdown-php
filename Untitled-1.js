@@ -9,13 +9,38 @@
 
     //mobile dropdown functions
     if (mobile) {
-      $('.dropdown-submenu').on("click", function(e) {
+      alert('mobile!')
+      $('body')
+  .off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
+  .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+      $('#create-wo-m').hide()
+      $('.m-exp').on("click", function(e) {
         e.stopPropagation();
-        $(this.children[1]).toggle().show()
-      })
-      $('.wo').on("click", function(e) {
-        e.stopPropagation();
-        $('#create-wo').dropdown('toggle')
+        $('#create-wo-m').show()
+        level = $(this).attr("value")
+          $('#1').show()
+          $('#2').show()
+          $('#functional').show()
+          $('#endurance').show()
+          $('#strength').show()
+          $('#power').show()
+        if(level == "beginner"){
+          $('#functional').hide()
+          $('#endurance').hide()
+          $('#strength').hide()
+          $('#power').hide()
+        }else if(level == 'novice'){
+          $('#1').hide()
+          $('#2').hide()
+          $('#power').hide()
+        }else if(level == 'intermediate'){
+          $('#1').hide()
+          $('#2').hide()
+        }else{
+          $('#1').hide()
+          $('#2').hide()
+          $('#endurance').hide()
+        }
       })
       $('.resistanceDropdown').on("click", function(e) {
         e.stopPropagation();
@@ -47,19 +72,21 @@
     //main dropdown select
     $('.wo').on("click", function(e) {
       //set global vars
-      type = $(this).attr("value")
-      level = $(this).parent().parent().parent().children()[0].text
-
-      //changes main button text
-      $('#create-wo').text(level).append('<small>' + ' (' + this.text + ') ').append('<span class="caret"></span>')
-      $('.hidden-box').show()
-      if (expSelected) {
-        $('.expbased').remove()
+      if(mobile){
+        type = $(this).attr("value")
+      }else{
+        type = $(this).attr("value")
+        level = $(this).parent().parent().parent().children()[0].text      
+              //changes main button text
+        $('#create-wo').text(level).append('<small>' + ' (' + this.text + ') ').append('<span class="caret"></span>')
       }
+
+      $('.hidden-box').show()
+      if (expSelected) {$('.expbased').remove()}
       expSelected = true;
 
       getWo("warmup",function(woArray){
-        var woArray = JSON.parse(woArray)
+        woArray = JSON.parse(woArray)
         $.each(woArray,function(i,exer){
           addTr(exer, "warmup", "expbased")
           addTr(exer, "cooldown", "expbased")
@@ -79,9 +106,12 @@
     }
 
     function addTr(n, toRefresh, optionalCls) {
+      var delBtn = '' 
+      if(toRefresh != 'warmup' && toRefresh != 'cooldown'){
+        delBtn = "<a class='btn btn-danger delete pull-right' href='#' onclick='rowDelete(this); return false;'>X</a>"
+      }
       if(n == '' || n =="Loading..."){return false}
-      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>'+
-      n + "<a class='btn btn-danger delete pull-right' href='#' onclick='rowDelete(this); return false;'>X</a>"+'</td></tr>')
+      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>'+ n + delBtn + "</td></tr>")
     }
 
     //core, balance, saq

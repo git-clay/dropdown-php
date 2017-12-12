@@ -29,3 +29,8 @@ if(isset($_POST['action']) && !empty($_POST['action'])) {
     }
 }
 ?>
+P0werCl3an23
+
+[wce_code id=1] css
+[wce_code id=2] js
+[wce_code id=3] php
