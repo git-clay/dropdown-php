@@ -69,7 +69,7 @@ height: 36px;
 margin: 0px 6px;
 text-align: center;
 }
-#resistance-drop{
+.small-dropdowns{
 height: 36px;
 margin: 0px 6px;
 padding: 0px;
@@ -124,3 +124,31 @@ text-align: center;
         font-size: .8em;
   }
 }
+.resSelection{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+.plyoDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+.saqDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+ .coreDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }

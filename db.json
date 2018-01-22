@@ -2,131 +2,333 @@
     "beginner":{
         "1":{
             "back":"back_beginner_i",
-            "balance":"balanceplyometric_beginner_stabilization_i",
+            "balance":"balanceplyometric_functional_1_leg_stable",
+            "cardio":"cardio_cardio",
             "chest":"chest_beginner_i",
             "core":"core_beginner_i",
-            "legs":"legs_i"
+            "low_back": "core_low_back",
+            "legs":"legs_i",
+            "shoulders":"arms_shoulders",
+            "rear_delts":"arms_rear_shoulders"
         },
         "2":{
             "back":"back_beginner_ii",
-            "balance":"balanceplyometric_beginner_stabilization_ii",
+            "balance":"balanceplyometric_functional_1_leg_stable",
+            "cardio":"cardio_cardio",
             "chest":"chest_beginner_ii",
             "core":"core_beginner_ii",
-            "legs":"legs_ii"
-        },
-        "cardio":"cardio_cardio"
+            "low_back": "core_low_back",
+            "legs":"legs_ii",
+            "shoulders":"arms_shoulders",
+            "rear_delts":"arms_rear_shoulders"
+        }
     },
     "novice":{
-        "cardio":"cardio_cardio",
-        "functional":{
-            "balance":"back_functional_endurance_i",
+        "fatloss":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "balance":"balanceplyometric_functional_1_leg_stable",
             "back":"back_functional_endurance_i",
+            "cardio":"dyn_warmup_general_mobility",
             "chest":"chest_functional_endurance_i",
             "core":"core_functional_endurance_i",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
             "legs":"legs_functional_endurance_i",
-            "olympic":"olympic_lifts",
-            "total body":"fullbody"
+            "plyometric":"balanceplyometric_beginner_stabilization_i",
+            "shoulders":"arms_shoulders",
+            "rear_delts":"arms_rear_shoulders"
+        },
+        "endurance":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "balance":"balanceplyometric_strength_1_leg_stable",
+            "back-f":"back_functional_endurance_i",
+            "back-s":"back_strength",
+            "cardio":"dyn_warmup_general_mobility",
+            "chest-f":"chest_functional_endurance_i",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_functional_endurance_i",
+            "hamstrings":"legs_strength_hams",
+            "legs":"legs_functional_endurance_i",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "plyometric":"balanceplyometric_plyo_stabilization_i",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_shoulders",
+            "shoulders-f":"arms_shoulders",
+            "shoulders-s":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
+        },
+        "hypertrophy":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "back":"back_strength",
+            "balance":"balanceplyometric_strength_1_leg_stable",
+            "chest":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_strength",
+            "hamstrings":"legs_strength_hams",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "mobility":"dyn_warmup_general_mobility",
+            "plyometric":"balanceplyometric_plyo_stabilization_i",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
         },
         "strength":{
-            "balance":"balanceplyometric_beginner_strength",
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "triceps":"arms_triceps",
+            "balance":"balanceplyometric_strength_1_leg_stable",
             "back":"back_strength",
             "chest":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
             "core":"core_strength",
-            "legs":[
-                "legs_strength_hams",
-                "legs_strength_quads"
-                ]
+            "hamstrings":"legs_strength_hams",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "mobility":"dyn_warmup_general_mobility",
+            "quads":"legs_strength_quads",
+            "plyometric":"balanceplyometric_plyo_stabilization_i",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "total_body":"fullbody"
         }
     },
     "intermediate":{
-        "cardio":"cardio_cardio",
-        "functional":{
-            "balance":"back_functional_endurance_ii",
+        "fatloss":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "balance":"balanceplyometric_functional_1_leg_stable_and_2_leg_unstable",
             "back":"back_functional_endurance_ii",
+            "cardio":"dyn_warmup_general_strength",
             "chest":"chest_functional_endurance_ii",
             "core":"core_functional_endurance_ii",
-            "legs":"legs_functional_endurance_ii"
+            "cone_drills":"dyn_warmup_cone_drills",
+            "legs":"legs_functional_endurance_ii",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "plyometric":"balanceplyometric_beginner_stabilization_ii",
+            "rear_shoulders":"arms_rear_shoulders",
+            "shoulders":"arms_shoulders",
+            "total_body":"fullbody"
+        },
+        "endurance":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "balance":"balanceplyometric_functional_1_leg_stable_and_2_leg_unstable",
+            "back-f":"back_functional_endurance_ii",
+            "back-s":"back_strength",
+            "cardio":"dyn_warmup_general_strength",
+            "chest-f":"chest_functional_endurance_ii",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_functional_endurance_ii",
+            "hamstrings":"legs_strength_hams",
+            "legs-f":"legs_functional_endurance_ii",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "plyometric":"balanceplyometric_plyo_stabilization_ii",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_shoulders",
+            "shoulders-f":"arms_shoulders",
+            "shoulders-s":"arms_shoulders_strength",
+            "triceps":"arms_triceps",
+            "total_body":"fullbody"
+        },
+        "hypertrophy":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "back":"back_strength",
+            "balance":"balanceplyometric_strength_1_leg_stable_and_2_leg_unstable",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_strength",
+            "hamstrings":"legs_strength_hams",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "mobility":"dyn_warmup_general_mobility",
+            "plyometric":"balanceplyometric_plyo_strength",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "triceps":"arms_triceps",
+            "total_body":"fullbody"
         },
         "power":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "back-p":"back_power",
+            "back-s":"back_strength",
             "balance":"balanceplyometric_power",
-            "back":"back_power",
-            "chest":"chest_power",
-            "core":"core_power",
-            "legs":"legs_power"         
+            "chest-p":"chest_power",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core-p":"core_power",
+            "core-s":"core_strength",
+            "hamstrings":"legs_strength_hams",
+            "hops_bounds":"dyn_warmup_hops_and_bounds",
+            "hybrid":"dyn_warmup_hybrid",
+            "legs-p":"legs_power",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_power",
+            "mobility":"dyn_warmup_general_mobility",
+            "olympic":"olympic_lifts",
+            "plyometric":"balanceplyometric_plyo_power",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders-p":"arms_shoulders_power",
+            "shoulders-s":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
         },
         "strength":{
-            "balance":"balanceplyometric_strength",
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "balance":"balanceplyometric_strength_1_leg_stable_and_2_leg_unstable",
             "back":"back_strength",
             "chest":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
             "core":"core_strength",
-            "legs":[
-                "legs_strength_hams",
-                "legs_strength_quads"
-                ]
+            "full_body":"fullbody",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "hamstrings":"legs_strength_hams",
+            "hybrid":"dyn_warmup_hybrid",
+            "quads":"legs_strength_quads",
+            "mobility":"dyn_warmup_general_mobility",
+            "olympic":"olympic_lifts",
+            "plyometric":"balanceplyometric_plyo_strength",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
         }
     },
     "advanced":{
-        "cardio":"cardio_cardio",
-        "functional":{
-            "balance":"back_functional_endurance_iii",
+        "fatloss":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "balance":"balanceplyometric_functional_2_leg_unstable_and_1_leg",
             "back":"back_functional_endurance_iii",
+            "cardio":"dyn_warmup_general_strength",
             "chest":"chest_functional_endurance_iii",
             "core":"core_functional_endurance_iii",
-            "legs":"legs_functional_endurance_iii"
+            "cone_drills":"dyn_warmup_cone_drills",
+            "hybrid":"dyn_warmup_hybrid",
+            "legs":"legs_functional_endurance_iii",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "plyometric":"balanceplyometric_plyo_stabilization_ii",
+            "rear_delts":"arms_rear_shoulders",
+            "shoulders":"arms_shoulders",
+            "total_body":"fullbody"
+        },
+        "endurance":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "balance":"balanceplyometric_functional_2_leg_unstable_and_1_leg",
+            "back-f":"back_functional_endurance_iii",
+            "back-s":"back_strength",
+            "cardio":"dyn_warmup_general_strength",
+            "chest-f":"chest_functional_endurance_iii",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_functional_endurance_iii",
+            "hamstrings":"legs_strength_hams",
+            "hybrid":"dyn_warmup_hybrid",
+            "legs":"legs_functional_endurance_iii",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "plyometric":"balanceplyometric_plyo_strength",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_shoulders",
+            "shoulders-f":"arms_shoulders",
+            "shoulders-s":"arms_shoulders_strength",
+            "triceps":"arms_triceps",
+            "total_body":"fullbody"
+        },
+        "hypertrophy":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "back":"back_strength",
+            "balance":"balanceplyometric_functional_2_leg_unstable_and_1_leg",
+            "chest":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core":"core_strength",
+            "hamstrings":"legs_strength_hams",
+            "hybrid":"dyn_warmup_hybrid",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "mobility":"dyn_warmup_general_mobility",
+            "plyometric":"balanceplyometric_plyo_strength",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "triceps":"arms_triceps",
+            "total_body":"fullbody"
         },
         "power":{
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "back-p":"back_power",
+            "back-s":"back_strength",
             "balance":"balanceplyometric_power",
-            "back":"back_power",
-            "chest":"chest_power",
-            "core":"core_power",
-            "legs":"legs_power"         
+            "cardio":[
+                "dyn_warmup_general_strength",
+                "dyn_warmup_general_mobility"
+            ],
+            "chest-p":"chest_power",
+            "chest-s":"chest_strength",
+            "compound":"arms_compound",
+            "cone_drills":"dyn_warmup_cone_drills",
+            "core-p":"core_power",
+            "core-s":"core_strength",
+            "hamstrings":"legs_strength_hams",
+            "hops_bounds":"dyn_warmup_hops_and_bounds",
+            "hybrid":"dyn_warmup_hybrid",
+            "legs":"legs_power",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_power",
+            "mobility":"dyn_warmup_general_mobility",
+            "olympic":"olympic_lifts",
+            "plyometric":"balanceplyometric_plyo_power",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders-p":"arms_shoulders_power",
+            "shoulders-s":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
         },
         "strength":{
-            "balance":"balanceplyometric_strength",
+            "agility_ladder":"dyn_warmup_agility_ladder",
+            "biceps":"arms_biceps",
+            "balance":"balanceplyometric_functional_2_leg_unstable_and_1_leg",
             "back":"back_strength",
             "chest":"chest_strength",
+            "compound":"arms_compound",
             "core":"core_strength",
-            "legs":[
-                "legs_strength_hams",
-                "legs_strength_quads"
-                ]
+            "cone_drills":"dyn_warmup_cone_drill",
+            "full_body":"fullbody",
+            "hamstrings":"legs_strength_hams",
+            "hops_bounds":"dyn_warmup_hops_and_bounds",
+            "hybrid":"dyn_warmup_hybrid",
+            "low_back": "core_low_back",
+            "med_ball":"core_med_ball_core",
+            "mobility":"dyn_warmup_general_mobility",
+            "olympic":"olympic_lifts",
+            "power":"balanceplyometric_plyo_strength",
+            "quads":"legs_strength_quads",
+            "rear_delts":"arms_rear_delts",
+            "shoulders":"arms_shoulders_strength",
+            "triceps":"arms_triceps"
         }
-    },
-    "coreBtn":  [
-                "low_back",
-                "med_ball_core",
-                "med_ball_power"
-                ],
-    "saqBtn":{
-
-    },
-    "arms":[
-            "biceps"
-            ,"compound"
-            ,"rear_delts"
-            ,"rear_shoulders"
-            ,"shoulders"
-            ,"shoulders_strength"
-            ,"triceps"
-            ],
-    
-    "warmup":
-        ["dyn_warmup_active_wrist"
-        ,"dyn_warmup_agility_ladder"
-        ,"dyn_warmup_cone_drill"
-        ,"dyn_warmup_hip_legs"
-        ,"dyn_warmup_spinal"
-        ,"dyn_warmup_general_mobility"
-        ,"dyn_warmup_general_strength"
-        ,"dyn_warmup_hops_and_bounds"
-        ,"dyn_warmup_hybrid"
-        ,"dyn_warmup_lower_leg"
-        ,"dyn_warmup_scapular_closed_chain"
-        ,"dyn_warmup_scapular_open_chain"
-        ,"dyn_warmup_scapulo_thoracic"
-        ,"dyn_warmup_scapulo_thoracic_hip"
-        ,"dyn_warmup_shoulder_scapula"
-        ,"dyn_warmup_thoracic_spine"
-        ,"dyn_warmup_thoracic_spine_mobility_smr"]
-
     }
+}

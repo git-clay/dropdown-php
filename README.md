@@ -34,3 +34,24 @@ P0werCl3an23
 [wce_code id=1] css
 [wce_code id=2] js
 [wce_code id=3] php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NEXT ITERATION
+Use advanced-power until the server is updated
+REFRESH button is working for all dropdowns
+plain add btn works
+refresh after adding is not working
+
+--add page refresh btn
