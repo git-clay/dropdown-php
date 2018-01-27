@@ -68,10 +68,9 @@ $(document).ready(function() {
     })
   }
 
-  //refresh "constructor"
   function refresh(tempFocus) {
     if(tempFocus == 'resistance' && resEdit){
-      updateResOption($('#resistance-selected').text(),'#resistanceMenu')
+      updateResOption(resVal,'#resistanceMenu')
     }else if(tempFocus == 'plyo'&&plyoEdit){
       updateResOption(plyoVal,'#plyoMenu')
     }else if(tempFocus == 'saqBtn' && saqEdit){
@@ -87,8 +86,6 @@ $(document).ready(function() {
     }
   }
 
-  //adding a row to the correct results table to the right with the given workout from getWo
-    //can maybe combine with getWo as a private method
   function addTr(newWorkout, toRefresh, optionalCls) {
     var delBtn = ''
     if(toRefresh != 'warmup' && toRefresh != 'cooldown'){
@@ -97,7 +94,17 @@ $(document).ready(function() {
     if(newWorkout == '' || newWorkout =="Loading..."){return false}
     $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>'+ newWorkout + delBtn + "</td></tr>")
   }
+    /* Resistance Dropdown */
+  function updateResOption(focus, thisMenu) {
+    $(thisMenu).text("Loading...")
+    getWo(focus,function(newWorkout){
+      $(thisMenu).text(newWorkout + ' ').append('<span class="caret"></span>')
+    });
+  }
 
+/**
+ * click handlers
+ */
 
   //click - main dropdown select for experience and type and level
   $('.wo').on("click", function(e) {
@@ -265,19 +272,5 @@ $(document).ready(function() {
     resEdit = true;
   })  
 
-  /* Resistance Dropdown */
-  function updateResOption(focus, thisMenu) {
-    $(thisMenu).text("Loading...")
-    getWo(focus,function(newWorkout){
-      $(thisMenu).text(newWorkout + ' ').append('<span class="caret"></span>')
-    });
-  }
-
-  //add
-  // $('.addRes').on("click", function(e) {
-  //   if (resEdit) {
-  //     addTr($('#resistanceMenu').text(), "workout-table-resistance", "")
-  //   }
-  // })
 
 });
