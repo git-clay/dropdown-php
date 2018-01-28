@@ -1,3 +1,4 @@
+(function($){
 var mobile = window.matchMedia('screen and (max-width: 413px)').matches;
 
 var resEdit = false,coreEdit=false,saqEdit=false,plyoEdit=false;
@@ -23,12 +24,15 @@ $(document).ready(function() {
         $('#endurance').show()
         $('#strength').show()
         $('#power').show()
+        $('#hypertrophy').show()
+
       if(level == "beginner"){
         $('#1').show()
         $('#2').show()
         $('#fatloss').hide()
         $('#endurance').hide()
         $('#strength').hide()
+        $('#hypertrophy').hide()
         $('#power').hide()
         $('#power').hide()
       }else if(level == 'intermediate'){
@@ -38,7 +42,7 @@ $(document).ready(function() {
       }
     })
     //how to handle type selection - mobile
-    $('.a').on("click", function(e) {
+    $('.wo').on("click", function(e) {
       e.stopPropagation();
       $('#resistanceMenu').dropdown('toggle')
     })
@@ -46,7 +50,7 @@ $(document).ready(function() {
     $('#create-wo-m').hide()
   }
 
-  function getWo(focusExer,callback) {
+  function getWo(focusExer,callback,count) {
     var queryAction = "workout_ajax";
     var workoutObj = {"level":level.toLowerCase(),"type":type.toLowerCase(),"focus":focusExer.toLowerCase()} //build query serverside
     var ajaxurl = "http://fitnessproblem.com/wp-admin/admin-ajax.php"
@@ -54,13 +58,15 @@ $(document).ready(function() {
       'action': queryAction,
       'name': workoutObj
     };
+
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
       data: data,
       success: function(res) {
-        if(res==null || res == ''){
-          getWo(focusExer,callback)
+        if((res==null || res == '')&&count<5){
+          count++
+          getWo(focusExer,callback,count)
         }else{
           callback(res)
         }
@@ -79,10 +85,15 @@ $(document).ready(function() {
       updateResOption(coreVal,'#coreMenu')
     }else{
       var content = '#' + tempFocus + '-content'
+      tempFocus = tempFocus.replace('Btn', '')
+      if(tempFocus == 'saq'){
+        tempFocus = 'agility_ladder'
+      }
+
       $(content).text("Loading...")
         getWo(tempFocus,function(newWorkout){
           $(content).text(newWorkout)
-        });
+        },0);
     }
   }
 
@@ -99,7 +110,7 @@ $(document).ready(function() {
     $(thisMenu).text("Loading...")
     getWo(focus,function(newWorkout){
       $(thisMenu).text(newWorkout + ' ').append('<span class="caret"></span>')
-    });
+    },0);
   }
 
 /**
@@ -124,11 +135,20 @@ $(document).ready(function() {
     $('.hidden-box').show()
     $('.saq').show()
     $('.plyo').show()
-    $('#saqHybrid').hide()
     $('.submenu-power').hide()
     $('.submenu-normal').show()
     $('.submenu-endurance').hide()
-
+    $('.dd-core').show()
+    $('.endurance').hide()
+    $('.arms').show()
+    $('.beginner').hide()
+    $('.not-beginner').show()
+    $('.cardio').show()
+    $('.legs-f').hide()
+    $('.legs-plain').show()
+    $('.totalbody-dropdown').hide()
+    $('.totalbody-plain').hide()
+    $('.legs-p').hide()
 
     //what options to show in dropdowns
     if(level == "beginner"){
@@ -136,12 +156,13 @@ $(document).ready(function() {
       $('.plyo').hide()
       $('.beginner').show()
       $('.not-beginner').hide()
-    }else if(level == 'advanced' || (level == 'intermediate' && type=='power'||'strength')){
-      $('#saqHybrid').show()
-      $('.beginner').hide()
-      $('.not-beginner').show()
+    }else{
+      $('.legs-plain').hide()
+      $('.legs-dropdown').show()
     }
-    if((type == 'strength' || type == 'power' && level == 'advanced')||(type == 'power' && level == 'intermediate')){
+
+
+    if(((type == 'strength' || type == 'power') && level == 'advanced')||(type == 'power' && level == 'intermediate')){
       $('#plyo-dropdown-content').show()
       $('#plyo-content').hide()
     }else{
@@ -149,16 +170,25 @@ $(document).ready(function() {
       $('#plyo-content').show()
     }
 
+    // type only switches
     if(type == 'power'){
       $('.submenu-power').show()
       $('.submenu-normal').hide()
+      $('.arms').hide()
     }else if(type == 'endurance'){
       $('.submenu-endurance').show()
-      $('.submenu-normal').hide()
-      if(level == 'intermediate' || level == 'advanced'){
-        $('#plyo-dropdown-content').show()
-        $('#plyo-content').hide()
-      }
+      $('.endurance').show()
+      $('.back-plain').hide()
+      $('.back-dropdown').show()
+      $('.legs-f').show()
+    }else if(type == 'fatloss'){
+      $('.arms').hide()
+      $('.legs-plain').show()
+      $('.legs-dropdown').hide()
+    }else if(type == 'hypertrophy'){
+      $('.cardio').hide()
+    }else if(type == 'strength'){
+      $('.cardio').hide()
     }
 
     if((type != 'fatloss' && level == 'novice') || level == 'intermediate' || level == 'advanced'){ 
@@ -175,8 +205,51 @@ $(document).ready(function() {
     }else{
       $('#mobility').hide()
     }
+    
+    if(level == 'advanced' || ((type=='power'|| type =='strength') && level == 'intermediate' )){
+      $('.hybrid').show()
+    }else{
+      $('.hybrid').hide()
+    }
 
+    if(type == 'endurance' || (type == 'hypertrophy' && level != 'novice') || (type == 'strength' && level == 'advanced')){
+      $('.compound').show()
+    }else{
+      $('.compound').hide()
+    }
 
+    //totalbody section
+    if((type == 'power' || type == 'strength')&&(level == 'intermediate' || level == 'advanced')){
+      $('.totalbody-dropdown').show()
+      $('.totalbody-plain').hide()
+    }else if(level == 'intermediate' || level == 'advanced' || (level == 'novice' && type == 'strength')){
+      $('.totalbody-dropdown').hide()
+      $('.totalbody-plain').show()    
+    }
+
+    if((level == 'advanced' && (type != 'fatloss' && type !='strength'))|| (level == 'intermediate' && type == 'endurance') || (type == 'power' && level != 'novice') ){
+      $('.chest-dropdown').show()
+      $('.chest-plain').hide()
+    }else{
+      $('.chest-plain').show()
+      $('.chest-dropdown').hide()
+    }
+
+    if(type == 'power' && (level == 'intermediate' || level == 'advanced')){
+      $('.legs-p').show()
+      $('.chest-f').hide()
+      $('#shoulders').hide()
+      $('#totalbody').hide()      
+      if(level == 'intermediate'){
+        $('#hopsBoundsDropdown').hide()
+      }else{
+        $('#hopsBoundsDropdown').show()
+        $('.cardio').show()
+      }
+    }else{
+      $('#shoulders').show()
+      $('#totalbody').show()      
+    }
 
     if (expSelected) {$('.expbased').remove()}
     expSelected = true;
@@ -187,8 +260,8 @@ $(document).ready(function() {
         addTr(exer, "warmup", "expbased")
         addTr(exer, "cooldown", "expbased")
       })
-    });
-    refresh('balance');
+    },0);
+
   })
   //click - refresh btn for dropdowns or non-dropdown rows
   $('.refresh').on("click", function(e) {
@@ -274,3 +347,4 @@ $(document).ready(function() {
 
 
 });
+})(jQuery);
