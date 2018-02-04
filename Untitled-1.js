@@ -9,14 +9,10 @@ var type, level, focus;
 $(document).ready(function() {
   //mobile dropdown functions
   if (mobile) {
-    //apply mobile specific classes?
-    $('body')
-      .off('click.dropdown touchstart.dropdown.data-api', '.dropdown')
-      .on('click.dropdown touchstart.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
     //how to handle mobile click events
     $('.m-exp').on("click", function(e) {
       e.stopPropagation();
-      $('#create-wo-m').show()
+      $('#m-list').hide()
       level = $(this).attr("value")
         $('#1').hide()
         $('#2').hide()
@@ -40,11 +36,12 @@ $(document).ready(function() {
       }else{
         $('#endurance').hide()
       }
+      $('#exp-m').text(level)
     })
     //how to handle type selection - mobile
     $('.wo').on("click", function(e) {
       e.stopPropagation();
-      $('#resistanceMenu').dropdown('toggle')
+      $('#wo-list').hide()
     })
   }else{
     $('#create-wo-m').hide()
@@ -124,6 +121,7 @@ $(document).ready(function() {
     //set global vars
     if(mobile){
       type = $(this).attr("value")
+      $('#create-wo-m').text(type)
     }else{
       type = $(this).attr("value")
       level = $(this).parent().parent().parent().children()[0].text      
@@ -227,7 +225,7 @@ $(document).ready(function() {
       $('.totalbody-plain').show()    
     }
 
-    if((level == 'advanced' && (type != 'fatloss' && type !='strength'))|| (level == 'intermediate' && type == 'endurance') || (type == 'power' && level != 'novice') ){
+    if((level == 'advanced' && (type != 'fatloss' && type !='strength'))|| ((level == 'intermediate' || level == 'novice' )&& type == 'endurance') || (type == 'power' && level != 'novice') ){
       $('.chest-dropdown').show()
       $('.chest-plain').hide()
     }else{
@@ -281,8 +279,7 @@ $(document).ready(function() {
     }else if( (tempFocus == 'saqBtn' && saqEdit)      ||
               (tempFocus == 'coreBtn' && coreEdit))
     {
-      tempFocus = tempFocus.slice(0,-3)
-      newWorkout = $('#'+tempFocus+'Menu').text()
+      newWorkout = $('#'+tempFocus.slice(0,-3)+'Menu').text()
     }else{
       newWorkout = $('#'+tempFocus+'-content').text()
     }

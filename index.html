@@ -109,7 +109,7 @@
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="exp-m">Experience level
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu list-unstyled">
+      <ul class="dropdown-menu list-unstyled" id='m-list'>
         <li>
           <a href='#' class="dropdown-toggle m-exp" value="beginner">Beginner</a>
         </li>
@@ -128,7 +128,7 @@
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo-m">Type of training
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu list-unstyled">
+      <ul class="dropdown-menu list-unstyled" id='wo-list'>
         <li class="dropdown-submenu">
           <a href="#" class="wo" id='1' value="1">Level 1</a>
         </li>
@@ -152,6 +152,7 @@
         </li>
       </ul>
     </div>
+    <button class="glyphicon glyphicon-refresh btn btn-warning" onclick='location.reload()'></button>
   </div>
   <!--End dropdown-->
 
@@ -159,7 +160,7 @@
     <!--Start Core-->
     <div class="row display-row">
       <span class="label label-default">Core</span>
-      <span id="coreelected" class="label label-default"></span>
+      <span id="core-selected" class="label label-default"></span>
       <br>
       <div class="col-xs-12 display-box">
         <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="coreBtn-r"></button>
@@ -199,36 +200,7 @@
       </div>
     </div>
     <!--End Balance-->
-    <!--Start SAQ-->
-    <div class="row display-row saq">
-      <span class="label label-default">SAQ</span>
-      <span id="saq-selected" class="label label-default"></span>
-      <br>
-      <div class="col-xs-12 display-box">
-        <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saqBtn-r"></button>
-        <div class="col-xs-8 col-sm-7 clearfix display-content displayText submenu-normal" id="saqBtn-content"></div>
-        <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns" id="saqBtn-dropdown-content">
-          <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="true">
-            SAQ Options
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
-            <li class="dropdown-submenu">
-              <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
-            </li>
-            <li class="dropdown-submenu">
-              <button class="saqDropdown" value="cone_drills">Cone Drills</button>
-            </li>
-            <li class="dropdown-submenu hybrid">
-              <button class="saqDropdown" value="hybrid">Hybrid</button>
-            </li>
-          </ul>
-        </div>
-        <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saqBtn-a"></button>
-      </div>
-    </div>
-    <!--End SAQ-->
+
     <!--Start plyo-->
     <div class="row display-row plyo">
       <span class="label label-default">Plyometric</span>
@@ -257,7 +229,36 @@
     </div>
     <!--End plyo-->
 
-
+    <!--Start SAQ-->
+    <div class="row display-row saq">
+        <span class="label label-default">SAQ</span>
+        <span id="saq-selected" class="label label-default"></span>
+        <br>
+        <div class="col-xs-12 display-box">
+          <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saqBtn-r"></button>
+          <div class="col-xs-8 col-sm-7 clearfix display-content displayText submenu-normal" id="saqBtn-content"></div>
+          <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns" id="saqBtn-dropdown-content">
+            <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true">
+              SAQ Options
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
+              <li class="dropdown-submenu">
+                <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
+              </li>
+              <li class="dropdown-submenu">
+                <button class="saqDropdown" value="cone_drills">Cone Drills</button>
+              </li>
+              <li class="dropdown-submenu hybrid">
+                <button class="saqDropdown" value="hybrid">Hybrid</button>
+              </li>
+            </ul>
+          </div>
+          <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saqBtn-a"></button>
+        </div>
+      </div>
+      <!--End SAQ-->
     
     <!--Start Resistance-->
     <div class="row display-row">
@@ -530,6 +531,7 @@
     </div>
   </div>
 </div>
+
 </body>
 
 </html>
