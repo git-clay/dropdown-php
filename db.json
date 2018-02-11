@@ -147,7 +147,7 @@
             "biceps":"arms_biceps",
             "back":"back_strength",
             "balance":"balanceplyometric_strength_1_leg_stable_and_2_leg_unstable",
-            "chest-s":"chest_strength",
+            "chest":"chest_strength",
             "compound":"arms_compound",
             "cone_drills":"dyn_warmup_cone_drill",
             "core":"core_strength",

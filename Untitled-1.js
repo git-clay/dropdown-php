@@ -34,7 +34,6 @@ $(document).ready(function() {
       }else if(level == 'intermediate'){
 
       }else{
-        $('#endurance').hide()
       }
       $('#exp-m').text(level)
     })
@@ -225,7 +224,7 @@ $(document).ready(function() {
       $('.totalbody-plain').show()    
     }
 
-    if((level == 'advanced' && (type != 'fatloss' && type !='strength'))|| ((level == 'intermediate' || level == 'novice' )&& type == 'endurance') || (type == 'power' && level != 'novice') ){
+    if((level == 'advanced' && (type != 'fatloss' && type !='strength' && type != 'hypertrophy'))|| ((level == 'intermediate' || level == 'novice' )&& type == 'endurance') || (type == 'power' && level != 'novice') ){
       $('.chest-dropdown').show()
       $('.chest-plain').hide()
     }else{
