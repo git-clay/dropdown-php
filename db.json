@@ -114,7 +114,7 @@
             "low_back": "core_low_back",
             "med_ball":"core_med_ball_core",
             "plyo":"balanceplyometric_beginner_stabilization_ii",
-            "rear_shoulders":"arms_rear_shoulders",
+            "rear_delts":"arms_rear_shoulders",
             "shoulders":"arms_shoulders",
             "total_body":"fullbody"
         },
@@ -209,6 +209,7 @@
             "plyo":"balanceplyometric_plyo_strength",
             "rear_delts":"arms_rear_delts",
             "shoulders":"arms_shoulders_strength",
+            "total_body":"fullbody",
             "triceps":"arms_triceps"
         }
     },
@@ -295,7 +296,7 @@
             "hamstrings":"legs_strength_hams",
             "hops_bounds":"dyn_warmup_hops_and_bounds",
             "hybrid":"dyn_warmup_hybrid",
-            "legs":"legs_power",
+            "legs-p":"legs_power",
             "low_back": "core_low_back",
             "med_ball":"core_med_ball_power",
             "mobility":"dyn_warmup_general_mobility",
@@ -324,10 +325,11 @@
             "med_ball":"core_med_ball_core",
             "mobility":"dyn_warmup_general_mobility",
             "olympic":"olympic_lifts",
-            "power":"balanceplyometric_plyo_strength",
+            "plyo":"balanceplyometric_plyo_strength",
             "quads":"legs_strength_quads",
             "rear_delts":"arms_rear_delts",
             "shoulders":"arms_shoulders_strength",
+            "total_body":"fullbody",
             "triceps":"arms_triceps"
         }
     }

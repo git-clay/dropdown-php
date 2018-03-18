@@ -54,7 +54,7 @@ $(document).ready(function() {
       'action': queryAction,
       'name': workoutObj
     };
-
+console.log(data)
     jQuery.ajax({
       url: ajaxurl,
       type: "POST",
