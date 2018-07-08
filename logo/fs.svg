@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 180">
+    <style>
+        polygon{fill:cadetblue;filter:url(#dropshadow)} svg{background-color:white}
+    </style>
+    <g>
+        <polygon id="sig" points="
+        60,60
+         100,60 
+         100,70 
+         70,70 
+         100,105 
+         70,140 
+         100,140 
+         100,150 
+         60,150 
+         60,140 
+         90,105 
+         60,70"/>
+        <polygon id="f" points="10,10 100,10 100,30 30,30 30,60 60,60 60,70 30,70 30,150 10,170"/>
+    </g>
+    <g class="plate">
+        <polygon points="
+            40,90
+            65,90
+            77,105
+            65,120
+            40,120"/>
+    </g>
+    <filter id="dropshadow" width="150%" height="130%" color="blue">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+<!--stdDeviation is how much to blur-->
+        <feOffset dx="1" dy="1" result="offsetblur"/>
+<!--how much to offset-->
+        <feComponentTransfer>
+            <feFuncA fill="pink" slope="0.8" type="linear"/>
+<!--slope is the opacity of the shadow-->
+        </feComponentTransfer>
+        <feMerge>
+            <feMergeNode/>
+<!--this contains the offset blurred image-->
+            <feMergeNode in="SourceGraphic"/>
+<!--this contains the element that the filter is applied to-->
+        </feMerge>
+    </filter>
+</svg>
