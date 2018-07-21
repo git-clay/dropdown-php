@@ -6,9 +6,9 @@
         <polygon id="sig" points="
         60,60
         100,60 
-        100,76 
-        99,74
-        97,73 
+        100,77
+        99.5,75.5
+        97,72
         95,71 
         94,70.5
         91,70
@@ -59,6 +59,9 @@
             65,120
             40,120"/>
     </g>
+          <filter id="shadow">
+      <feDropShadow  dx="0" dy="0" stdDeviation="4" flood-color="rgb(245,255,0)" flood-opacity="1" />
+    </filter>
     <filter id="dropshadow" width="150%" height="130%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
 <!--stdDeviation is how much to blur-->
