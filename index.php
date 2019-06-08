@@ -9,234 +9,692 @@
   </head>
   <body>
     <style>
-      .dropdown-submenu {
-      position: relative;
+      #create-wo{
+        position: relative;
+        background:#007bff;
+        width:190px;
+        text-align:center;
+        padding: 5px 15px;
       }
-      .dropdown-submenu>.dropdown-menu {
-      top: 0;
-      left: 100%;
-      margin-top: -6px;
-      margin-left: -1px;
-      -webkit-border-radius: 0 6px 6px 6px;
-      -moz-border-radius: 0 6px 6px;
-      border-radius: 0 6px 6px 6px;
+      #create-wo:hover{
+        background:#02abff;
       }
-      .dropdown-submenu:hover>.dropdown-menu {
-      display: block;
-      }
-      .dropdown-submenu>a:after {
-      display: block;
-      content: " ";
-      float: right;
-      width: 0;
-      height: 0;
-      border-color: transparent;
-      border-style: solid;
-      border-width: 5px 0 5px 5px;
-      border-left-color: #ccc;
-      margin-top: 5px;
-      margin-right: -10px;
-      }
-      .dropdown-submenu:hover>a:after {
-      border-left-color: #fff;
-      }
-      .dropdown-submenu.pull-left {
-      float: none;
-      }
-      .dropdown-submenu.pull-left>.dropdown-menu {
-      left: -100%;
-      margin-left: 10px;
-      -webkit-border-radius: 6px 0 6px 6px;
-      -moz-border-radius: 6px 0 6px 6px;
-      border-radius: 6px 0 6px 6px;
-      }
-      .label{
-        margin: 0px 4px;
-      }
-      .display-row{
-        margin:5px 0px;
-      }
-      .display-box{
-        height: 42px;
-        padding: 2px 4px;
-      }
-      .display-content{
-        color: #333;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        height: 36px;
-        margin: 0px 6px;
-      }
-      .resistance-drop{
-        height: 36px;
-        margin: 0px 6px;
-        padding: 0px;
-      }
-      .display-content p {
-        text-align: center;
-      }
+.wrapper{
+padding:0;
+width:100%;
+height: 600px;
+
+}
+a{
+  text-decoration: none !important;
+
+}
+.dropdown-submenu {
+position: relative;
+}
+li.dropdown-submenu{
+list-style-type:none !important;
+}
+.dropdown-submenu>.dropdown-menu {
+top: 0;
+left: 100%;
+margin-top: -6px;
+margin-left: -1px;
+-webkit-border-radius: 0 6px 6px 6px;
+-moz-border-radius: 0 6px 6px;
+border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+display: block;
+}   
+.wo>a:after {
+display: block;
+content: " ";
+float: right;
+width: 0;
+height: 0;
+border-color: transparent;
+border-style: solid;
+border-width: 5px 0 5px 5px;
+border-left-color: #ccc;
+margin-top: 5px;
+margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+left: -100%;
+margin-left: 10px;
+-webkit-border-radius: 6px 0 6px 6px;
+-moz-border-radius: 6px 0 6px 6px;
+border-radius: 6px 0 6px 6px;
+}
+.label{
+margin: 0px 4px;
+}
+.display-row{
+margin:5px 0px;
+}
+.display-box{
+height: 42px;
+padding: 2px 4px;
+}
+.display-content{
+color: #333;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 3px;
+height: 36px;
+margin: 0px 6px;
+text-align: center;
+}
+.small-dropdowns{
+height: 36px;
+margin: 0px 6px;
+padding: 0px;
+}
+.blank{
+display: none;
+}
+.hidden-box{
+display: none;
+padding: 5px;
+width:50%;
+}
+table{
+font-size:1.2rem;
+}
+tbody{
+text-align: center;
+}
+.add{
+    right:16px;
+}
+.addRes{
+      right:16px;
+}
+.delete{
+      height:15px;
+      width:6px;
+      font-size: .6em;
+      text-align: center;
+      color: white !important;
+}
+.displayText{
+      font-size: .8em;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+      padding:4px;
+}
+@media (max-width: 412px) {
+  .display-box {
+    height: 95%;
+  }
+  #resistance-dropdown{
+      height: 80%;
+  }
+  .display-row{
+        height:70%;
+  }
+  .btn-warning .btn-success {
+        height:85%;
+        width:auto;
+  }
+  th{
+        font-size: .8em;
+  }
+}
+.resSelection{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+.plyoDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+.saqDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
+ .coreDropdown{
+      background:none!important;
+      color:inherit;
+      border:none; 
+      padding:3px 20px;
+      font: inherit;
+ }
     </style>
     </head>
     <body>
+    <div class="container wrapper">
+  <script>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-5"
-        <!--Dropdown-->
-        <div class="row display-row">
-          <div class="dropdown" style="display: inline-block;">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Create Workout<span class="caret"></span></button>
-            <ul class="dropdown-menu">
+    function rowDelete(link) {
+      var row = link.parentNode.parentNode;
+      var table = row.parentNode;
+      table.removeChild(row);
+    }
+  </script>
+  <!--Dropdown-->
+
+  <div class="row display-row hidden-xs">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create Workout
+      </button>
+      <ul class="dropdown-menu list-unstyled" id="expDropdown">
+        <li class="dropdown-submenu">
+          <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
+          <ul class="dropdown-menu list-unstyled">
+            <li class="dropdown-submenu">
+              <a class="wo" value="1">Level 1</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="2">Level 2</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a class="dropdown-toggle" data-toggle="dropdown">Novice</a>
+          <ul class="dropdown-menu list-unstyled">
+            <li class="dropdown-submenu">
+              <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="endurance">Functional/Endurance</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="hypertrophy">Hypertrophy</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="strength">Strength</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
+          <ul class="dropdown-menu list-unstyled">
+            <li class="dropdown-submenu">
+              <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="endurance">Functional/Endurance</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="hypertrophy">Hypertrophy</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="strength">Strength</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="power">Power</a>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown-submenu">
+          <a class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
+          <ul class="dropdown-menu list-unstyled">
+            <li class="dropdown-submenu">
+              <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="endurance">Functional/Endurance</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="hypertrophy">Hypertrophy</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="strength">Strength</a>
+            </li>
+            <li class="dropdown-submenu">
+              <a class="wo" value="power">Power</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!--Mobile dropdown-->
+  <div class="row display-row hidden-sm hidden-md hidden-lg">
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="exp-m">Experience level
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu list-unstyled" id='m-list'>
+        <li>
+          <a href='#' class="dropdown-toggle m-exp" value="beginner">Beginner</a>
+        </li>
+        <li>
+          <a href='#' class="dropdown-toggle m-exp" value="novice">Novice</a>
+        </li>
+        <li>
+          <a href='#' class="dropdown-toggle m-exp" value="intermediate">Intermediate</a>
+        </li>
+        <li>
+          <a href='#' class="dropdown-toggle m-exp" value="advanced">Advanced</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo-m">Type of training
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu list-unstyled" id='wo-list'>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='1' value="1">Level 1</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='2' value="2">Level 2</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='fatloss' value="fatloss">Functional/Fat-Loss</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='endurance' value="endurance">Functional/Endurance</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id="hypertrophy" value="hypertrophy">Hypertrophy</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='strength' value="strength">Strength</a>
+        </li>
+        <li class="dropdown-submenu">
+          <a href="#" class="wo" id='power' value="power">Power</a>
+        </li>
+      </ul>
+    </div>
+    <button class="glyphicon glyphicon-refresh btn btn-warning" onclick='location.reload()'></button>
+  </div>
+  <!--End dropdown-->
+
+  <div class="col-xs-12 col-sm-3 hidden-box" id="actionBox">
+    <!--Start Core-->
+    <div class="row display-row">
+      <span class="label label-default">Core</span>
+      <span id="core-selected" class="label label-default"></span>
+      <br>
+      <div class="col-xs-12 display-box">
+        <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="coreBtn-r"></button>
+        <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns" id="coreBtn-dropdown-content">
+          <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            Core Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu list-unstyled" aria-labelledby="coreMenu">
+            <li class="dropdown-submenu" id="">
+              <button class="coreDropdown" value="core">Core</button>
+            </li>
+            <li class="dropdown-submenu" id="lowBackDropdown">
+              <button class="coreDropdown" value="low_back">Low Back</button>
+            </li>
+            <li class="dropdown-submenu" id="medballDropdown">
+              <button class="coreDropdown not-beginner" value="med_ball">Med Ball</button>
+            </li>
+            <li class="dropdown-submenu submenu-power" id="corePowerDropdown">
+              <button class="coreDropdown not-beginner" value="core-p">Power</button>
+            </li>
+          </ul>
+        </div>
+        <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="coreBtn-a"></button>
+      </div>
+    </div>
+    <!--End Core-->
+    <!--Start Balance-->
+    <div class="row display-row">
+      <span class="label label-default">Balance</span>
+      <br>
+      <div class="col-xs-12 display-box">
+        <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="balance-r"></button>
+        <div class="col-xs-8 col-sm-7 clearfix display-content displayText" id="balance-content"></div>
+        <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="balance-a"></button>
+      </div>
+    </div>
+    <!--End Balance-->
+
+    <!--Start plyo-->
+    <div class="row display-row plyo">
+      <span class="label label-default">Plyometric</span>
+      <span id="plyo-selected" class="label label-default"></span>
+      <br>
+      <div class="col-xs-12 display-box">
+        <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="plyo-r"></button>
+        <div class="col-xs-8 col-sm-7 clearfix display-content displayText" id="plyo-content"></div>
+        <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns submenu-power" id="plyo-dropdown-content">
+          <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="plyoMenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            Plyo Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu list-unstyled" aria-labelledby="plyoMenu">
+            <li class="dropdown-submenu">
+              <button class="plyoDropdown" value="hops_bounds">Hops/Bounds</button>
+            </li>
+            <li class="dropdown-submenu">
+              <button class="plyoDropdown" value="plyo">Power</button>
+            </li>
+          </ul>
+        </div>
+        <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="plyo-a"></button>
+      </div>
+    </div>
+    <!--End plyo-->
+
+    <!--Start SAQ-->
+    <div class="row display-row saq">
+        <span class="label label-default">SAQ</span>
+        <span id="saq-selected" class="label label-default"></span>
+        <br>
+        <div class="col-xs-12 display-box">
+          <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saqBtn-r"></button>
+          <div class="col-xs-8 col-sm-7 clearfix display-content displayText submenu-normal" id="saqBtn-content"></div>
+          <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns" id="saqBtn-dropdown-content">
+            <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true">
+              SAQ Options
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
               <li class="dropdown-submenu">
-                <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
-                <ul class="dropdown-menu">
-                  <li><a class="wo" >Level 1</a></li>
-                  <li><a class="wo" >Level 2</a></li>
-                  <li><a class="wo" >Cardio</a></li>
-                </ul>
+                <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
               </li>
               <li class="dropdown-submenu">
-                <a class="dropdown-toggle" data-toggle="dropdown">Novice</a>
-                <ul class="dropdown-menu">
-                  <li><a class="wo" >Functional/Fat-Loss</a></li>
-                  <li><a class="wo" >Endurance/Fat-Loss</a></li>
-                  <li><a class="wo" >Hypertrophy</a></li>
-                  <li><a class="wo" >Strength</a></li>
-                  <li><a class="wo" >Cardio</a></li>
-                </ul>
+                <button class="saqDropdown" value="cone_drills">Cone Drills</button>
               </li>
-              <li class="dropdown-submenu">
-                <a class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
-                <ul class="dropdown-menu">
-                  <li><a class="wo" >Functional/Fat-Loss</a></li>
-                  <li><a class="wo" >Endurance/Fat-Loss</a></li>
-                  <li><a class="wo" >Hypertrophy</a></li>
-                  <li><a class="wo" >Strength</a></li>
-                  <li><a class="wo" >Power</a></li>
-                  <li><a class="wo" >Cardio</a></li>
-                </ul>
-              </li>
-              <li class="dropdown-submenu">
-                <a class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
-                <ul class="dropdown-menu">
-                  <li><a class="wo" >Endurance/Fat-Loss</a></li>
-                  <li><a class="wo" >Hypertrophy</a></li>
-                  <li><a class="wo" >Strength</a></li>
-                  <li><a class="wo" >Power</a></li>
-                  <li><a class="wo" >Cardio</a></li>
-                </ul>
+              <li class="dropdown-submenu hybrid">
+                <button class="saqDropdown" value="hybrid">Hybrid</button>
               </li>
             </ul>
           </div>
-        </div>
-        <!--End dropdown-->
-
-        <!--Start Core-->
-        <div class="row display-row">
-          <span class="label label-default">Core</span><br>
-          <div class="col-sm-8 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="core-r"></button>
-            <div class="col-sm-8 clearfix display-content" id="core-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="core-a"></button>
-          </div> 
-        </div>
-        <!--End Core-->
-
-        <!--Start Balance-->
-        <div class="row display-row">
-          <span class="label label-default">Balance</span><br>
-          <div class="col-sm-8 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="balance-r"></button>
-            <div class="col-sm-8 clearfix display-content" id="balance-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="balance-a"></button>
-          </div>
-        </div>
-
-        <!--End Balance-->
-
-        <!--Start SAQ-->
-        <div class="row display-row">
-          <span class="label label-default">SAQ</span><br>
-          <div class="col-sm-8 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="saq-r"></button>
-            <div class="col-sm-8 clearfix display-content" id="saq-content"></div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saq-a"></button>
-          </div>
-        </div>
-
-        <!--End SAQ-->
-
-        <!--Start Resistance-->
-        <div class="row display-row">
-          <span class="label label-default">Resistance</span><br>
-          <div class="col-sm-8 display-box">
-            <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
-            <div class="col-sm-8 clearfix resistance-drop dropdown">
-                <button class="btn btn-default dropdown-toggle col-sm-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  Resistance Options
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <li><a class="resistance-wo">Arms</a></li>
-                  <li><a class="resistance-wo">Back</a></li>
-                  <li><a class="resistance-wo">Cardio</a></li>
-                  <li><a class="resistance-wo">Chest</a></li>
-                  <li><a class="resistance-wo">Core</a></li>
-                  <li><a class="resistance-wo">Functional</a></li>
-                  <li><a class="resistance-wo">Legs</a></li>
-                  <li><a class="resistance-wo">Olympic</a></li>
-                  <li><a class="resistance-wo">Strength</a></li>
-                  <li><a class="resistance-wo">Total Body</a></li>
-                  <!--<li role="separator" class="divider"></li>
-                  <li><a href="#">+ and refresh btns</a></li>-->
-                </ul>
-              </div>
-            <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="resistance-a"></button>
-          </div>
-        </div>
-
-        <!--End Resistance-->
-        </div>
-      <div class="col-sm-5">
-        <div class="row warm-up table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Warm Up</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="workouts table-responsive">
-          <table class="table table-striped">
-            <tbody id="workout-table">
-              <tr></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="row cool-down table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Cool Down</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
+          <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="saqBtn-a"></button>
         </div>
       </div>
+      <!--End SAQ-->
+    
+    <!--Start Resistance-->
+    <div class="row display-row">
+      <span class="label label-default">Resistance</span>
+      <span id="resistance-selected" class="label label-default"></span>
+      <br>
+      <div class="col-xs-12  display-box">
+        <button class="glyphicon glyphicon-refresh btn btn-warning pull-left refresh" id="resistance-r"></button>
+        <div class="col-xs-8 col-sm-7 clearfix dropdown small-dropdowns" id="resistance-drop">
+          <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="resistanceMenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            Resistance Options
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu list-unstyled" aria-labelledby="resistanceMenu">
+            <!-- Arms dropdown -->
+            <li class="dropdown-submenu not-beginner arms">
+              <a class="dropdown-toggle" data-toggle="dropdown">Arms
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu">
+                  <button class="resSelection" value="biceps">Biceps</button>
+                </li>
+                <li class="dropdown-submenu compound">
+                  <button class="resSelection" value="compound">Compound</button>
+                </li>
+                <li class="dropdown-submenu">
+                  <button class="resSelection" value="triceps">Triceps</button>
+                </li>
+              </ul>
+            </li>
+            <!-- Back -->
+            <li class="dropdown-submenu submenu-normal back-plain">
+              <button class="resSelection" value="back">Back</button>
+            </li>
+            <li class="dropdown-submenu submenu-power back-dropdown" id='backSubMenu'>
+              <a class="dropdown-toggle" data-toggle="dropdown">Back
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu">
+                    <button class="resSelection endurance" value="back-f">Functional</button>
+                </li>
+                <li class="dropdown-submenu submenu-power">
+                  <button class="resSelection" value="back-p">Power</button>
+                </li>
+                <li class="dropdown-submenu">
+                  <button class="resSelection" value="back-s">Strength</button>
+                </li>
+
+              </ul>
+            </li>
+            <!-- Cardio -->
+            <li class="dropdown-submenu submenu-normal cardio">
+              <button class="resSelection" value="cardio">Cardio</button>
+            </li>
+            <!-- Chest -->
+            <li class="dropdown-submenu submenu-normal chest-plain">
+              <button class="resSelection" value="chest">Chest</button>
+            </li>
+            <li class="dropdown-submenu submenu-power chest-dropdown" id='chestSubMenu'>
+              <a class="dropdown-toggle" data-toggle="dropdown">Chest
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu chest-f">
+                  <button class="resSelection" value="chest">Functional</button>
+                </li>
+                <li class="dropdown-submenu submenu-power">
+                  <button class="resSelection" value="chest-p">Power</button>
+                </li>
+                <li class="dropdown-submenu">
+                  <button class="resSelection" value="chest-s">Strength</button>
+                </li>
+              </ul>
+            </li>
+            <!-- Core dropdown -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-toggle" data-toggle="dropdown">Core
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu dd-core" id="">
+                  <button class="resSelection" value="core">Core</button>
+                </li>
+                <li class="dropdown-submenu" id="">
+                  <button class="resSelection" value="low_back">Low Back</button>
+                </li>
+                <li class="dropdown-submenu" id="">
+                  <button class="resSelection not-beginner" value="med_ball">Med Ball</button>
+                </li>
+                <li class="dropdown-submenu submenu-power" id="">
+                  <button class="resSelection not-beginner" value="core">Strength</button>
+                </li>
+              </ul>
+            </li>
+            <!-- Legs dropdown -->
+            <li class="dropdown-submenu submenu-normal legs-plain">
+              <button class="resSelection" value="legs">Legs</button>
+            </li>
+            <li class="dropdown-submenu legs-dropdown not-beginner">
+              <a class="dropdown-toggle" data-toggle="dropdown">Legs
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu legs-f">
+                  <button class="resSelection" value="legs">Functional</button>
+                </li>
+                <li class="dropdown-submenu " id="hamstringsDropdown">
+                  <button class="resSelection" value="hamstrings">Hamstrings</button>
+                </li>
+                <li class="dropdown-submenu submenu-power " id="hopsBoundsDropdown">
+                  <button class="resSelection" value="hops_bounds">Hops/Bounds</button>
+                </li>
+                <li class="dropdown-submenu submenu-power " id="legs-p">
+                  <button class="resSelection" value="legs-p">Power</button>
+                </li>
+                <li class="dropdown-submenu " id="quadsDropdown">
+                  <button class="resSelection" value="quads">Quads</button>
+                </li>
+              </ul>
+            </li>
+            <!-- Mobility -->
+            <li class="dropdown-submenu" id="mobility">
+              <button class="resSelection" value="mobility">Mobility</button>
+            </li>
+            <!-- Shoulders dropdown -->
+            <li class="dropdown-submenu">
+              <a class="dropdown-toggle" data-toggle="dropdown">Shoulders
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu submenu-endurance" id="">
+                  <button class="resSelection" value="shoulders">Functional</button>
+                </li>
+                <li class="dropdown-submenu submenu-power" id="">
+                  <button class="resSelection" value="shoulders-p">Power</button>
+                </li>
+                <li class="dropdown-submenu" id="">
+                  <button class="resSelection" value="rear_delts">Rear Delts</button>
+                </li>
+                <li class="dropdown-submenu" id="shoulders">
+                  <button class="resSelection" value="shoulders">Shoulders</button>
+                </li>
+                <li class="dropdown-submenu submenu-power" id="">
+                  <button class="resSelection" value="shoulders-s">Strength</button>
+                </li>
+              </ul>
+            </li>
+            <!-- Total Body dropdown -->
+            <li class="dropdown-submenu totalbody-plain">
+                <button class="resSelection" value="total_body">Total Body</button>
+              </li>
+            <li class="dropdown-submenu totalbody-dropdown" id='totalBodySubMenu'>
+              <a class="dropdown-toggle" data-toggle="dropdown">Total Body
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu submenu-power">
+                  <button class="resSelection" value="hops_bounds">Power</button>
+                </li>
+                <li class="dropdown-submenu">
+                  <button class="resSelection" value="olympic">Olympic</button>
+                </li>
+                <li class="dropdown-submenu" id="totalbody">
+                  <button class="resSelection" value="total_body">Total Body</button>
+                </li>
+              </ul>
+            </li>
+            <!-- end list -->
+          </ul>
+        </div>
+        <button class="glyphicon glyphicon-plus btn btn-success pull-right add" id="resistance-a"></button>
       </div>
+    </div>
+    <!--End Resistance-->
+  </div>
+  <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-2 hidden-box" id="resultBox">
+    <div class="">
+      <div class="row table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Warm Up</th>
+            </tr>
+          </thead>
+          <tbody id="warmup" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
       </div>
+      <div class="row table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Core</th>
+            </tr>
+          </thead>
+          <tbody id="workout-table-coreBtn" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="workout-table-balance" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row table-responsive plyo">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Plyometric</th>
+            </tr>
+          </thead>
+          <tbody id="workout-table-plyo" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row table-responsive saq">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>SAQ</th>
+            </tr>
+          </thead>
+          <tbody id="workout-table-saqBtn" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Resistance</th>
+            </tr>
+          </thead>
+          <tbody id="workout-table-resistance" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      <div class="row table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Cool Down</th>
+            </tr>
+          </thead>
+          <tbody id="cooldown" class="displayText">
+            <tr class="blank"></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 <?php
 global $wpdb;
 ?>
