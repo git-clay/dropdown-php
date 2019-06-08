@@ -55,23 +55,27 @@
         "type": type.toLowerCase(),
         "focus": focusExer.toLowerCase()
       } //build query serverside
-      var ajaxurl = "http://fitt-ed.com/wp-admin/admin-ajax.php"
+      var ajaxurl = "http://fitt-ed.com/wp-json/api/v1/dropdown"
       var data = {
         'action': queryAction,
         'name': workoutObj
       };
-      console.log(data)
-      jQuery.ajax({
+
+      var request = jQuery.ajax({
         url: ajaxurl,
-        type: "POST",
         data: data,
+        type: "POST",
         success: function (res) {
+          console.log(res)
           if ((res == null || res == '') && count < 5) {
             count++
             getWo(focusExer, callback, count)
           } else {
             callback(res)
           }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
         }
       })
     }
