@@ -66,7 +66,6 @@
         data: data,
         type: "POST",
         success: function (res) {
-          console.log(res)
           if ((res == null || res == '') && count < 5) {
             count++
             getWo(focusExer, callback, count)
@@ -272,10 +271,14 @@
         woArray = JSON.parse(woArray)
         $.each(woArray, function (i, exer) {
           addTr(exer, "warmup", "expbased")
+        })
+      }, 0);
+      getWo("warmup", function (woArray) {
+        woArray = JSON.parse(woArray)
+        $.each(woArray, function (i, exer) {
           addTr(exer, "cooldown", "expbased")
         })
       }, 0);
-
     })
     //click - refresh btn for dropdowns or non-dropdown rows
     $('.refresh').on("click", function (e) {
