@@ -1,26 +1,38 @@
 .wrapper {
-      padding: 0;
-      width: 100%;
-      height: 600px;
+      padding: 16px;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      background-image: linear-gradient(grey, black);
+}
 
+h2 {
+      margin-top: 0;
+}
+
+/* HEADER */
+.back-btn>img {
+      width: 34px;
+      height: auto;
+}
+
+.dropdown-container {
+      margin: 0 auto;
 }
 
 #create-wo {
       position: relative;
-      background: #007bff;
       width: 220px;
       text-align: center;
       padding: 5px 15px;
 }
 
-#create-wo:hover {
-      background: #02abff;
-}
 
 
 .dropdown-toggle {
       position: relative;
       width: 100%;
+      /* height: 100%; */
       padding: 0 !important;
       padding-left: 10px;
       text-transform: capitalize;
@@ -28,7 +40,6 @@
 
 a {
       text-decoration: none !important;
-
 }
 
 .dropdown-submenu {
@@ -71,17 +82,6 @@ li.dropdown-submenu {
       border-left-color: #fff;
 }
 
-.dropdown-submenu.pull-left {
-      float: none;
-}
-
-.dropdown-submenu.pull-left>.dropdown-menu {
-      left: -100%;
-      margin-left: 10px;
-      -webkit-border-radius: 6px 0 6px 6px;
-      -moz-border-radius: 6px 0 6px 6px;
-      border-radius: 6px 0 6px 6px;
-}
 
 .label {
       margin: 0px 4px;
@@ -89,6 +89,8 @@ li.dropdown-submenu {
 
 .display-row {
       margin: 5px 0px;
+      min-height: 15%;
+      margin-left: 18px;
 }
 
 .display-box {
@@ -106,6 +108,18 @@ li.dropdown-submenu {
       text-align: center;
 }
 
+/* INPUT CARD */
+.input-card {
+      z-index: 3;
+      border-radius: 30% 20% 20% 30% / 35% 25% 25% 35%;
+      filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
+      -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
+      padding: 42px 12px 18px 36px;
+      height: 85vh;
+      background-image: radial-gradient(at right, #0069c7 0%, #003f7a 100%);
+}
+
+
 .small-dropdowns {
       height: 36px;
       margin: 0px 6px;
@@ -116,23 +130,9 @@ li.dropdown-submenu {
       display: none;
 }
 
-.hidden-box {
-      display: none;
-      padding: 5px;
-      width: 50%;
-}
+.add {}
 
-table {
-      font-size: 1.2rem;
-}
-
-tbody {
-      text-align: center;
-}
-
-.add {
-      right: 16px;
-}
+.refresh {}
 
 .addRes {
       right: 16px;
@@ -148,6 +148,60 @@ tbody {
 
 .displayText {
       font-size: .6em;
+      height: 100%;
+}
+
+
+.resSelection {
+      background: none !important;
+      color: inherit;
+      border: none;
+      padding: 3px 20px;
+      font: inherit;
+}
+
+.plyoDropdown {
+      background: none !important;
+      color: inherit;
+      border: none;
+      padding: 3px 20px;
+      font: inherit;
+}
+
+.saqDropdown {
+      background: none !important;
+      color: inherit;
+      border: none;
+      padding: 3px 20px;
+      font: inherit;
+}
+
+.coreDropdown {
+      background: none !important;
+      color: inherit;
+      border: none;
+      padding: 3px 20px;
+      font: inherit;
+}
+
+/* RESULT CARD*/
+.result-card {
+      z-index: 2;
+      left: -2vw;
+      border-radius: 55% / 20%;
+      filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
+      -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
+      padding: 72px 48px 18px 64px;
+      height: 85vh;
+      background-image: radial-gradient(circle at left, #0069c7 0%, #003f7a 100%);
+}
+
+table {
+      font-size: 1.2rem;
+}
+
+tbody {
+      text-align: center;
 }
 
 .table>tbody>tr>td,
@@ -180,36 +234,4 @@ tbody {
       th {
             font-size: .8em;
       }
-}
-
-.resSelection {
-      background: none !important;
-      color: inherit;
-      border: none;
-      padding: 3px 20px;
-      font: inherit;
-}
-
-.plyoDropdown {
-      background: none !important;
-      color: inherit;
-      border: none;
-      padding: 3px 20px;
-      font: inherit;
-}
-
-.saqDropdown {
-      background: none !important;
-      color: inherit;
-      border: none;
-      padding: 3px 20px;
-      font: inherit;
-}
-
-.coreDropdown {
-      background: none !important;
-      color: inherit;
-      border: none;
-      padding: 3px 20px;
-      font: inherit;
 }

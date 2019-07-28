@@ -143,7 +143,6 @@
         level = level.toLowerCase()
       }
 
-      $('.hidden-box').show()
       $('.saq').show()
       $('.plyo').show()
       $('.submenu-power').hide()
