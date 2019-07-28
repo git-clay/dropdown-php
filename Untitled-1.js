@@ -358,6 +358,10 @@
       resEdit = true;
     })
 
+    $('.drawer-tab').on('click', function () {
+      $('.input-card').slideToggle();
+
+    })
 
   });
 })(jQuery);

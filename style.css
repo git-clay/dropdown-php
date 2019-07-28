@@ -4,10 +4,12 @@
       height: 100vh;
       font-family: 'Roboto', sans-serif;
       background-image: linear-gradient(grey, black);
+      overflow-x: hidden;
 }
 
 h2 {
       margin-top: 0;
+      font-weight: bold;
 }
 
 /* HEADER */
@@ -214,8 +216,9 @@ li.dropdown-submenu {
       color: white;
 }
 
-table {
+.table {
       font-size: 1.2rem;
+      margin-bottom: 10px;
 }
 
 tbody {
@@ -231,8 +234,16 @@ tbody {
       padding: 4px;
 }
 
+/* MOBILE */
 @media (max-width: 412px) {
-      h2 {}
+      h2 {
+            font-size: 1.5em;
+      }
+
+      .back-btn>img {
+            width: 18px;
+            height: auto;
+      }
 
       .action-area {
             display: -webkit-flex;
@@ -240,14 +251,41 @@ tbody {
             flex-direction: column;
       }
 
-      .input-card {
-            order: 2;
-      }
-
       .result-card {
             order: 1;
-            /* height:  */
+            border-radius: 15%;
+            padding: 24px 42px;
+            height: 80vh;
       }
+
+      .footerDrawer {
+            position: fixed;
+            bottom: 0;
+            order: 2;
+            z-index: 4;
+      }
+
+      .drawer-tab {
+            order: 3;
+            border-radius: 100% 100% 0% 0%;
+            width: 25vw;
+            height: 18px;
+            padding: 0;
+            left: 37.5vw;
+            position: relative;
+      }
+
+      .input-card {
+            order: 4;
+            z-index: 1;
+            border-radius: 0;
+            padding: 18px;
+            width: 100vw;
+            top: 0;
+            display: none;
+            height: 40vh;
+      }
+
 
       #resistance-dropdown {
             height: 80%;
