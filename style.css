@@ -13,6 +13,23 @@ h2 {
 }
 
 /* HEADER */
+.back-btn {
+      background: rgba(0, 0, 0, .3);
+      border-radius: 15px;
+      filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .2));
+      -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .2));
+}
+
+.back-btn:hover {
+      background: rgba(0, 0, 0, .2);
+}
+
+.back-btn>span {
+      font-size: 8px;
+      padding: 0;
+      color: white;
+}
+
 .back-btn>img {
       width: 34px;
       height: auto;
