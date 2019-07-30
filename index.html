@@ -198,297 +198,307 @@
 
         <button class='btn drawer-tab hidden-sm hidden-md hidden-lg'>-</button>
         <section class='input-card col-xs-12 col-sm-7 col-sm-offset-1'>
-          <div class='text-center'>
-            <button class='btn btn-danger'>Shuffle Warm Up</button>
-          </div>
-          <!--Start Core-->
-          <div class="row display-row">
-            <span class="label label-default">Core</span>
-            <span id="core-selected" class="label label-default"></span>
-            <br>
-            <div class="display-box row">
-              <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
-              <div class="col-xs-9 dropdown small-dropdowns" id="coreBtn-dropdown-content">
-                <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                  Core Options
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu list-unstyled" aria-labelledby="coreMenu">
-                  <li class="dropdown-submenu" id="">
-                    <button class="coreDropdown" value="core">Core</button>
-                  </li>
-                  <li class="dropdown-submenu" id="lowBackDropdown">
-                    <button class="coreDropdown" value="low_back">Low Back</button>
-                  </li>
-                  <li class="dropdown-submenu" id="medballDropdown">
-                    <button class="coreDropdown not-beginner" value="med_ball">Med Ball</button>
-                  </li>
-                  <li class="dropdown-submenu submenu-power" id="corePowerDropdown">
-                    <button class="coreDropdown not-beginner" value="core-p">Power</button>
-                  </li>
-                </ul>
-              </div>
-              <button class="glyphicon glyphicon-plus btn btn-success col-xs-1 add" id="coreBtn-a"></button>
-            </div>
-          </div>
-          <!--End Core-->
-          <!--Start Balance-->
-          <div class="row display-row">
-            <span class="label label-default">Balance</span>
-            <br>
-            <div class="row display-box">
-              <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
-              <div class="clearfix display-content displayText col-xs-9" id="balance-content"></div>
-              <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1"
-                      id="balance-a"></button>
-            </div>
-          </div>
-          <!--End Balance-->
+          <div class='col-xs-6 col-sm-12 container input-card-column'>
 
-          <!--Start plyo-->
-          <div class="row display-row plyo">
-            <span class="label label-default">Plyometric</span>
-            <span id="plyo-selected" class="label label-default"></span>
-            <br>
-            <div class="row display-box">
-              <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
-              <div class="col-xs-9 display-content displayText" id="plyo-content"></div>
-              <div class="col-xs-9 dropdown small-dropdowns submenu-power hidden" id="plyo-dropdown-content">
-                <button class="btn btn-default dropdown-toggle col-xs-9 displayText" type="button" id="plyoMenu"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                  Plyo Options
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu list-unstyled" aria-labelledby="plyoMenu">
-                  <li class="dropdown-submenu">
-                    <button class="plyoDropdown" value="hops_bounds">Hops/Bounds</button>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <button class="plyoDropdown" value="plyo">Power</button>
-                  </li>
-                </ul>
-              </div>
-              <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="plyo-a"></button>
+            <div class='text-center'>
+              <button class='btn btn-danger input-btn'>Warm Up</button>
+              <button class='btn btn-info hidden-sm hidden-md hidden-lg input-btn'>Cool Down</button>
             </div>
-          </div>
-          <!--End plyo-->
-
-          <!--Start SAQ-->
-          <div class="row display-row saq">
-            <span class="label label-default">SAQ</span>
-            <span id="saq-selected" class="label label-default"></span>
-            <br>
-            <div class="row display-box">
-              <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
-              <div class="col-xs-9 display-content displayText submenu-normal" id="saqBtn-content">
+            <!--Start Core-->
+            <div class="row display-row container">
+              <span class="label label-default">Core</span>
+              <span id="core-selected" class="label label-default"></span>
+              <br>
+              <div class="display-box row">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
+                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns" id="coreBtn-dropdown-content">
+                  <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu"
+                          data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                    Core Options
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="coreMenu">
+                    <li class="dropdown-submenu" id="">
+                      <button class="coreDropdown" value="core">Core</button>
+                    </li>
+                    <li class="dropdown-submenu" id="lowBackDropdown">
+                      <button class="coreDropdown" value="low_back">Low Back</button>
+                    </li>
+                    <li class="dropdown-submenu" id="medballDropdown">
+                      <button class="coreDropdown not-beginner" value="med_ball">Med Ball</button>
+                    </li>
+                    <li class="dropdown-submenu submenu-power" id="corePowerDropdown">
+                      <button class="coreDropdown not-beginner" value="core-p">Power</button>
+                    </li>
+                  </ul>
+                </div>
+                <button class="glyphicon glyphicon-plus btn btn-success col-xs-1 add" id="coreBtn-a"></button>
               </div>
-              <div class="col-xs-9 dropdown small-dropdowns hidden" id="saqBtn-dropdown-content">
-                <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu"
-                        data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="true">
-                  SAQ Options
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
-                  <li class="dropdown-submenu">
-                    <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
-                  </li>
-                  <li class="dropdown-submenu">
-                    <button class="saqDropdown" value="cone_drills">Cone Drills</button>
-                  </li>
-                  <li class="dropdown-submenu hybrid">
-                    <button class="saqDropdown" value="hybrid">Hybrid</button>
-                  </li>
-                </ul>
-              </div>
-              <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="saqBtn-a"></button>
             </div>
-          </div>
-          <!--End SAQ-->
+            <!--End Core-->
 
-          <!--Start Resistance-->
-          <div class="row display-row">
-            <span class="label label-default">Resistance</span>
-            <span id="resistance-selected" class="label label-default"></span>
-            <br>
-            <div class="row display-box">
-              <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
-              <div class="col-xs-9 dropdown small-dropdowns" id="resistance-drop">
-                <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="resistanceMenu"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="true">
-                  Resistance Options
-                  <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu list-unstyled" aria-labelledby="resistanceMenu">
-                  <!-- Arms dropdown -->
-                  <li class="dropdown-submenu not-beginner arms">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Arms
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu">
-                        <button class="resSelection" value="biceps">Biceps</button>
-                      </li>
-                      <li class="dropdown-submenu compound">
-                        <button class="resSelection" value="compound">Compound</button>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <button class="resSelection" value="triceps">Triceps</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- Back -->
-                  <li class="dropdown-submenu submenu-normal back-plain">
-                    <button class="resSelection" value="back">Back</button>
-                  </li>
-                  <li class="dropdown-submenu submenu-power back-dropdown" id='backSubMenu'>
-                    <a class="dropdown-toggle" data-toggle="dropdown">Back
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu">
-                        <button class="resSelection endurance" value="back-f">Functional</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power">
-                        <button class="resSelection" value="back-p">Power</button>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <button class="resSelection" value="back-s">Strength</button>
-                      </li>
-
-                    </ul>
-                  </li>
-                  <!-- Cardio -->
-                  <li class="dropdown-submenu submenu-normal cardio">
-                    <button class="resSelection" value="cardio">Cardio</button>
-                  </li>
-                  <!-- Chest -->
-                  <li class="dropdown-submenu submenu-normal chest-plain">
-                    <button class="resSelection" value="chest">Chest</button>
-                  </li>
-                  <li class="dropdown-submenu submenu-power chest-dropdown" id='chestSubMenu'>
-                    <a class="dropdown-toggle" data-toggle="dropdown">Chest
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu chest-f">
-                        <button class="resSelection" value="chest">Functional</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power">
-                        <button class="resSelection" value="chest-p">Power</button>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <button class="resSelection" value="chest-s">Strength</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- Core dropdown -->
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Core
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu dd-core" id="">
-                        <button class="resSelection" value="core">Core</button>
-                      </li>
-                      <li class="dropdown-submenu" id="">
-                        <button class="resSelection" value="low_back">Low Back</button>
-                      </li>
-                      <li class="dropdown-submenu" id="">
-                        <button class="resSelection not-beginner" value="med_ball">Med Ball</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power" id="">
-                        <button class="resSelection not-beginner" value="core">Strength</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- Legs dropdown -->
-                  <li class="dropdown-submenu submenu-normal legs-plain">
-                    <button class="resSelection" value="legs">Legs</button>
-                  </li>
-                  <li class="dropdown-submenu legs-dropdown not-beginner">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Legs
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu legs-f">
-                        <button class="resSelection" value="legs">Functional</button>
-                      </li>
-                      <li class="dropdown-submenu " id="hamstringsDropdown">
-                        <button class="resSelection" value="hamstrings">Hamstrings</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power " id="hopsBoundsDropdown">
-                        <button class="resSelection" value="hops_bounds">Hops/Bounds</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power " id="legs-p">
-                        <button class="resSelection" value="legs-p">Power</button>
-                      </li>
-                      <li class="dropdown-submenu " id="quadsDropdown">
-                        <button class="resSelection" value="quads">Quads</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- Mobility -->
-                  <li class="dropdown-submenu" id="mobility">
-                    <button class="resSelection" value="mobility">Mobility</button>
-                  </li>
-                  <!-- Shoulders dropdown -->
-                  <li class="dropdown-submenu">
-                    <a class="dropdown-toggle" data-toggle="dropdown">Shoulders
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu submenu-endurance" id="">
-                        <button class="resSelection" value="shoulders">Functional</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power" id="">
-                        <button class="resSelection" value="shoulders-p">Power</button>
-                      </li>
-                      <li class="dropdown-submenu" id="">
-                        <button class="resSelection" value="rear_delts">Rear Delts</button>
-                      </li>
-                      <li class="dropdown-submenu" id="shoulders">
-                        <button class="resSelection" value="shoulders">Shoulders</button>
-                      </li>
-                      <li class="dropdown-submenu submenu-power" id="">
-                        <button class="resSelection" value="shoulders-s">Strength</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- Total Body dropdown -->
-                  <li class="dropdown-submenu totalbody-plain">
-                    <button class="resSelection" value="total_body">Total Body</button>
-                  </li>
-                  <li class="dropdown-submenu totalbody-dropdown" id='totalBodySubMenu'>
-                    <a class="dropdown-toggle" data-toggle="dropdown">Total Body
-                      <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu list-unstyled">
-                      <li class="dropdown-submenu submenu-power">
-                        <button class="resSelection" value="hops_bounds">Power</button>
-                      </li>
-                      <li class="dropdown-submenu">
-                        <button class="resSelection" value="olympic">Olympic</button>
-                      </li>
-                      <li class="dropdown-submenu" id="totalbody">
-                        <button class="resSelection" value="total_body">Total Body</button>
-                      </li>
-                    </ul>
-                  </li>
-                  <!-- end list -->
-                </ul>
+            <!--Start Balance-->
+            <div class="row display-row container">
+              <span class="label label-default">Balance</span>
+              <br>
+              <div class="row display-box">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
+                <div class="clearfix display-content displayText col-xs-8 col-sm-9" id="balance-content"></div>
+                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1"
+                        id="balance-a"></button>
               </div>
-              <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="resistance-a"></button>
             </div>
+            <!--End Balance-->
           </div>
-          <!--End Resistance-->
-          <div class='text-center'>
-            <button class='btn btn-info'>Shuffle Cool Down</button>
+          <div class='col-xs-6 col-sm-12 container input-card-column'>
+            <!--Start plyo-->
+            <div class="row display-row plyo container">
+              <span class="label label-default">Plyometric</span>
+              <span id="plyo-selected" class="label label-default"></span>
+              <br>
+              <div class="row display-box">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
+                <div class="col-xs-8 col-sm-9 display-content displayText" id="plyo-content"></div>
+                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns submenu-power hidden" id="plyo-dropdown-content">
+                  <button class="btn btn-default dropdown-toggle col-xs-8 col-sm-9 displayText" type="button"
+                          id="plyoMenu"
+                          data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                    Plyo Options
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="plyoMenu">
+                    <li class="dropdown-submenu">
+                      <button class="plyoDropdown" value="hops_bounds">Hops/Bounds</button>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <button class="plyoDropdown" value="plyo">Power</button>
+                    </li>
+                  </ul>
+                </div>
+                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="plyo-a"></button>
+              </div>
+            </div>
+            <!--End plyo-->
+
+            <!--Start SAQ-->
+            <div class="row display-row saq container">
+              <span class="label label-default">SAQ</span>
+              <span id="saq-selected" class="label label-default"></span>
+              <br>
+              <div class="row display-box">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
+                <div class="col-xs-8 col-sm-9 display-content displayText submenu-normal" id="saqBtn-content">
+                </div>
+                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns hidden" id="saqBtn-dropdown-content">
+                  <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu"
+                          data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="true">
+                    SAQ Options
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
+                    <li class="dropdown-submenu">
+                      <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <button class="saqDropdown" value="cone_drills">Cone Drills</button>
+                    </li>
+                    <li class="dropdown-submenu hybrid">
+                      <button class="saqDropdown" value="hybrid">Hybrid</button>
+                    </li>
+                  </ul>
+                </div>
+                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="saqBtn-a"></button>
+              </div>
+            </div>
+            <!--End SAQ-->
+
+            <!--Start Resistance-->
+            <div class="row display-row container">
+              <span class="label label-default">Resistance</span>
+              <span id="resistance-selected" class="label label-default"></span>
+              <br>
+              <div class="row display-box">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
+                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns" id="resistance-drop">
+                  <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button"
+                          id="resistanceMenu"
+                          data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="true">
+                    Resistance Options
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu list-unstyled" aria-labelledby="resistanceMenu">
+                    <!-- Arms dropdown -->
+                    <li class="dropdown-submenu not-beginner arms">
+                      <a class="dropdown-toggle" data-toggle="dropdown">Arms
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu">
+                          <button class="resSelection" value="biceps">Biceps</button>
+                        </li>
+                        <li class="dropdown-submenu compound">
+                          <button class="resSelection" value="compound">Compound</button>
+                        </li>
+                        <li class="dropdown-submenu">
+                          <button class="resSelection" value="triceps">Triceps</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Back -->
+                    <li class="dropdown-submenu submenu-normal back-plain">
+                      <button class="resSelection" value="back">Back</button>
+                    </li>
+                    <li class="dropdown-submenu submenu-power back-dropdown" id='backSubMenu'>
+                      <a class="dropdown-toggle" data-toggle="dropdown">Back
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu">
+                          <button class="resSelection endurance" value="back-f">Functional</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power">
+                          <button class="resSelection" value="back-p">Power</button>
+                        </li>
+                        <li class="dropdown-submenu">
+                          <button class="resSelection" value="back-s">Strength</button>
+                        </li>
+
+                      </ul>
+                    </li>
+                    <!-- Cardio -->
+                    <li class="dropdown-submenu submenu-normal cardio">
+                      <button class="resSelection" value="cardio">Cardio</button>
+                    </li>
+                    <!-- Chest -->
+                    <li class="dropdown-submenu submenu-normal chest-plain">
+                      <button class="resSelection" value="chest">Chest</button>
+                    </li>
+                    <li class="dropdown-submenu submenu-power chest-dropdown" id='chestSubMenu'>
+                      <a class="dropdown-toggle" data-toggle="dropdown">Chest
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu chest-f">
+                          <button class="resSelection" value="chest">Functional</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power">
+                          <button class="resSelection" value="chest-p">Power</button>
+                        </li>
+                        <li class="dropdown-submenu">
+                          <button class="resSelection" value="chest-s">Strength</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Core dropdown -->
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-toggle" data-toggle="dropdown">Core
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu dd-core" id="">
+                          <button class="resSelection" value="core">Core</button>
+                        </li>
+                        <li class="dropdown-submenu" id="">
+                          <button class="resSelection" value="low_back">Low Back</button>
+                        </li>
+                        <li class="dropdown-submenu" id="">
+                          <button class="resSelection not-beginner" value="med_ball">Med Ball</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power" id="">
+                          <button class="resSelection not-beginner" value="core">Strength</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Legs dropdown -->
+                    <li class="dropdown-submenu submenu-normal legs-plain">
+                      <button class="resSelection" value="legs">Legs</button>
+                    </li>
+                    <li class="dropdown-submenu legs-dropdown not-beginner">
+                      <a class="dropdown-toggle" data-toggle="dropdown">Legs
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu legs-f">
+                          <button class="resSelection" value="legs">Functional</button>
+                        </li>
+                        <li class="dropdown-submenu " id="hamstringsDropdown">
+                          <button class="resSelection" value="hamstrings">Hamstrings</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power " id="hopsBoundsDropdown">
+                          <button class="resSelection" value="hops_bounds">Hops/Bounds</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power " id="legs-p">
+                          <button class="resSelection" value="legs-p">Power</button>
+                        </li>
+                        <li class="dropdown-submenu " id="quadsDropdown">
+                          <button class="resSelection" value="quads">Quads</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Mobility -->
+                    <li class="dropdown-submenu" id="mobility">
+                      <button class="resSelection" value="mobility">Mobility</button>
+                    </li>
+                    <!-- Shoulders dropdown -->
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-toggle" data-toggle="dropdown">Shoulders
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu submenu-endurance" id="">
+                          <button class="resSelection" value="shoulders">Functional</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power" id="">
+                          <button class="resSelection" value="shoulders-p">Power</button>
+                        </li>
+                        <li class="dropdown-submenu" id="">
+                          <button class="resSelection" value="rear_delts">Rear Delts</button>
+                        </li>
+                        <li class="dropdown-submenu" id="shoulders">
+                          <button class="resSelection" value="shoulders">Shoulders</button>
+                        </li>
+                        <li class="dropdown-submenu submenu-power" id="">
+                          <button class="resSelection" value="shoulders-s">Strength</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- Total Body dropdown -->
+                    <li class="dropdown-submenu totalbody-plain">
+                      <button class="resSelection" value="total_body">Total Body</button>
+                    </li>
+                    <li class="dropdown-submenu totalbody-dropdown" id='totalBodySubMenu'>
+                      <a class="dropdown-toggle" data-toggle="dropdown">Total Body
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu list-unstyled">
+                        <li class="dropdown-submenu submenu-power">
+                          <button class="resSelection" value="hops_bounds">Power</button>
+                        </li>
+                        <li class="dropdown-submenu">
+                          <button class="resSelection" value="olympic">Olympic</button>
+                        </li>
+                        <li class="dropdown-submenu" id="totalbody">
+                          <button class="resSelection" value="total_body">Total Body</button>
+                        </li>
+                      </ul>
+                    </li>
+                    <!-- end list -->
+                  </ul>
+                </div>
+                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="resistance-a"></button>
+              </div>
+            </div>
+            <!--End Resistance-->
           </div>
+
+          <div class='text-center  hidden-xs'>
+            <button class='btn btn-info'>Cool Down</button>
+          </div>
+
         </section>
       </section>
 

@@ -110,6 +110,7 @@ li.dropdown-submenu {
       margin: 5px 0px;
       min-height: 16%;
       margin-left: 18px;
+      width: 100%;
 }
 
 .display-box {
@@ -273,6 +274,7 @@ tbody {
             border-radius: 15%;
             padding: 24px 42px;
             height: 80vh;
+            margin-top: 2vh;
       }
 
       .footerDrawer {
@@ -296,11 +298,24 @@ tbody {
             order: 4;
             z-index: 1;
             border-radius: 0;
-            padding: 18px;
+            padding: 12px;
             width: 100vw;
             top: 0;
             display: none;
             height: 40vh;
+      }
+
+      .input-card-column {
+            padding: 0;
+            height: 100%;
+      }
+
+      .input-card-column>div {
+            height: 33.3%;
+      }
+
+      .display-row {
+            margin: 0;
       }
 
 
@@ -315,5 +330,28 @@ tbody {
 
       th {
             font-size: .8em;
+      }
+
+      .input-btn {
+            white-space: normal;
+            width: 51%;
+            margin: 2%;
+      }
+
+      .btn {
+            font-size: 8.5px;
+      }
+
+      .small-dropdowns,
+      .display-content {
+            margin: 0;
+      }
+
+      .add,
+      .refresh {
+            padding: 0;
+            height: 25px;
+            width: 25px;
+            margin: 4% 1px;
       }
 }
