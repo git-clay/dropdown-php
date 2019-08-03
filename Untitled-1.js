@@ -10,6 +10,8 @@
   var type, level, focus;
 
   $(document).ready(function () {
+    $('tbody.displayText').sortable();
+
     //mobile dropdown functions
     if (mobile) {
       //how to handle mobile click events

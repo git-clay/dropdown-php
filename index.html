@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -209,9 +210,9 @@
             <div class="row display-row container">
               <span class="label label-default">Core</span>
               <span id="core-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='coreBtn-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-break' id='coreBtn-break'>Break</button>
               <button class='btn btn-xs btn-link add-custom' id='coreBtn-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="coreBtn">Add Custom</button>
+                      data-target="#add-workout-modal" data-section="coreBtn">Custom</button>
               <br>
               <div class="display-box row">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
@@ -245,9 +246,9 @@
             <!--Start Balance-->
             <div class="row display-row container">
               <span class="label label-default">Balance</span>
-              <button class='btn btn-xs btn-link add-break' id='balance-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-break' id='balance-break'>Break</button>
               <button class='btn btn-xs btn-link add-custom' id='balance-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="balance">Add Custom</button>
+                      data-target="#add-workout-modal" data-section="balance">Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
@@ -263,9 +264,9 @@
             <div class="row display-row plyo container">
               <span class="label label-default">Plyometric</span>
               <span id="plyo-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='plyo-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-break' id='plyo-break'>Break</button>
               <button class='btn btn-xs btn-link add-custom' id='plyo-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="plyo">Add Custom</button>
+                      data-target="#add-workout-modal" data-section="plyo">Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
@@ -296,9 +297,9 @@
             <div class="row display-row saq container">
               <span class="label label-default">SAQ</span>
               <span id="saq-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='saqBtn-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-break' id='saqBtn-break'>Break</button>
               <button class='btn btn-xs btn-link add-custom' id='saqBtn-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="saqBtn">Add Custom</button>
+                      data-target="#add-workout-modal" data-section="saqBtn">Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
@@ -332,9 +333,9 @@
             <div class="row display-row container">
               <span class="label label-default">Resistance</span>
               <span id="resistance-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='resistance-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-break' id='resistance-break'>Break</button>
               <button class='btn btn-xs btn-link add-custom' id='resistance-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="resistance">Add Custom</button>
+                      data-target="#add-workout-modal" data-section="resistance">Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
@@ -648,7 +649,7 @@
   <div class="modal fade" id="add-workout-modal" tabindex="-1" role="dialog" aria-labelledby="addWorkoutModal"
        aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content" style='width:50%;'>
+      <div class="modal-content" style='width:60%;'>
         <div class="modal-header">
           <h5 class="modal-title" id="addWorkoutModal">Add Workout</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
