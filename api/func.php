@@ -411,5 +411,13 @@ class ApiDefaultController extends ApiBaseController
             return array_map(create_function('$o', 'return $o->Exercise;'), $data);
         }
     }
+    public function saveWorkout(){
+        $current_user = wp_get_current_user();
+        $current_user_id = $current_user->ID;
 
+        $workoutData = $_POST["saveData"];
+        $date = echo gmdate("Y/m/d H:i:s");
+
+        // save userId, workoutData, dateTime
+    }
 }

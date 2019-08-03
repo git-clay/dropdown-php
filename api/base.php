@@ -14,6 +14,13 @@ class ApiBaseController extends WP_REST_Controller {
                 )
             )
         );
+        register_rest_route($namespace, '/save_workout', array(
+                array(
+                    'methods'  => 'POST',
+                    'callback' => array(new ApiDefaultController('saveWorkout'), 'init'),
+                )
+            )
+        );
 
 
     }

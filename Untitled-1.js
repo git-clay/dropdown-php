@@ -425,7 +425,28 @@
         note: mobile ? $('#mobile-note').val() : $('#desktop-note').val()
       }
       console.log(getTableContents('workout-table-coreBtn'))
-      console.log(json)
+
+      var data = {
+        'saveData': json,
+      };
+      console.log(data)
+
+      // var request = jQuery.ajax({
+      //   url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
+      //   data: data,
+      //   type: "POST",
+      //   success: function (res) {
+      //     // if ((res == null || res == '') && count < 5) {
+      //     //   count++
+      //     //   getWo(focusExer, callback, count)
+      //     // } else {
+      //     //   callback(res)
+      //     // }
+      //   },
+      //   error: function (jqXHR, textStatus, errorThrown) {
+      //     console.log(jqXHR, textStatus, errorThrown);
+      //   }
+      // })
     })
 
 
