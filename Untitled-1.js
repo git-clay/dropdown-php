@@ -107,12 +107,20 @@
     function addTr(newWorkout, toRefresh, optionalCls) {
       var delBtn = ''
       if (toRefresh != 'warmup' && toRefresh != 'cooldown') {
-        delBtn = "<a class='btn btn-danger delete pull-right' href='#' onclick='rowDelete(this); return false;'>X</a>"
+        delBtn = "<a class='btn btn-danger delete pull-right glyphicon glyphicon-remove' href='#' onclick='rowDelete(this); return false;'></a>"
       }
       if (newWorkout == '' || newWorkout == "Loading...") {
         return false
       }
       $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>' + newWorkout + delBtn + "</td></tr>")
+    }
+
+    function getTableContents(tableId) {
+      var res = [];
+      $('#' + tableId + ' > tr >td').each(function (i, el) {
+        res.push($(el).text())
+      })
+      return res;
     }
     /* Resistance Dropdown */
     function updateResOption(focus, thisMenu) {
@@ -133,6 +141,8 @@
       saqEdit = false;
       plyoEdit = false;
       resVal = '', coreVal = '', saqVal = '', plyoVal = '';
+
+      // $('.input-card').removeClass('click-inactive')
       //set global vars
       if (mobile) {
         type = $(this).attr("value")
@@ -144,7 +154,7 @@
         $('#create-wo').text(level).append('<small>' + ' (' + this.text + ') ').append('<span class="caret"></span>')
         level = level.toLowerCase()
       }
-
+      $('.action-area').show();
       $('.saq').show()
       $('.plyo').show()
       $('.submenu-power').hide()
@@ -308,7 +318,7 @@
     $('.add-break').on("click", function (e) {
       var section = this.id.slice(0, -6)
       var workoutTable = "workout-table-" + section
-      $('#' + workoutTable + ' tr:last').after('<tr class="white"><td></td></tr>')
+      $('#' + workoutTable + ' tr:last').after('<tr style="height:6px;" class="white "><td></td></tr>')
 
     })
 
@@ -366,13 +376,9 @@
       $('#resistance-selected').text(tagname)
       resEdit = true;
     })
-    $('.add-workout-modal-save').on('click', function (e) {
-      var section = this.id.slice(0, -5)
-      var workoutName = $('#save-modal-input').val()
-      var workoutTable = "workout-table-" + section
-      addTr(workoutName, workoutTable, "")
-    })
 
+
+    /** MODALS */
     $('#add-workout-modal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget)
       var section = button.data('section')
@@ -388,10 +394,42 @@
         .find("input,textarea,select")
         .val('')
         .end()
-        .find("input[type=checkbox], input[type=radio]")
-        .prop("checked", "")
         .end();
     })
+    $('.add-workout-modal-save').on('click', function (e) {
+      var section = this.id.slice(0, -5)
+      var workoutName = $('#save-modal-input').val()
+      var workoutTable = "workout-table-" + section
+      addTr(workoutName, workoutTable, "")
+    })
+    $('#save-workout-modal').on('hidden.bs.modal', function (e) {
+      $(this)
+        .find("input,textarea,select")
+        .val('')
+        .end()
+        .end();
+    })
+    $('.workout-modal-save').on('click', function () {
+      var warmupArr, cooldownArr, coreArr, balanceArr, plyoArr, saqArr, resistanceArr, note;
+      var sectionList = []
+      var level, type, focus;
+      var json = {
+        client: $('#client-name').val(),
+        warmup: getTableContents('warmup'),
+        cooldown: getTableContents('cooldown'),
+        core: getTableContents('workout-table-coreBtn'),
+        balance: getTableContents('workout-table-balance'),
+        plyo: getTableContents('workout-table-plyo'),
+        saq: getTableContents('workout-table-saqBtn'),
+        resistance: getTableContents('workout-table-resistance'),
+        note: mobile ? $('#mobile-note').val() : $('#desktop-note').val()
+      }
+      console.log(getTableContents('workout-table-coreBtn'))
+      console.log(json)
+    })
+
+
+
     $(document).keypress(function (e) {
       if ($("#add-workout-modal").hasClass('in') && (e.keycode == 13 || e.which == 13)) {
         $('.add-workout-modal-save').click();

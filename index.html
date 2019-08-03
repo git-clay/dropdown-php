@@ -519,7 +519,7 @@
 
           <!-- NOTES -->
           <div class='text-center hidden-xs'>
-            <textarea rows="2" cols="50" class='notes'></textarea>
+            <textarea rows="2" cols="50" class='notes' id='desktop-note'></textarea>
           </div>
           <!-- END NOTES -->
         </section>
@@ -580,7 +580,7 @@
         </div>
 
         <div class="row  saq">
-          <table class="table table-bordered">
+          <table class="table table-bordered ">
             <thead>
               <tr>
                 <th>SAQ</th>
@@ -620,6 +620,10 @@
             </tbody>
           </table>
         </div>
+
+        <!-- SAVE -->
+        <button class='btn btn-success wo-save' data-toggle="modal"
+                data-target="#save-workout-modal">Save</button>
       </section>
       <!-- END RESULT CARD -->
     </section>
@@ -635,7 +639,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <textarea rows="4" cols="40" class='notes'></textarea>
+          <textarea rows="4" cols="40" class='notes' id='mobile-note'></textarea>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -661,13 +665,37 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary add-workout-modal-save" data-dismiss="modal">Save
-            changes</button>
+          <button type="button" class="btn btn-primary add-workout-modal-save" data-dismiss="modal">Add</button>
         </div>
       </div>
     </div>
   </div>
   <!-- End add workout modal -->
+
+  <!-- Save Modal -->
+  <div class="modal fade" id="save-workout-modal" tabindex="-1" role="dialog" aria-labelledby="saveWorkoutModal"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style='width:60%;'>
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveWorkoutModal">Save Workout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body text-center">
+          <input type="text" placeholder="Client's name" id='client-name'>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary workout-modal-save" data-dismiss="modal">Save
+            Workout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End save Modal -->
 
 
   <!-- <?php
