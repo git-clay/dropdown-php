@@ -210,6 +210,8 @@
               <span class="label label-default">Core</span>
               <span id="core-selected" class="label label-default"></span>
               <button class='btn btn-xs btn-link add-break' id='coreBtn-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='coreBtn-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="coreBtn">Add Custom</button>
               <br>
               <div class="display-box row">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
@@ -244,6 +246,8 @@
             <div class="row display-row container">
               <span class="label label-default">Balance</span>
               <button class='btn btn-xs btn-link add-break' id='balance-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='balance-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="balance">Add Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
@@ -260,6 +264,8 @@
               <span class="label label-default">Plyometric</span>
               <span id="plyo-selected" class="label label-default"></span>
               <button class='btn btn-xs btn-link add-break' id='plyo-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='plyo-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="plyo">Add Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
@@ -291,7 +297,8 @@
               <span class="label label-default">SAQ</span>
               <span id="saq-selected" class="label label-default"></span>
               <button class='btn btn-xs btn-link add-break' id='saqBtn-break'>Add Break</button>
-              <!-- <span><button class='btn btn-xs btn-link add-custom' id='saqBtn-custom'>Add Custom</button></span> -->
+              <button class='btn btn-xs btn-link add-custom' id='saqBtn-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="saqBtn">Add Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
@@ -326,6 +333,8 @@
               <span class="label label-default">Resistance</span>
               <span id="resistance-selected" class="label label-default"></span>
               <button class='btn btn-xs btn-link add-break' id='resistance-break'>Add Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='resistance-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="resistance">Add Custom</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
@@ -635,6 +644,29 @@
   </div>
   <!-- End start mobile notes modal -->
 
+  <!-- Add workout modal -->
+  <div class="modal fade" id="add-workout-modal" tabindex="-1" role="dialog" aria-labelledby="addWorkoutModal"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addWorkoutModal">Add Workout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id='save-modal-input'>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary add-workout-modal-save" data-dismiss="modal">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End add workout modal -->
 
 
   <!-- <?php

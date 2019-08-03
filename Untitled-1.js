@@ -364,6 +364,38 @@
       $('#resistance-selected').text(tagname)
       resEdit = true;
     })
+    $('.add-workout-modal-save').on('click', function (e) {
+      var section = this.id.slice(0, -5)
+      var workoutName = $('#save-modal-input').val()
+      var workoutTable = "workout-table-" + section
+      addTr(workoutName, workoutTable, "")
+    })
+
+    $('#add-workout-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var section = button.data('section')
+
+      $(this).find('.add-workout-modal-save').attr("id", section + '-save')
+      setTimeout(function () {
+        $('#save-modal-input').focus()
+      }, 500);
+
+    })
+    $('#add-workout-modal').on('hidden.bs.modal', function (e) {
+      $(this)
+        .find("input,textarea,select")
+        .val('')
+        .end()
+        .find("input[type=checkbox], input[type=radio]")
+        .prop("checked", "")
+        .end();
+    })
+    $(document).keypress(function (e) {
+      if ($("#add-workout-modal").hasClass('in') && (e.keycode == 13 || e.which == 13)) {
+        $('.add-workout-modal-save').click();
+      }
+    });
+
     /** mobile click events */
     $('.drawer-tab').on('click', function () {
       $('.input-card').slideToggle();
