@@ -364,11 +364,12 @@
       $('#resistance-selected').text(tagname)
       resEdit = true;
     })
-
+    /** mobile click events */
     $('.drawer-tab').on('click', function () {
       $('.input-card').slideToggle();
 
     })
+
 
   });
 })(jQuery);

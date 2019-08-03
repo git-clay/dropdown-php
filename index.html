@@ -186,7 +186,8 @@
       <!--End dropdown-->
 
       <!-- Mobile Notes -->
-      <button class='btn col-xs-2 hidden-sm hidden-md hidden-lg'>Notes</button>
+      <button class='btn col-xs-2 hidden-sm hidden-md hidden-lg' data-toggle="modal"
+              data-target="#notes-modal">Notes</button>
       <!-- End Mobile Notes -->
     </section>
     <!-- END HEADER -->
@@ -499,12 +500,18 @@
               </div>
             </div>
             <!--End Resistance-->
+
           </div>
 
           <div class='text-center  hidden-xs'>
             <button class='btn btn-info'>Cool Down</button>
           </div>
 
+          <!-- NOTES -->
+          <div class='text-center hidden-xs'>
+            <textarea rows="2" cols="50" class='notes'></textarea>
+          </div>
+          <!-- END NOTES -->
         </section>
       </section>
 
@@ -606,14 +613,27 @@
       </section>
       <!-- END RESULT CARD -->
     </section>
-
-
-    <!-- NOTES -->
-    <div class=''>
-
-    </div>
-    <!-- END NOTES -->
   </div>
+  <!-- Start mobile notes modal -->
+  <div class="modal fade" id="notes-modal" tabindex="-1" role="dialog" aria-labelledby="Notes" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Workout Notes</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea rows="4" cols="40" class='notes'></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End start mobile notes modal -->
 
 
 
