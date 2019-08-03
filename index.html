@@ -208,6 +208,7 @@
             <div class="row display-row container">
               <span class="label label-default">Core</span>
               <span id="core-selected" class="label label-default"></span>
+              <button class='btn btn-xs btn-link add-break' id='coreBtn-break'>Add Break</button>
               <br>
               <div class="display-box row">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
@@ -241,6 +242,7 @@
             <!--Start Balance-->
             <div class="row display-row container">
               <span class="label label-default">Balance</span>
+              <button class='btn btn-xs btn-link add-break' id='balance-break'>Add Break</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
@@ -256,6 +258,7 @@
             <div class="row display-row plyo container">
               <span class="label label-default">Plyometric</span>
               <span id="plyo-selected" class="label label-default"></span>
+              <button class='btn btn-xs btn-link add-break' id='plyo-break'>Add Break</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
@@ -286,6 +289,8 @@
             <div class="row display-row saq container">
               <span class="label label-default">SAQ</span>
               <span id="saq-selected" class="label label-default"></span>
+              <button class='btn btn-xs btn-link add-break' id='saqBtn-break'>Add Break</button>
+              <!-- <span><button class='btn btn-xs btn-link add-custom' id='saqBtn-custom'>Add Custom</button></span> -->
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
@@ -319,6 +324,7 @@
             <div class="row display-row container">
               <span class="label label-default">Resistance</span>
               <span id="resistance-selected" class="label label-default"></span>
+              <button class='btn btn-xs btn-link add-break' id='resistance-break'>Add Break</button>
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
@@ -507,91 +513,93 @@
       <!-- RESULT CARD -->
       <section class='col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-0 result-card'>
         <div class="row  warm-up-result">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Warm Up</th>
               </tr>
             </thead>
             <tbody id="warmup" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
         <div class="row ">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Core</th>
               </tr>
             </thead>
             <tbody id="workout-table-coreBtn" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
         <div class="row ">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Balance</th>
               </tr>
             </thead>
             <tbody id="workout-table-balance" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
 
         <div class="row  plyo">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Plyometric</th>
               </tr>
             </thead>
             <tbody id="workout-table-plyo" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
 
         <div class="row  saq">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>SAQ</th>
               </tr>
             </thead>
             <tbody id="workout-table-saqBtn" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
 
         <div class="row ">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
-                <th>Resistance</th>
+                <th>
+                  Resistance
+                </th>
               </tr>
             </thead>
             <tbody id="workout-table-resistance" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>
 
 
         <div class="row  cool-down-result">
-          <table class="table table-striped table-bordered">
+          <table class="table table-bordered">
             <thead>
               <tr>
                 <th>Cool Down</th>
               </tr>
             </thead>
             <tbody id="cooldown" class="displayText">
-              <tr class="blank"></tr>
+              <tr class='blank'></tr>
             </tbody>
           </table>
         </div>

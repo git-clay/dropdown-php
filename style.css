@@ -35,6 +35,11 @@ h2 {
       height: auto;
 }
 
+table>tbody>tr>td {
+      padding: 1px 0;
+}
+
+
 .dropdown-container {
       margin: 0 auto;
 }
@@ -150,6 +155,10 @@ li.dropdown-submenu {
       display: none;
 }
 
+.white {
+      background-color: white;
+}
+
 .add {}
 
 .refresh {}
@@ -236,12 +245,15 @@ li.dropdown-submenu {
 
 .table {
       font-size: 1.2rem;
-      margin-bottom: 10px;
+      margin-bottom: 0;
 }
 
-tbody {
+thead tr th {
       text-align: center;
+      color: white;
 }
+
+tbody {}
 
 .table>tbody>tr>td,
 .table>tbody>tr>th,

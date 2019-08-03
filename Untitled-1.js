@@ -302,6 +302,13 @@
       addTr(newWorkout, workoutTable, "")
       refresh(tempFocus)
     })
+    //click - add break
+    $('.add-break').on("click", function (e) {
+      var section = this.id.slice(0, -6)
+      var workoutTable = "workout-table-" + section
+      $('#' + workoutTable + ' tr:last').after('<tr class="white"><td></td></tr>')
+
+    })
 
     //click - core dropdown 
     $('.coreDropdown').on("click", function (e) {
