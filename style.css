@@ -1,3 +1,11 @@
+body {
+      padding: 0;
+}
+
+p {
+      display: none;
+}
+
 .wrapper {
       padding: 16px;
       width: 100vw;
@@ -10,6 +18,7 @@
 h2 {
       margin-top: 0;
       font-weight: bold;
+      color: black;
 }
 
 /* HEADER */
@@ -33,6 +42,7 @@ h2 {
 .back-btn>img {
       width: 34px;
       height: auto;
+      margin: 0;
 }
 
 .btn-link {
@@ -87,6 +97,8 @@ a {
 
 li.dropdown-submenu {
       list-style-type: none !important;
+      height: 36px;
+      color: black;
 }
 
 .dropdown-submenu>.dropdown-menu {
@@ -207,7 +219,7 @@ li.dropdown-submenu {
       background: none !important;
       color: inherit;
       border: none;
-      padding: 3px 20px;
+      padding: 3px 0;
       font: inherit;
 }
 
@@ -269,7 +281,7 @@ li.dropdown-submenu {
 }
 
 .table {
-      font-size: 1.2rem;
+      font-size: .8rem;
       margin-bottom: 5px;
 }
 
@@ -279,7 +291,7 @@ thead tr th {
 }
 
 tbody tr td {
-      font-size: .9rem;
+      font-size: .5rem;
 }
 
 .table>tbody>tr>td,

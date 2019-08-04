@@ -10,7 +10,9 @@
   var type, level, focus;
 
   $(document).ready(function () {
-    $('tbody.displayText').sortable();
+    if (jQuery.ui && !mobile) {
+      $('tbody.displayText').sortable();
+    }
 
     //mobile dropdown functions
     if (mobile) {
@@ -214,11 +216,13 @@
       }
 
       if ((type != 'fatloss' && level == 'novice') || level == 'intermediate' || level == 'advanced') {
-        $('#saqBtn-dropdown-content').show()
         $('#saqBtn-content').hide()
+        $('#saqBtn-dropdown-content').show()
+        $('#saqBtn-dropdown-content').removeClass('hidden')
       } else {
         $('#saqBtn-dropdown-content').hide()
         $('#saqBtn-content').show()
+        $('#saqBtn-dropdown-content').addClass('hidden')
       }
 
 
@@ -278,19 +282,28 @@
       }
       expSelected = true;
 
-      getWo("warmup", function (woArray) {
-        woArray = JSON.parse(woArray)
-        $.each(woArray, function (i, exer) {
-          addTr(exer, "warmup", "expbased")
-        })
-      }, 0);
-      getWo("warmup", function (woArray) {
-        woArray = JSON.parse(woArray)
-        $.each(woArray, function (i, exer) {
-          addTr(exer, "cooldown", "expbased")
-        })
-      }, 0);
+      getWuCd("warmup");
+      getWuCd("cooldown");
     })
+
+    function getWuCd(section) {
+      $("#" + section).empty();
+      $("#" + section).append('<tr class="blank"></tr>')
+      getWo("warmup", function (woArray) {
+        woArray = JSON.parse(woArray)
+        $.each(woArray, function (i, exer) {
+          addTr(exer, section, "expbased")
+        })
+      }, 0);
+    }
+    // reset warmup / cooldown
+    $('.reset-warmup').on("click", function (e) {
+      getWuCd("warmup");
+    })
+    $('.reset-cooldown').on("click", function (e) {
+      getWuCd("cooldown");
+    })
+
     //click - refresh btn for dropdowns or non-dropdown rows
     $('.refresh').on("click", function (e) {
       refresh(this.id.slice(0, -2))
@@ -379,23 +392,19 @@
 
 
     /** MODALS */
-    $('#add-workout-modal').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget)
-      var section = button.data('section')
-
-      $(this).find('.add-workout-modal-save').attr("id", section + '-save')
+    $('.add-custom').on('click', function (event) {
+      var section = $(this).attr('id').slice(0, -7)
+      $('.add-workout-modal-save').attr("id", section + '-save')
       setTimeout(function () {
         $('#save-modal-input').focus()
       }, 500);
+      $('#save-modal-input').val('')
 
     })
-    $('#add-workout-modal').on('hidden.bs.modal', function (e) {
-      $(this)
-        .find("input,textarea,select")
-        .val('')
-        .end()
-        .end();
+    $('.add-workout-modal-close').on('click', function () {
+      $('#save-modal-input').val('')
     })
+
     $('.add-workout-modal-save').on('click', function (e) {
       var section = this.id.slice(0, -5)
       var workoutName = $('#save-modal-input').val()
