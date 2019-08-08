@@ -350,11 +350,12 @@ tbody tr td {
       .drawer-tab {
             order: 3;
             border-radius: 100% 100% 0% 0%;
-            width: 25vw;
-            height: 18px;
+            width: 50vw;
+            height: 42px;
             padding: 0;
-            left: 37.5vw;
+            left: 25vw;
             position: relative;
+            font-size: 20px !important;
       }
 
       .input-card {
@@ -379,13 +380,6 @@ tbody tr td {
 
       .display-row {
             margin: 0;
-      }
-
-      td input.weight,
-      td input.reps {
-            color: black;
-            border: red !important;
-            background-color: green;
       }
 
       #resistance-dropdown {
