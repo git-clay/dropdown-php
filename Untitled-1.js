@@ -107,20 +107,31 @@
     }
 
     function addTr(newWorkout, toRefresh, optionalCls) {
-      var delBtn = ''
+      var delBtn = '',
+        inputWeight = '',
+        inputReps = '';
       if (toRefresh != 'warmup' && toRefresh != 'cooldown') {
+        inputWeight = '<input type="text" placeholder="weight" class="weight">'
+        inputReps = '<input type="text" placeholder="reps" class="reps"></input>'
         delBtn = "<a class='btn btn-danger delete pull-right glyphicon glyphicon-remove' href='#' onclick='rowDelete(this); return false;'></a>"
       }
       if (newWorkout == '' || newWorkout == "Loading...") {
         return false
       }
-      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>' + newWorkout + delBtn + "</td></tr>")
+      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td>' + newWorkout + inputWeight + inputReps + delBtn + "</td></tr>")
+      $('.weight').css('color', 'black');
+      $('.reps').css('color', 'black');
     }
 
     function getTableContents(tableId) {
       var res = [];
       $('#' + tableId + ' > tr >td').each(function (i, el) {
-        res.push($(el).text())
+        var obj = {
+          name: $(el).text(),
+          weight: $(el).children('input.weight')[0].value,
+          reps: $(el).children('input.reps')[0].value
+        }
+        res.push(obj)
       })
       return res;
     }

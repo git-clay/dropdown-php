@@ -381,6 +381,12 @@ tbody tr td {
             margin: 0;
       }
 
+      td input.weight,
+      td input.reps {
+            color: black;
+            border: red !important;
+            background-color: green;
+      }
 
       #resistance-dropdown {
             height: 80%;
