@@ -1,5 +1,5 @@
 (function ($) {
-  var mobile = window.matchMedia('screen and (max-width: 413px)').matches;
+  var mobile = window.matchMedia('screen and (max-width: 768px)').matches;
 
   var resEdit = false,
     coreEdit = false,

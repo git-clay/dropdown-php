@@ -197,6 +197,12 @@ li.dropdown-submenu {
 
 .refresh {}
 
+.add-break,
+.add-custom {
+      border: 1px solid rgba(152, 152, 152, 0.4);
+      border-radius: 6px;
+}
+
 .addRes {
       right: 16px;
 }
@@ -309,7 +315,7 @@ tbody tr td {
 } */
 
 /* MOBILE */
-@media (max-width: 412px) {
+@media (max-width: 768px) {
       h2 {
             font-size: 1.5em;
       }

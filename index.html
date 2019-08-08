@@ -38,7 +38,7 @@
   <div class="container wrapper">
     <!-- HEADER -->
     <section class='row'>
-      <div class='col-xs-2 col-sm-3'>
+      <div class='col-xs-2 col-md-3'>
         <a href='https://fitt-ed.com' class='back-btn btn btn-light'>
           <span class='btn btn-light glyphicon glyphicon-chevron-left '>
           </span>
@@ -49,10 +49,10 @@
       </div>
 
       <!--Dropdown Section-->
-      <div class='col-xs-8 col-sm-6 dropdown-container text-center'>
+      <div class='col-xs-8 col-md-6 dropdown-container text-center'>
         <h2>Workout Creator</h2>
         <!-- Desktop dropdown -->
-        <div class="row display-row hidden-xs">
+        <div class="row display-row  hidden-xs hidden-sm">
           <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create
             Workout
           </button>
@@ -129,7 +129,7 @@
         </div>
 
         <!--Mobile dropdown-->
-        <div class="row display-row hidden-sm hidden-md hidden-lg">
+        <div class="row display-row  hidden-md hidden-lg">
           <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="exp-m">Experience
               level
@@ -187,7 +187,7 @@
       <!--End dropdown-->
 
       <!-- Mobile Notes -->
-      <button class='btn col-xs-2 hidden-sm hidden-md hidden-lg' data-toggle="modal"
+      <button class='btn col-xs-2  hidden-md hidden-lg' data-toggle="modal"
               data-target="#notes-modal">Notes</button>
       <!-- End Mobile Notes -->
     </section>
@@ -198,13 +198,13 @@
       <!-- INPUT CARD -->
       <section class='footerDrawer'>
 
-        <button class='btn drawer-tab hidden-sm hidden-md hidden-lg'>-</button>
-        <section class='input-card col-xs-12 col-sm-7 col-sm-offset-1'>
-          <div class='col-xs-6 col-sm-12 container input-card-column'>
+        <button class='btn drawer-tab  hidden-md hidden-lg'>-</button>
+        <section class='input-card col-xs-12 col-md-6 col-md-offset-1'>
+          <div class='col-xs-6 col-md-12 container input-card-column'>
 
             <div class='text-center'>
               <button class='btn btn-danger input-btn reset-warmup'>Warm Up</button>
-              <button class='btn btn-info hidden-sm hidden-md hidden-lg input-btn reset-cooldown'>Cool Down</button>
+              <button class='btn btn-info  hidden-md hidden-lg input-btn reset-cooldown'>Cool Down</button>
             </div>
             <!--Start Core-->
             <div class="row display-row container">
@@ -216,7 +216,7 @@
               <br>
               <div class="display-box row">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
-                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns" id="coreBtn-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="coreBtn-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu"
                           data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="true">
@@ -252,14 +252,14 @@
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="balance-r"></button>
-                <div class="clearfix display-content displayText col-xs-8 col-sm-9" id="balance-content"></div>
+                <div class="clearfix display-content displayText col-xs-8 col-md-9" id="balance-content"></div>
                 <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1"
                         id="balance-a"></button>
               </div>
             </div>
             <!--End Balance-->
           </div>
-          <div class='col-xs-6 col-sm-12 container input-card-column'>
+          <div class='col-xs-6 col-md-12 container input-card-column'>
             <!--Start plyo-->
             <div class="row display-row plyo container">
               <span class="label label-default">Plyometric</span>
@@ -270,9 +270,9 @@
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
-                <div class="col-xs-8 col-sm-9 display-content displayText" id="plyo-content"></div>
-                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns submenu-power hidden" id="plyo-dropdown-content">
-                  <button class="btn btn-default dropdown-toggle col-xs-8 col-sm-9 displayText" type="button"
+                <div class="col-xs-8 col-md-9 display-content displayText" id="plyo-content"></div>
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns submenu-power hidden" id="plyo-dropdown-content">
+                  <button class="btn btn-default dropdown-toggle col-xs-8 col-md-9 displayText" type="button"
                           id="plyoMenu"
                           data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="true">
@@ -303,9 +303,9 @@
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
-                <div class="col-xs-8 col-sm-9 display-content displayText submenu-normal" id="saqBtn-content">
+                <div class="col-xs-8 col-md-9 display-content displayText submenu-normal" id="saqBtn-content">
                 </div>
-                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns hidden" id="saqBtn-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns hidden" id="saqBtn-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu"
                           data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="true">
@@ -339,7 +339,7 @@
               <br>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
-                <div class="col-xs-8 col-sm-9 dropdown small-dropdowns" id="resistance-drop">
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="resistance-drop">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button"
                           id="resistanceMenu"
                           data-toggle="dropdown"
@@ -528,7 +528,7 @@
       <!-- END INPUT CARD -->
 
       <!-- RESULT CARD -->
-      <section class='col-xs-10 col-xs-offset-1 col-sm-3 col-sm-offset-0 result-card'>
+      <section class='col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0 result-card'>
         <div class="row  warm-up-result">
           <table class="table table-bordered">
             <thead>
