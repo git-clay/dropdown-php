@@ -388,36 +388,76 @@ class ApiDefaultController extends ApiBaseController
             }
         }   
         ';
-        $obj = json_decode($json,true);
+        $obj = json_decode($json, true);
         $data = array();
-        if($focus == "warmup"){
-            if($type == "strength" || $type == "power"){
-                $tablenames = $wpdb->get_results( "SELECT table_name FROM warmup WHERE is_strength_power = 1 order by id" );
-            }else{
-                $tablenames = $wpdb->get_results( "SELECT table_name FROM warmup WHERE is_strength_power = 0  order by id" );
+        if ($focus == "warmup") {
+            if ($type == "strength" || $type == "power") {
+                $tablenames = $wpdb->get_results("SELECT table_name FROM warmup WHERE is_strength_power = 1 order by id");
+            } else {
+                $tablenames = $wpdb->get_results("SELECT table_name FROM warmup WHERE is_strength_power = 0  order by id");
             }
-            foreach($tablenames as $item) {
+            foreach ($tablenames as $item) {
                 $t = $item->{table_name};
-                $r = $wpdb->get_results( "SELECT Exercise FROM $t ORDER By RAND() LIMIT 1 " );
+                $r = $wpdb->get_results("SELECT Exercise FROM $t ORDER By RAND() LIMIT 1 ");
                 $exercise = $r[0]->Exercise;
-                if($exercise != null){
+                if ($exercise != null) {
                     array_push($data, $exercise);
                 }
             }
-            return json_encode($data,true);
-        }else{
+            return json_encode($data, true);
+        } else {
             $table = $obj[$exp][$type][$focus];
-            $data = $wpdb->get_results( "SELECT Exercise FROM $table ORDER By RAND() LIMIT 1 " );
+            $data = $wpdb->get_results("SELECT Exercise FROM $table ORDER By RAND() LIMIT 1 ");
             return array_map(create_function('$o', 'return $o->Exercise;'), $data);
         }
     }
-    public function saveWorkout(){
+    public function saveWorkout()
+    {
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
 
         $workoutData = $_POST["saveData"];
-        $date = echo gmdate("Y/m/d H:i:s");
+        $date = gmdate("Y/m/d H:i:s");
 
         // save userId, workoutData, dateTime
+    }
+    public function getAllClients()
+    {
+        $current_user = wp_get_current_user();
+        $current_user_id = $current_user->ID;
+        $clientNames = $wpdb->get_results("SELECT client_name FROM user_workout WHERE user_id = $current_user_id group by client_name");
+
+        $response = new WP_REST_Response($clientNames);
+        $response->set_status(200);
+
+        return $response;
+    }
+
+    public function getAllClientWorkouts($request)
+    {
+        $clientName = $request['client_name'];
+
+        $current_user = wp_get_current_user();
+        $current_user_id = $current_user->ID;
+        $workouts = $wpdb->get_results("SELECT workout_id, workout_date FROM user_workout WHERE user_id = $current_user_id and client_name = $clientName group by client_name");
+
+        $response = new WP_REST_Response($workouts);
+        $response->set_status(200);
+
+        return $response;
+
+        // return workout_id, date, client name
+    }
+
+    public function getWorkout($request)
+    {
+
+        $workout_id = $request['workout_id'];
+        $workouts = $wpdb->get_results("SELECT workout_json FROM user_workout WHERE workout_id = $workout_id ");
+
+        $response = new WP_REST_Response($workouts);
+        $response->set_status(200);
+
+        return $response;
     }
 }

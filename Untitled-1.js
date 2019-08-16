@@ -155,6 +155,10 @@
       plyoEdit = false;
       resVal = '', coreVal = '', saqVal = '', plyoVal = '';
 
+      // $(".result-card").animate({
+      //   left: "-=30px",
+      // }, 2000);
+
       // $('.input-card').removeClass('click-inactive')
       //set global vars
       if (mobile) {
