@@ -154,12 +154,17 @@
       saqEdit = false;
       plyoEdit = false;
       resVal = '', coreVal = '', saqVal = '', plyoVal = '';
+      $('.result-card').animate({
+        left: '250px',
+      }, 'slow', function () {
+        $('.result-card').removeClass('col-md-offset-4');
+        $('.result-card').addClass('animated');
 
-      // $(".result-card").animate({
-      //   left: "-=30px",
-      // }, 2000);
+        $('.input-card').fadeIn();
 
-      // $('.input-card').removeClass('click-inactive')
+      })
+
+
       //set global vars
       if (mobile) {
         type = $(this).attr("value")
