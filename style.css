@@ -71,7 +71,7 @@ td:hover {
 
 #create-wo {
       position: relative;
-      width: 220px;
+      width: 100%;
       text-align: center;
       padding: 5px 15px;
 }
@@ -141,7 +141,6 @@ li.dropdown-submenu {
 .display-row {
       margin: 5px 0px;
       min-height: 16%;
-      margin-left: 18px;
       width: 100%;
 }
 
@@ -273,6 +272,16 @@ li.dropdown-submenu {
 .result-card.animated {
       left: -2vw !important;
       margin: 0;
+}
+
+.result-card-table {
+      display: none;
+}
+
+.initial-actions {}
+
+.load-wo {
+      top: 100px;
 }
 
 ::-webkit-scrollbar {
@@ -436,6 +445,6 @@ tbody tr td {
 
       #create-wo-m,
       #exp-m {
-            width: 80%;
+            width: 100%;
       }
 }

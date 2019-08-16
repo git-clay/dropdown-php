@@ -47,144 +47,9 @@
           <span>Back to fitt-ed</span>
         </a>
       </div>
-
-      <!--Dropdown Section-->
-      <div class='col-xs-8 col-md-6 dropdown-container text-center'>
+      <div class='col-xs-8 col-md-6 text-center'>
         <h2>Workout Creator</h2>
-        <!-- Desktop dropdown -->
-        <div class="row display-row  hidden-xs hidden-sm">
-          <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create
-            Workout
-          </button>
-          <ul class="dropdown-menu list-unstyled" id="expDropdown">
-            <li class="dropdown-submenu">
-              <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
-              <ul class="dropdown-menu list-unstyled">
-                <li class="dropdown-submenu">
-                  <a class="wo" value="1">Level 1</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="2">Level 2</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-toggle" data-toggle="dropdown">Novice</a>
-              <ul class="dropdown-menu list-unstyled">
-                <li class="dropdown-submenu">
-                  <a class="wo" value="fatloss">Functional/Fat-Loss</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="endurance">Functional/Endurance</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="hypertrophy">Hypertrophy</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="strength">Strength</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
-              <ul class="dropdown-menu list-unstyled">
-                <li class="dropdown-submenu">
-                  <a class="wo" value="fatloss">Functional/Fat-Loss</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="endurance">Functional/Endurance</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="hypertrophy">Hypertrophy</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="strength">Strength</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="power">Power</a>
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown-submenu">
-              <a class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
-              <ul class="dropdown-menu list-unstyled">
-                <li class="dropdown-submenu">
-                  <a class="wo" value="fatloss">Functional/Fat-Loss</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="endurance">Functional/Endurance</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="hypertrophy">Hypertrophy</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="strength">Strength</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a class="wo" value="power">Power</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <!--Mobile dropdown-->
-        <div class="row display-row  hidden-md hidden-lg">
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="exp-m">Experience
-              level
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu list-unstyled" id='m-list'>
-              <li>
-                <a href='#' class="dropdown-toggle m-exp" value="beginner">Beginner</a>
-              </li>
-              <li>
-                <a href='#' class="dropdown-toggle m-exp" value="novice">Novice</a>
-              </li>
-              <li>
-                <a href='#' class="dropdown-toggle m-exp" value="intermediate">Intermediate</a>
-              </li>
-              <li>
-                <a href='#' class="dropdown-toggle m-exp" value="advanced">Advanced</a>
-              </li>
-            </ul>
-          </div>
-          <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo-m">Type
-              of
-              training
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu list-unstyled" id='wo-list'>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='1' value="1">Level 1</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='2' value="2">Level 2</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='fatloss' value="fatloss">Functional/Fat-Loss</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='endurance' value="endurance">Functional/Endurance</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id="hypertrophy" value="hypertrophy">Hypertrophy</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='strength' value="strength">Strength</a>
-              </li>
-              <li class="dropdown-submenu">
-                <a href="#" class="wo" id='power' value="power">Power</a>
-              </li>
-            </ul>
-          </div>
-          <!-- <button class="glyphicon glyphicon-refresh btn btn-warning" onclick='location.reload()'></button> -->
-        </div>
       </div>
-
-      <!--End dropdown-->
 
       <!-- Mobile Notes -->
       <button class='btn col-xs-2  hidden-md hidden-lg' data-toggle="modal"
@@ -529,101 +394,266 @@
 
       <!-- RESULT CARD -->
       <section class='col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 result-card'>
-        <div class="row  warm-up-result">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Warm Up</th>
-              </tr>
-            </thead>
-            <tbody id="warmup" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
+        <div class='initial-actions'>
+          <!-- Create Workout Dropdown Section-->
+          <div class='col-xs-12 dropdown-container text-center'>
+            <!-- Desktop dropdown -->
+            <div class="row display-row  hidden-xs hidden-sm">
+              <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" id="create-wo">Create
+                Workout
+              </button>
+              <ul class="dropdown-menu list-unstyled" id="expDropdown">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Beginner</a>
+                  <ul class="dropdown-menu list-unstyled">
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="1">Level 1</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="2">Level 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Novice</a>
+                  <ul class="dropdown-menu list-unstyled">
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="endurance">Functional/Endurance</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="hypertrophy">Hypertrophy</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="strength">Strength</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Intermediate</a>
+                  <ul class="dropdown-menu list-unstyled">
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="endurance">Functional/Endurance</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="hypertrophy">Hypertrophy</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="strength">Strength</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="power">Power</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Advanced</a>
+                  <ul class="dropdown-menu list-unstyled">
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="fatloss">Functional/Fat-Loss</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="endurance">Functional/Endurance</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="hypertrophy">Hypertrophy</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="strength">Strength</a>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="wo" value="power">Power</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <!--Mobile dropdown-->
+            <div class="row display-row  hidden-md hidden-lg">
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"
+                        id="exp-m">Experience
+                  level
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu list-unstyled" id='m-list'>
+                  <li>
+                    <a href='#' class="dropdown-toggle m-exp" value="beginner">Beginner</a>
+                  </li>
+                  <li>
+                    <a href='#' class="dropdown-toggle m-exp" value="novice">Novice</a>
+                  </li>
+                  <li>
+                    <a href='#' class="dropdown-toggle m-exp" value="intermediate">Intermediate</a>
+                  </li>
+                  <li>
+                    <a href='#' class="dropdown-toggle m-exp" value="advanced">Advanced</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown"
+                        id="create-wo-m">Type
+                  of
+                  training
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu list-unstyled" id='wo-list'>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='1' value="1">Level 1</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='2' value="2">Level 2</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='fatloss' value="fatloss">Functional/Fat-Loss</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='endurance' value="endurance">Functional/Endurance</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id="hypertrophy" value="hypertrophy">Hypertrophy</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='strength' value="strength">Strength</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="wo" id='power' value="power">Power</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- <button class="glyphicon glyphicon-refresh btn btn-warning" onclick='location.reload()'></button> -->
+            </div>
+            <!--End Create Workout dropdown-->
+          </div>
+
+          <!-- Load Workout Dropdown -->
+          <div class='col-xs-12 dropdown-container text-center load-wo'>
+
+            <div class='row display-row'>
+
+              <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" id="load-client">Load
+                Client
+              </button>
+              <ul class="dropdown-menu list-unstyled">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-toggle" data-toggle="dropdown">client a</a>
+                  <a class="dropdown-toggle" data-toggle="dropdown">client b</a>
+                  <a class="dropdown-toggle" data-toggle="dropdown">client c</a>
+                  <a class="dropdown-toggle" data-toggle="dropdown">...</a>
+
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- End Load Workout Dropdown -->
+
         </div>
-        <div class="row ">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Core</th>
-              </tr>
-            </thead>
-            <tbody id="workout-table-coreBtn" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="row ">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Balance</th>
-              </tr>
-            </thead>
-            <tbody id="workout-table-balance" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
+        <div class='result-card-table'>
+
+          <div class="row  warm-up-result">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Warm Up</th>
+                </tr>
+              </thead>
+              <tbody id="warmup" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row ">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Core</th>
+                </tr>
+              </thead>
+              <tbody id="workout-table-coreBtn" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row ">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="workout-table-balance" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row  plyo">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Plyometric</th>
+                </tr>
+              </thead>
+              <tbody id="workout-table-plyo" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row  saq">
+            <table class="table table-bordered ">
+              <thead>
+                <tr>
+                  <th>SAQ</th>
+                </tr>
+              </thead>
+              <tbody id="workout-table-saqBtn" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row ">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>
+                    Resistance
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="workout-table-resistance" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <div class="row  cool-down-result">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Cool Down</th>
+                </tr>
+              </thead>
+              <tbody id="cooldown" class="displayText">
+                <tr class='blank'></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SAVE -->
+          <button class='btn btn-success wo-save' data-toggle="modal"
+                  data-target="#save-workout-modal">Save</button>
         </div>
 
-        <div class="row  plyo">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Plyometric</th>
-              </tr>
-            </thead>
-            <tbody id="workout-table-plyo" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="row  saq">
-          <table class="table table-bordered ">
-            <thead>
-              <tr>
-                <th>SAQ</th>
-              </tr>
-            </thead>
-            <tbody id="workout-table-saqBtn" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="row ">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>
-                  Resistance
-                </th>
-              </tr>
-            </thead>
-            <tbody id="workout-table-resistance" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
-        </div>
-
-
-        <div class="row  cool-down-result">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Cool Down</th>
-              </tr>
-            </thead>
-            <tbody id="cooldown" class="displayText">
-              <tr class='blank'></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- SAVE -->
-        <button class='btn btn-success wo-save' data-toggle="modal"
-                data-target="#save-workout-modal">Save</button>
       </section>
       <!-- END RESULT CARD -->
     </section>
