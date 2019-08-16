@@ -155,6 +155,7 @@
           $('.input-card').fadeIn();
         })
       }
+      $('.result-card-table').show();
     }
 
     /**
@@ -181,7 +182,6 @@
         level = level.toLowerCase()
       }
 
-      $('.result-card-table').show();
 
       $('.action-area').show();
       $('.saq').show()
@@ -415,6 +415,16 @@
       updateResOption(resVal, '#resistanceMenu')
       $('#resistance-selected').text(tagname)
       resEdit = true;
+    })
+
+    //click - load client
+    $('.client-select').on('click', function (e) {
+      console.log($(this), e.target)
+      $('#load-workout').show();
+    })
+    $('.workout-load-select').on('click', function (e) {
+      console.log($(this), e.target)
+      showInputCardAnimation()
     })
 
 

@@ -284,6 +284,10 @@ li.dropdown-submenu {
       top: 100px;
 }
 
+#load-workout {
+      display: none;
+}
+
 ::-webkit-scrollbar {
       width: 0px;
       background: transparent;
