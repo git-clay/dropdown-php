@@ -143,6 +143,20 @@
       }, 0);
     }
 
+    function showInputCardAnimation() {
+      $('.initial-actions').fadeOut();
+
+      if (!mobile) {
+        $('.result-card').animate({
+          left: '250px',
+        }, '3500', function () {
+          $('.result-card').removeClass('col-md-offset-4');
+          $('.result-card').addClass('animated');
+          $('.input-card').fadeIn();
+        })
+      }
+    }
+
     /**
      * click handlers
      */
@@ -154,20 +168,12 @@
       saqEdit = false;
       plyoEdit = false;
       resVal = '', coreVal = '', saqVal = '', plyoVal = '';
-      $('.initial-actions').fadeOut();
-
+      showInputCardAnimation();
       //set global vars
       if (mobile) {
         type = $(this).attr("value")
         $('#create-wo-m').text(type)
       } else {
-        $('.result-card').animate({
-          left: '250px',
-        }, '3500', function () {
-          $('.result-card').removeClass('col-md-offset-4');
-          $('.result-card').addClass('animated');
-          $('.input-card').fadeIn();
-        })
         type = $(this).attr("value")
         level = $(this).parent().parent().parent().children()[0].text
         //changes main button text
