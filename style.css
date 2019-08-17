@@ -191,7 +191,7 @@ li.dropdown-submenu {
       -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
       padding: 48px 0px 18px 48px;
       height: 85vh;
-      background-image: radial-gradient(at right, #0069c7 0%, #003f7a 100%);
+      background-image: radial-gradient(at right, #7ad 5%, #69c 35%, #0069c7 65%, #003f7a 90%);
       display: none;
 }
 
@@ -207,10 +207,9 @@ li.dropdown-submenu {
 }
 
 .wo-save {
-      position: absolute;
-      bottom: 18px;
-      left: 50%;
-      margin-left: -24px;
+      position: relative;
+      bottom: 24px;
+      display: none;
 }
 
 .white {
@@ -291,7 +290,7 @@ li.dropdown-submenu {
       -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
       padding: 72px 48px 18px 64px;
       height: 85vh;
-      background-image: radial-gradient(circle at left, #0069c7 0%, #003f7a 100%);
+      background-image: radial-gradient(circle at left, #69c 0%, #0069c7 40%, #003f7a 90%);
 }
 
 .result-card.animated {
@@ -340,7 +339,7 @@ thead tr th {
 }
 
 tbody tr td {
-      font-size: .5rem;
+      font-size: .8rem;
 }
 
 .table>tbody>tr>td,

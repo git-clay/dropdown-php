@@ -143,6 +143,7 @@
           })
         }
         $('.result-card-table').show();
+        $('.wo-save').show();
       });
 
     }
@@ -410,7 +411,6 @@
 
     //click - load client
     $('.client-select').on('click', function (e) {
-      console.log($(this), e.target)
       $('#load-client').text(e.target.text);
       getAllClientWorkouts(e.target.text);
     })
@@ -532,7 +532,6 @@
     * @result success message => refresh method
      */
     function saveWorkout(saveData) {
-      console.log(saveData)
       // jQuery.ajax({
       //   url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
       //   data: {
@@ -602,7 +601,6 @@
       //   }
       // })
       $.each(res, function (i, workoutInfo) {
-        console.log(workoutInfo)
         $("#load-workout-container ul").append(
           $('<li>').attr('class', 'dropdown-submenu').append(
             $('<a>')
@@ -681,7 +679,6 @@
         addTr(exer, 'cooldown')
       })
       $.each(res.workoutMain, function (key, section) {
-        console.log(key)
         $.each(section, function (i, exer) {
           addTr(exer, `workout-table-${key}`)
         })
