@@ -150,13 +150,6 @@
     //#region click handlers
     //click - main dropdown select for experience and type and level
     $('.wo').on("click", function (e) {
-      resEdit = false;
-      coreEdit = false;
-      saqEdit = false;
-      plyoEdit = false;
-      resVal = '', coreVal = '', saqVal = '', plyoVal = '';
-      showInputCardAnimation();
-      //set global vars
       if (mobile) {
         type = $(this).attr("value")
         $('#create-wo-m').text(type)
@@ -167,6 +160,21 @@
         $('#create-wo').text(level).append('<small>' + ' (' + this.text + ') ').append('<span class="caret"></span>')
         level = level.toLowerCase()
       }
+      whatToShow();
+
+      getWuCd("warmup");
+      getWuCd("cooldown");
+    })
+
+    function whatToShow() {
+      resEdit = false;
+      coreEdit = false;
+      saqEdit = false;
+      plyoEdit = false;
+      resVal = '', coreVal = '', saqVal = '', plyoVal = '';
+      showInputCardAnimation();
+      //set global vars
+
 
 
       $('.action-area').show();
@@ -294,10 +302,7 @@
         $('.expbased').remove()
       }
       expSelected = true;
-
-      getWuCd("warmup");
-      getWuCd("cooldown");
-    })
+    }
 
     function getWuCd(section) {
       $("#" + section).empty();
@@ -528,19 +533,19 @@
      */
     function saveWorkout(saveData) {
       console.log(saveData)
-      jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
-        data: {
-          saveData: saveData
-        },
-        type: "POST",
-        success: function (res) {
-          // success message => refresh method
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
-        }
-      })
+      // jQuery.ajax({
+      //   url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
+      //   data: {
+      //     saveData: saveData
+      //   },
+      //   type: "POST",
+      //   success: function (res) {
+      //     // success message => refresh method
+      //   },
+      //   error: function (jqXHR, textStatus, errorThrown) {
+      //     console.log(jqXHR, textStatus, errorThrown);
+      //   }
+      // })
     }
 
     /**
@@ -687,6 +692,7 @@
       $('#client-name').text(res.client);
       $('#workout-name').text(`${elementData.workoutName} -- ${elementData.workoutDate}`);
       showInputCardAnimation();
+      whatToShow();
     }
     //#endregion
   });
