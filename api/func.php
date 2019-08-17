@@ -415,8 +415,11 @@ class ApiDefaultController extends ApiBaseController
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
 
-        $workoutData = $_POST["saveData"];
-        $date = gmdate("Y/m/d H:i:s");
+        $workout_data = $_POST["saveData"];
+        $workout_name = $workout_data["workout"];
+        $client_name = $workout_data["client"];
+        $workout_date = $workout_data["date"];
+        $create_on = gmdate("Y/m/d H:i:s");
 
         // save userId, workoutData, dateTime
     }

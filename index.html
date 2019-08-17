@@ -49,6 +49,8 @@
       </div>
       <div class='col-xs-8 col-md-6 text-center'>
         <h2>Workout Creator</h2>
+        <h6 id='client-name'></h6>
+        <h6 id='workout-name'></h6>
       </div>
 
       <!-- Mobile Notes -->
@@ -75,13 +77,13 @@
             <div class="row display-row container">
               <span class="label label-default">Core</span>
               <span id="core-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='coreBtn-break'>Break</button>
-              <button class='btn btn-xs btn-link add-custom' id='coreBtn-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="coreBtn">Custom</button>
+              <button class='btn btn-xs btn-link add-break' id='core-break'>Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='core-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="core">Custom</button>
               <br>
               <div class="display-box row">
-                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="coreBtn-r"></button>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="coreBtn-dropdown-content">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="core-r"></button>
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="core-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu"
                           data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="true">
@@ -103,7 +105,7 @@
                     </li>
                   </ul>
                 </div>
-                <button class="glyphicon glyphicon-plus btn btn-success col-xs-1 add" id="coreBtn-a"></button>
+                <button class="glyphicon glyphicon-plus btn btn-success col-xs-1 add" id="core-a"></button>
               </div>
             </div>
             <!--End Core-->
@@ -162,15 +164,15 @@
             <div class="row display-row saq container">
               <span class="label label-default">SAQ</span>
               <span id="saq-selected" class="label label-default"></span>
-              <button class='btn btn-xs btn-link add-break' id='saqBtn-break'>Break</button>
-              <button class='btn btn-xs btn-link add-custom' id='saqBtn-custom' data-toggle="modal"
-                      data-target="#add-workout-modal" data-section="saqBtn">Custom</button>
+              <button class='btn btn-xs btn-link add-break' id='saq-break'>Break</button>
+              <button class='btn btn-xs btn-link add-custom' id='saq-custom' data-toggle="modal"
+                      data-target="#add-workout-modal" data-section="saq">Custom</button>
               <br>
               <div class="row display-box">
-                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saqBtn-r"></button>
-                <div class="col-xs-8 col-md-9 display-content displayText submenu-normal" id="saqBtn-content">
+                <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saq-r"></button>
+                <div class="col-xs-8 col-md-9 display-content displayText submenu-normal" id="saq-content">
                 </div>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns hidden" id="saqBtn-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropdown small-dropdowns hidden" id="saq-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu"
                           data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="true">
@@ -189,7 +191,7 @@
                     </li>
                   </ul>
                 </div>
-                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="saqBtn-a"></button>
+                <button class="glyphicon glyphicon-plus btn btn-success add col-xs-1" id="saq-a"></button>
               </div>
             </div>
             <!--End SAQ-->
@@ -571,7 +573,7 @@
                   <th>Core</th>
                 </tr>
               </thead>
-              <tbody id="workout-table-coreBtn" class="displayText">
+              <tbody id="workout-table-core" class="displayText">
                 <tr class='blank'></tr>
               </tbody>
             </table>
@@ -609,7 +611,7 @@
                   <th>SAQ</th>
                 </tr>
               </thead>
-              <tbody id="workout-table-saqBtn" class="displayText">
+              <tbody id="workout-table-saq" class="displayText">
                 <tr class='blank'></tr>
               </tbody>
             </table>
