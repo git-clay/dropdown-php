@@ -44,7 +44,6 @@ class ApiDefaultController extends ApiBaseController
     {
         global $wpdb;
 
-        $fromPost = $_POST["action"];
         $name = $_POST["name"];
 
         $exp =  $name["level"];    // ex 'novice'
@@ -439,7 +438,7 @@ class ApiDefaultController extends ApiBaseController
 
         $current_user = wp_get_current_user();
         $current_user_id = $current_user->ID;
-        $workouts = $wpdb->get_results("SELECT workout_id, workout_date FROM user_workout WHERE user_id = $current_user_id and client_name = $clientName group by client_name");
+        $workouts = $wpdb->get_results("SELECT workout_id, workout_date, workout_name FROM user_workout WHERE user_id = $current_user_id and client_name = $clientName group by client_name");
 
         $response = new WP_REST_Response($workouts);
         $response->set_status(200);

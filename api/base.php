@@ -31,7 +31,7 @@ class ApiBaseController extends WP_REST_Controller
         );
         register_rest_route(
             $namespace,
-            '/get_all_clientss',
+            '/get_all_clients',
             array(
                 array(
                     'methods'  => 'GET',
