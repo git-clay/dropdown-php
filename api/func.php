@@ -453,8 +453,9 @@ class ApiDefaultController extends ApiBaseController
 
         $clientNames = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT client_name FROM user_workout WHERE user_id = %d group by client_name",
-                $user_id
+                "SELECT client_name FROM user_workout WHERE user_id = %d and is_removed = %s group by client_name",
+                $user_id,
+                0
             )
         );
 
@@ -470,9 +471,10 @@ class ApiDefaultController extends ApiBaseController
 
         $workouts = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT workout_id, workout_date, workout_name FROM user_workout WHERE user_id = %d and client_name = %s",
+                "SELECT workout_id, workout_date, workout_name FROM user_workout WHERE user_id = %d and client_name = %s and is_removed = %d",
                 $user_id,
-                $clientName
+                $clientName,
+                0
             )
         );
 
@@ -486,11 +488,22 @@ class ApiDefaultController extends ApiBaseController
         $workout_id = $_GET['workout_id'];
         $workouts = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT workout_json FROM user_workout WHERE workout_id = %d ",
+                "SELECT workout_json FROM user_workout WHERE workout_id = %d",
                 $workout_id
             )
         );
 
         return array_map(create_function('$o', 'return $o->workout_json;'), $workouts);
+    }
+    public function deleteWorkout($request)
+    {
+        global $wpdb;
+
+        $workout_id = $_POST['workout_id'];
+        $user_id = $_POST['user_id'];
+
+        $wpdb->update("user_workout", array('is_removed' => 1), array('user_id' => $user_id, 'workout_id' => $workout_id));
+
+        die;
     }
 }

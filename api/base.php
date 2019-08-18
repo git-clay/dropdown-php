@@ -64,7 +64,7 @@ class ApiBaseController extends WP_REST_Controller
             '/delete_workout',
             array(
                 array(
-                    'methods'  => 'DELETE',
+                    'methods'  => 'POST',
                     'callback' => array(new ApiDefaultController('deleteWorkout'), 'init'),
                 )
             )

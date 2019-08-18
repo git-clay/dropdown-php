@@ -53,9 +53,11 @@
             <span>Back to fitt-ed</span>
           </div>
         </a>
+        <button class="glyphicon glyphicon-refresh btn btn-warning refresh-page
+        "></button>
       </div>
       <div class='col-xs-8 col-md-6 text-center'>
-        <h2>Workout Creator</h2>
+        <h2> Workout Creator</h2>
         <h6 id='client-name'></h6>
         <h6 id='workout-name'></h6>
       </div>
@@ -722,8 +724,8 @@
         <div class="modal-body text-center">
           <div class='row input-group display-row '>
             <div class="input-group-btn">
-              <button class='btn client-name-toggle active'>Current</button>
-              <button class='btn client-name-toggle'>New</button>
+              <button class='btn btn-default client-name-toggle active'>Current</button>
+              <button class='btn btn-default client-name-toggle'>New</button>
             </div>
             <div class='row display-row client-name-container' id='current-client-container'>
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
@@ -763,10 +765,14 @@
   <!-- End save Modal -->
 
   <!-- Add workout modal -->
-  <div class="modal fade" id="delete-workout-modal" tabindex="-1" role="dialog" aria-labelledby="deleteWorkoutModal"
+  <div class="modal fade del-modal" id="delete-workout-modal" tabindex="-1" role="dialog"
+       aria-labelledby="deleteWorkoutModal"
        aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="deleteWorkoutModal">Delete Workout</h2>
+        </div>
         <div class="modal-body">
           <h2>Are you sure your want to delete this workout?</h2>
         </div>

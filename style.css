@@ -115,6 +115,14 @@ td {
       margin-right: -4px;
 }
 
+.del-modal:before {
+      content: '';
+      display: inline-block;
+      height: 50%;
+      vertical-align: middle;
+      margin-right: -4px;
+}
+
 .modal-dialog {
       display: inline-block;
       text-align: left;
@@ -267,11 +275,24 @@ li.dropdown-submenu {
 
 .alert {
       display: none;
+      bottom: 0;
+      position: absolute;
+      width: 80%;
+      text-align: center;
+      margin-left: 10%;
+      z-index: 9999;
 }
 
 .add {}
 
 .refresh {}
+
+.refresh-page {
+      opacity: .6;
+      margin: 0;
+      display: none;
+      position: relative;
+}
 
 .add-break,
 .add-custom {
@@ -382,6 +403,12 @@ li.dropdown-submenu {
 #current-client-container,
 .load-workout-container {
       text-transform: capitalize;
+}
+
+#current-client-container>button {
+      background-color: #1A1A1A;
+      color: #cccccc;
+      height: 28.6px;
 }
 
 ::-webkit-scrollbar {
@@ -624,5 +651,9 @@ input.col-input[type=text] {
 
       .initial-actions {
             margin-top: 50%;
+      }
+
+      .refresh-page {
+            margin: 3px 0 0 12px;
       }
 }

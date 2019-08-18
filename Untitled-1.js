@@ -14,6 +14,7 @@
     if (jQuery.ui && !mobile) {
       $('tbody.displayText').sortable();
     }
+
     getAllClients();
     document.getElementById('workout-date-input').valueAsDate = new Date();
 
@@ -176,6 +177,7 @@
         $('.drawer-tab').fadeIn()
         $('.result-card-table').show();
         $('#wo-save').show();
+        $('.refresh-page').show();
       });
 
     }
@@ -363,6 +365,10 @@
     $('.refresh').on("click", function (e) {
       refresh(this.id.slice(0, -2))
     })
+    $('.refresh-page').on("click", function (e) {
+      location.reload()
+    })
+
     //click - add button for dropdowns or non-dropdown rows
     $('.add').on("click", function (e) {
       var tempFocus = this.id.slice(0, -2)
@@ -747,6 +753,8 @@
           $('#workout-name-input').val(`${levelUpper} -- ${typeUpper}`);
           workoutId = elementData.workoutId;
           $('.wo-save').show()
+          $('.refresh-page').show();
+
 
           previousWorkout = true;
 
@@ -764,7 +772,7 @@
     function deleteWorkoutAjax() {
       jQuery.ajax({
         url: "http://fitt-ed.com/wp-json/api/v1/delete_workout",
-        type: "DELETE",
+        type: "POST",
         data: {
           user_id: userId,
           workout_id: workoutId
@@ -773,7 +781,7 @@
           $('#success-alert').show()
           setTimeout(function () {
             location.reload()
-          }, 3000);
+          }, 2000);
         },
         error: function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR, textStatus, errorThrown);
