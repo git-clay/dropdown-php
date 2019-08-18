@@ -104,6 +104,7 @@ td {
 .modal {
       text-align: center;
       padding: 0 !important;
+      opacity: 1;
 }
 
 .modal:before {
@@ -123,6 +124,10 @@ td {
 .modal-body>input {
       text-align: center;
       margin: 12px;
+}
+
+#new-client-container {
+      display: none;
 }
 
 .dark-skin input[type="date"] {
@@ -260,13 +265,17 @@ li.dropdown-submenu {
       background-color: white;
 }
 
+.alert {
+      display: none;
+}
+
 .add {}
 
 .refresh {}
 
 .add-break,
 .add-custom {
-      border: 1px solid rgba(152, 152, 152, 0.4);
+      border: 1px solid rgba(152, 152, 152, 0.843);
       border-radius: 6px;
 }
 
@@ -363,7 +372,8 @@ li.dropdown-submenu {
       display: none;
 }
 
-.load-client-container,
+#load-client-container,
+#current-client-container,
 .load-workout-container {
       text-transform: capitalize;
 }
@@ -436,6 +446,11 @@ input.col-input[type=text] {
       opacity: .6;
 }
 
+.input-group-btn,
+.input-group-addon {
+      width: 140px;
+}
+
 /* Functional */
 /* .click-inactive {
       pointer-events: none;
@@ -447,9 +462,19 @@ input.col-input[type=text] {
             font-size: 1.5em;
       }
 
+      .back-btn {
+            width: 60px;
+            display: inline-block;
+      }
+
       .back-btn>img {
             width: 18px;
             height: auto;
+      }
+
+      .back-btn>span {
+            height: 100%;
+            line-height: .5;
       }
 
       .action-area {
@@ -486,6 +511,7 @@ input.col-input[type=text] {
             position: relative;
             font-size: 20px !important;
             display: none;
+            background: grey;
       }
 
       .input-card {

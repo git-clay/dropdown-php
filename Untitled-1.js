@@ -8,12 +8,15 @@
   var resVal, coreVal, saqVal, plyoVal;
   var expSelected = false;
   var type, level;
+  var workoutId;
 
   $(document).ready(function () {
     if (jQuery.ui && !mobile) {
       $('tbody.displayText').sortable();
     }
     getAllClients();
+    document.getElementById('workout-date-input').valueAsDate = new Date();
+
 
     //mobile dropdown functions
     if (mobile) {
@@ -47,7 +50,9 @@
       })
       //how to handle type selection - mobile
       $('.wo').on("click", function (e) {
+        $(this).parent().parent().next('ul').toggle();
         e.stopPropagation();
+        e.preventDefault();
         $('#wo-list').hide()
       })
       $('.dropdown-submenu a').on("click", function (e) {
@@ -56,7 +61,6 @@
           $(this).next('ul').css('left', ' -110%');
           $(this).next('ul').css('height', '15vh');
         }
-        console.log($(this))
         e.stopPropagation();
         e.preventDefault();
       });
@@ -170,7 +174,7 @@
         }
         $('.drawer-tab').fadeIn()
         $('.result-card-table').show();
-        $('.wo-save').show();
+        $('#wo-save').show();
       });
 
     }
@@ -189,6 +193,10 @@
         level = level.toLowerCase()
       }
       whatToShow();
+      var levelUpper = level.substr(0, 1).toUpperCase() + level.substr(1).toLowerCase();
+      var typeUpper = type.substr(0, 1).toUpperCase() + type.substr(1).toLowerCase();
+      $('#workout-name-input').val(`${levelUpper} -- ${typeUpper}`);
+
 
       getWuCd("warmup");
       getWuCd("cooldown");
@@ -393,6 +401,7 @@
       }
       updateResOption(coreVal, '#coreMenu')
       $('#core-selected').text(tagname)
+      $('.core-tag').hide()
     })
 
     //click - saq dropdown
@@ -407,6 +416,7 @@
       }
       updateResOption(saqVal, '#saqMenu')
       $('#saq-selected').text(tagname)
+      $('.saq-tag').hide()
     })
 
     //click - plyo dropdown 
@@ -421,6 +431,7 @@
       }
       updateResOption(plyoVal, '#plyoMenu')
       $('#plyo-selected').text(tagname)
+      $('.plyo-tag').hide()
     })
     //click -resistance dropdown
     $('.resSelection').on("click", function (e) {
@@ -433,10 +444,19 @@
       }
       updateResOption(resVal, '#resistanceMenu')
       $('#resistance-selected').text(tagname)
+      $('.resistance-tag').hide()
       resEdit = true;
     })
 
+    //click - toggle active class on client-name-toggle
+    $('.client-name-toggle').on('click', function () {
+      var clicked = $(this).text().toLowerCase();
+      $(".client-name-toggle").removeClass("active");
+      $(this).addClass("active");
 
+      $('.client-name-container').hide();
+      $(`#${clicked}-client-container`).show();
+    })
 
 
     /** MODALS */
@@ -485,6 +505,9 @@
           type: type
         }
       })
+    })
+    $('.delete-workout-modal-confirm').on('click', function () {
+      deleteWorkoutAjax();
     })
     //#endregion
 
@@ -564,7 +587,10 @@
         },
         type: "POST",
         success: function (res) {
-          // success message => refresh method
+          $('#success-alert').show()
+          setTimeout(function () {
+            $('#success-alert').show()
+          }, 3000);
         },
         error: function (jqXHR, textStatus, errorThrown) {
           console.log(jqXHR, textStatus, errorThrown);
@@ -585,12 +611,21 @@
         success: function (clientList) {
           if (clientList.length < 1) {
             $('#load-client').hide();
+            return;
           }
           $.each(clientList, function (i, clientName) {
             $("#load-client-container ul").append(
               $('<li>').attr('class', 'dropdown-submenu').append(
                 $('<a>')
-                .attr('class', 'dropdown-toggle client-select')
+                .attr('class', `dropdown-toggle client-select`)
+                .attr('data-toggle', "dropdown")
+                .text(clientName)
+              )
+            )
+            $("#current-client-container ul").append(
+              $('<li>').attr('class', 'dropdown-submenu').append(
+                $('<a>')
+                .attr('class', `dropdown-toggle client-select-save`)
                 .attr('data-toggle', "dropdown")
                 .text(clientName)
               )
@@ -600,6 +635,10 @@
           $('.client-select').on('click', function (e) {
             $('#load-client').text(e.target.text);
             getAllClientWorkouts(e.target.text);
+          })
+          $('.client-select-save').on('click', function (e) {
+            $('#load-client-save').text(e.target.text);
+            $('#client-name-input').val(e.target.text)
           })
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -636,6 +675,7 @@
                 .text(`${workoutInfo.workout_name} - ${workoutInfo.workout_date}`)
               )
             )
+            $('.save-client-list')
           })
           $('.workout-load-select').on('click', function (e) {
             getWorkout($(this).data());
@@ -696,7 +736,18 @@
           type = workout.selection.type;
           mobile ? $('#mobile-note').val(workout.note) : $('#desktop-note').val(workout.note)
           $('#client-name').text(workout.client);
+          $('#client-name-input').val(workout.client);
+          $('#load-client-save').text(workout.client);
           $('#workout-name').text(`${elementData.workoutName} -- ${elementData.workoutDate}`);
+          var levelUpper = level.substr(0, 1).toUpperCase() + level.substr(1).toLowerCase();
+          var typeUpper = type.substr(0, 1).toUpperCase() + type.substr(1).toLowerCase();
+          $('#workout-name-input').val(`${levelUpper} -- ${typeUpper}`);
+          workoutId = elementData.workoutId;
+          $('.wo-save').show()
+
+          previousWorkout = true;
+
+
           showInputCardAnimation();
           whatToShow();
         },
@@ -705,6 +756,26 @@
         }
       });
 
+    }
+
+    function deleteWorkoutAjax() {
+      jQuery.ajax({
+        url: "http://fitt-ed.com/wp-json/api/v1/delete_workout",
+        type: "DELETE",
+        data: {
+          user_id: userId,
+          workout_id: workoutId
+        },
+        success: function (res) {
+          $('#success-alert').show()
+          setTimeout(function () {
+            location.reload()
+          }, 3000);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
+        }
+      })
     }
     //#endregion
   });

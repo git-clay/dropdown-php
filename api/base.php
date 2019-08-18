@@ -59,6 +59,16 @@ class ApiBaseController extends WP_REST_Controller
                 )
             )
         );
+        register_rest_route(
+            $namespace,
+            '/delete_workout',
+            array(
+                array(
+                    'methods'  => 'DELETE',
+                    'callback' => array(new ApiDefaultController('deleteWorkout'), 'init'),
+                )
+            )
+        );
     }
     // Register our REST Server
     public function hook_rest_server()
