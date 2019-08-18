@@ -292,6 +292,12 @@ li.dropdown-submenu {
       color: white !important;
 }
 
+.delete.delete-blank {
+      height: 0px;
+      width: 0px;
+      padding: 4px;
+}
+
 .displayText {
       font-size: .6em;
       height: 100%;
@@ -389,9 +395,17 @@ li.dropdown-submenu {
       color: white;
 }
 
+.warm-up-result>table>thead>tr>th {
+      color: #d9534f;
+}
+
 .cool-down-result>table {
       background: #5bc0de;
       color: white;
+}
+
+.cool-down-result>table>thead>tr>th {
+      color: #5bc0de;
 }
 
 .table {
@@ -402,6 +416,7 @@ li.dropdown-submenu {
 thead tr th {
       text-align: center;
       color: white;
+      background-color: black;
 }
 
 tbody tr td {
@@ -600,5 +615,14 @@ input.col-input[type=text] {
       a.right-resistance~ul {
             left: -110%;
             height: 15vh;
+      }
+
+      .mobile-dropdown-btn {
+            height: 30px;
+            margin: 12px 0;
+      }
+
+      .initial-actions {
+            margin-top: 50%;
       }
 }

@@ -6,3 +6,6 @@
 - refresh method and button
 - get result-card scrolling again
 - fix mobile url bar not going away
+- differentize table headers
+- bigger mobile buttons
+- carrot on all dropdowns

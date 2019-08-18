@@ -132,7 +132,8 @@
         return false
       }
       if (name == '') {
-        addThis = '<tr style="height:6px;" class="white "><td></td></tr>'
+        delBtn = "<a class='btn btn-danger delete delete-blank' href='#' onclick='rowDelete(this); return false;'> </a>"
+        addThis = `<tr style="height:6px;" class="white "><td>${delBtn}</td></tr>`
       }
       $('#' + toRefresh + ' tr:last').after(addThis)
     }
@@ -385,7 +386,9 @@
     $('.add-break').on("click", function (e) {
       var section = this.id.slice(0, -6)
       var workoutTable = "workout-table-" + section
-      $('#' + workoutTable + ' tr:last').after('<tr style="height:6px;" class="white "><td></td></tr>')
+      delBtn = "<a class='btn btn-danger delete delete-blank' href='#' onclick='rowDelete(this); return false;'>X </a>"
+      addThis = `<tr style="height:6px;" class="white "><td>${delBtn}</td></tr>`
+      $('#' + workoutTable + ' tr:last').after(addThis)
 
     })
 
