@@ -5,6 +5,7 @@ class ApiDefaultController extends ApiBaseController
     public $method;
     public $response;
 
+
     public function __construct($method)
     {
         $this->method = $method;
@@ -391,13 +392,23 @@ class ApiDefaultController extends ApiBaseController
         $data = array();
         if ($focus == "warmup") {
             if ($type == "strength" || $type == "power") {
-                $tablenames = $wpdb->get_results("SELECT table_name FROM warmup WHERE is_strength_power = 1 order by id");
+                $tablenames = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT table_name FROM warmup WHERE is_strength_power = %d order by id",
+                        1
+                    )
+                );
             } else {
-                $tablenames = $wpdb->get_results("SELECT table_name FROM warmup WHERE is_strength_power = 0  order by id");
+                $tablenames = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT table_name FROM warmup WHERE is_strength_power = %d  order by id",
+                        0
+                    )
+                );
             }
             foreach ($tablenames as $item) {
                 $t = $item->{table_name};
-                $r = $wpdb->get_results("SELECT Exercise FROM $t ORDER By RAND() LIMIT 1 ");
+                $r = $wpdb->get_results("SELECT Exercise FROM $t ORDER By RAND() LIMIT 1");
                 $exercise = $r[0]->Exercise;
                 if ($exercise != null) {
                     array_push($data, $exercise);
@@ -412,54 +423,74 @@ class ApiDefaultController extends ApiBaseController
     }
     public function saveWorkout()
     {
-        $current_user = wp_get_current_user();
-        $current_user_id = $current_user->ID;
+        global $wpdb;
 
-        $workout_data = $_POST["saveData"];
-        $workout_name = $workout_data["workout"];
-        $client_name = $workout_data["client"];
-        $workout_date = $workout_data["date"];
-        $create_on = gmdate("Y/m/d H:i:s");
+        $user_id = $_POST["user_id"];
 
-        // save userId, workoutData, dateTime
+        $workout_json = $_POST["saveData"];
+
+        $data = json_encode($workout_json, true);
+
+        $workout_name = $workout_json["workout"];
+        $client_name = $workout_json["client"];
+        $workout_date = $workout_json["date"];
+
+        $wpdb->insert('user_workout', array(
+            'user_id' => $user_id,
+            'workout_name' => $workout_name,
+            'client_name' => $client_name,
+            'workout_date' => $workout_date,
+            'created_on' => current_time('mysql'),
+            'workout_json' => json_encode($workout_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+        ));
+        return $client_name;
     }
     public function getAllClients()
     {
-        $current_user = wp_get_current_user();
-        $current_user_id = $current_user->ID;
-        $clientNames = $wpdb->get_results("SELECT client_name FROM user_workout WHERE user_id = $current_user_id group by client_name");
+        global $wpdb;
 
-        $response = new WP_REST_Response($clientNames);
-        $response->set_status(200);
+        $user_id = $_GET["user_id"];
 
-        return $response;
+        $clientNames = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT client_name FROM user_workout WHERE user_id = %d group by client_name",
+                $user_id
+            )
+        );
+
+        return array_map(create_function('$o', 'return $o->client_name;'), $clientNames);
     }
 
     public function getAllClientWorkouts($request)
     {
-        $clientName = $request['client_name'];
+        global $wpdb;
 
-        $current_user = wp_get_current_user();
-        $current_user_id = $current_user->ID;
-        $workouts = $wpdb->get_results("SELECT workout_id, workout_date, workout_name FROM user_workout WHERE user_id = $current_user_id and client_name = $clientName group by client_name");
+        $clientName = $_GET['client_name'];
+        $user_id = $_GET["user_id"];
 
-        $response = new WP_REST_Response($workouts);
-        $response->set_status(200);
+        $workouts = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT workout_id, workout_date, workout_name FROM user_workout WHERE user_id = %d and client_name = %s",
+                $user_id,
+                $clientName
+            )
+        );
 
-        return $response;
-
-        // return workout_id, date, client name
+        return json_encode($workouts, true);
     }
 
     public function getWorkout($request)
     {
+        global $wpdb;
 
-        $workout_id = $request['workout_id'];
-        $workouts = $wpdb->get_results("SELECT workout_json FROM user_workout WHERE workout_id = $workout_id ");
+        $workout_id = $_GET['workout_id'];
+        $workouts = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT workout_json FROM user_workout WHERE workout_id = %d ",
+                $workout_id
+            )
+        );
 
-        $response = new WP_REST_Response($workouts);
-        $response->set_status(200);
-
-        return $response;
+        return array_map(create_function('$o', 'return $o->workout_json;'), $workouts);
     }
 }

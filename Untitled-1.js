@@ -1,6 +1,6 @@
 (function ($) {
   var mobile = window.matchMedia('screen and (max-width: 768px)').matches;
-
+  var userId = $('#user_id').val();
   var resEdit = false,
     coreEdit = false,
     saqEdit = false,
@@ -17,13 +17,14 @@
 
     //mobile dropdown functions
     if (mobile) {
+      $('#resistance-drop').addClass('dropup')
       //how to handle mobile click events
       $('.m-exp').on("click", function (e) {
         e.stopPropagation();
         $('#m-list').hide()
         level = $(this).attr("value")
-        $('#1').hide()
-        $('#2').hide()
+        $('#1').parent().hide()
+        $('#2').parent().hide()
         $('#fatloss').show()
         $('#endurance').show()
         $('#strength').show()
@@ -31,8 +32,8 @@
         $('#hypertrophy').show()
 
         if (level == "beginner") {
-          $('#1').show()
-          $('#2').show()
+          $('#1').parent().show()
+          $('#2').parent().show()
           $('#fatloss').hide()
           $('#endurance').hide()
           $('#strength').hide()
@@ -49,6 +50,16 @@
         e.stopPropagation();
         $('#wo-list').hide()
       })
+      $('.dropdown-submenu a').on("click", function (e) {
+        $(this).next('ul').toggle();
+        if ($(this).hasClass('right-resistance')) {
+          $(this).next('ul').css('left', ' -110%');
+          $(this).next('ul').css('height', '15vh');
+        }
+        console.log($(this))
+        e.stopPropagation();
+        e.preventDefault();
+      });
     } else {
       $('#create-wo-m').hide()
     }
@@ -90,21 +101,36 @@
      * @param {string} optionalCls add class to new tr
      */
     function addTr(newWorkout, toRefresh, optionalCls) {
-      var inputTd = '';
+      var addThis = '';
+      var isObj = typeof (newWorkout) == 'object';
+      var name = newWorkout;
       if (toRefresh != 'warmup' && toRefresh != 'cooldown') {
-
-        inputWeight = '<input type="text" placeholder="weight" class="weight col-input">'
-        inputReps = '<input type="text" placeholder="reps" class="reps col-input"></input>'
+        if (isObj) {
+          inputWeight = `<input type="text" placeholder="weight" class="weight col-input" value="${newWorkout.weight}">`
+          inputReps = `<input type="text" placeholder="reps" class="reps col-input" value="${newWorkout.reps}">`
+          name = newWorkout.name;
+        } else {
+          inputWeight = `<input type="text" placeholder="weight" class="weight col-input">`
+          inputReps = `<input type="text" placeholder="reps" class="reps col-input">`
+        }
         delBtn = "<a class='btn btn-danger delete glyphicon glyphicon-remove' href='#' onclick='rowDelete(this); return false;'></a>"
-        inputTd = '<span class="input-td-display">' + inputReps + inputWeight + delBtn + '</span>'
+        inputTd = '<span class="input-td-display">' + inputReps + inputWeight + delBtn + '</span>';
+        addThis = '<tr class="' + optionalCls + '"><td style="vertical-align:middle">' +
+          '<span class="workout-td-display">' + name + '</span>' +
+          inputTd +
+          "</td></tr>"
+      } else {
+        addThis = '<tr class="' + optionalCls + '"><td style="vertical-align:middle">' +
+          '<span class="workout-td-display">' + name + '</span>' +
+          "</td></tr>"
       }
-      if (newWorkout == '' || newWorkout == "Loading...") {
+      if (name == "Loading...") {
         return false
       }
-      $('#' + toRefresh + ' tr:last').after('<tr class="' + optionalCls + '"><td style="vertical-align:middle">' +
-        '<span class="workout-td-display">' + newWorkout + '</span>' +
-        inputTd +
-        "</td></tr>")
+      if (name == '') {
+        addThis = '<tr style="height:6px;" class="white "><td></td></tr>'
+      }
+      $('#' + toRefresh + ' tr:last').after(addThis)
     }
 
     function getTableContents(tableId) {
@@ -142,6 +168,7 @@
             $('.input-card').fadeIn();
           })
         }
+        $('.drawer-tab').fadeIn()
         $('.result-card-table').show();
         $('.wo-save').show();
       });
@@ -339,7 +366,7 @@
         newWorkout = $('#' + tempFocus + 'Menu').text()
       } else if ((tempFocus == 'saq' && saqEdit) ||
         (tempFocus == 'core' && coreEdit)) {
-        newWorkout = $('#' + tempFocus.slice(0, -3) + 'Menu').text()
+        newWorkout = $('#' + tempFocus + 'Menu').text()
       } else {
         newWorkout = $('#' + tempFocus + '-content').text()
       }
@@ -409,11 +436,7 @@
       resEdit = true;
     })
 
-    //click - load client
-    $('.client-select').on('click', function (e) {
-      $('#load-client').text(e.target.text);
-      getAllClientWorkouts(e.target.text);
-    })
+
 
 
     /** MODALS */
@@ -440,21 +463,22 @@
       $(this)
         .find("input,textarea,select")
         .val('')
-        .end()
         .end();
     })
     $('.workout-modal-save').on('click', function () {
       saveWorkout({
-        client: $('#client-name-input').val(),
-        workout: $('#workout-name-input').val(),
+        client: $('#client-name-input').val().toLowerCase(),
+        workout: $('#workout-name-input').val().toLowerCase(),
         date: $('#workout-date-input').val(),
         warmup: getTableContents('warmup'),
         cooldown: getTableContents('cooldown'),
-        core: getTableContents('workout-table-core'),
-        balance: getTableContents('workout-table-balance'),
-        plyo: getTableContents('workout-table-plyo'),
-        saq: getTableContents('workout-table-saq'),
-        resistance: getTableContents('workout-table-resistance'),
+        workoutMain: {
+          core: getTableContents('workout-table-core'),
+          balance: getTableContents('workout-table-balance'),
+          plyo: getTableContents('workout-table-plyo'),
+          saq: getTableContents('workout-table-saq'),
+          resistance: getTableContents('workout-table-resistance')
+        },
         note: mobile ? $('#mobile-note').val() : $('#desktop-note').val(),
         selection: {
           level: level,
@@ -532,47 +556,55 @@
     * @result success message => refresh method
      */
     function saveWorkout(saveData) {
-      // jQuery.ajax({
-      //   url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
-      //   data: {
-      //     saveData: saveData
-      //   },
-      //   type: "POST",
-      //   success: function (res) {
-      //     // success message => refresh method
-      //   },
-      //   error: function (jqXHR, textStatus, errorThrown) {
-      //     console.log(jqXHR, textStatus, errorThrown);
-      //   }
-      // })
+      jQuery.ajax({
+        url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
+        data: {
+          saveData: saveData,
+          user_id: userId
+        },
+        type: "POST",
+        success: function (res) {
+          // success message => refresh method
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
+        }
+      })
     }
 
     /**
      * @result shows and updates #load-workout dropdown
      */
     function getAllClients() {
-      var res = ['client 1', 'client 2', 'monkey', 'Taco']
-      // todo 
-      // jQuery.ajax({
-      //   url: "http://fitt-ed.com/wp-json/api/v1/get_all_clients",
-      //   type: "GET",
-      //   success: function (res) {
-      //     return res;
-      //   },
-      //   error: function (jqXHR, textStatus, errorThrown) {
-      //     console.log(jqXHR, textStatus, errorThrown);
-      //   }
-      // })
-
-      $.each(res, function (i, clientName) {
-        $("#load-client-container ul").append(
-          $('<li>').attr('class', 'dropdown-submenu').append(
-            $('<a>')
-            .attr('class', 'dropdown-toggle client-select')
-            .attr('data-toggle', "dropdown")
-            .text(clientName)
-          )
-        )
+      jQuery.ajax({
+        url: "http://fitt-ed.com/wp-json/api/v1/get_all_clients",
+        type: "GET",
+        data: {
+          user_id: userId
+        },
+        success: function (clientList) {
+          if (clientList.length < 1) {
+            $('#load-client').hide();
+          }
+          $.each(clientList, function (i, clientName) {
+            $("#load-client-container ul").append(
+              $('<li>').attr('class', 'dropdown-submenu').append(
+                $('<a>')
+                .attr('class', 'dropdown-toggle client-select')
+                .attr('data-toggle', "dropdown")
+                .text(clientName)
+              )
+            )
+          })
+          //click - load client
+          $('.client-select').on('click', function (e) {
+            $('#load-client').text(e.target.text);
+            getAllClientWorkouts(e.target.text);
+          })
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
+        }
       })
     }
 
@@ -581,44 +613,40 @@
      * @result show and populate #load-workout - add click handler too
      */
     function getAllClientWorkouts(clientName) {
-      var res = [{
-        workout_id: 1,
-        workout_date: '09/07/2019',
-        workout_name: 'super cool chest workout'
-      }, {
-        workout_id: 2,
-        workout_date: '09/09/2019',
-        workout_name: 'super cool leg workout'
-      }];
-      // jQuery.ajax({
-      //   url: "http://fitt-ed.com/wp-json/api/v1/get_all_client_workouts/" + clientName,
-      //   type: "GET",
-      //   success: function (res) {
-      //     return res;
-      //   },
-      //   error: function (jqXHR, textStatus, errorThrown) {
-      //     console.log(jqXHR, textStatus, errorThrown);
-      //   }
-      // })
-      $.each(res, function (i, workoutInfo) {
-        $("#load-workout-container ul").append(
-          $('<li>').attr('class', 'dropdown-submenu').append(
-            $('<a>')
-            .attr('class', 'dropdown-toggle workout-load-select')
-            .attr('data-toggle', "dropdown")
-            .data({
-              workoutId: workoutInfo.workout_id,
-              workoutName: workoutInfo.workout_name,
-              workoutDate: workoutInfo.workout_date
-            })
-            .text(`${workoutInfo.workout_name} - ${workoutInfo.workout_date}`)
-          )
-        )
+      jQuery.ajax({
+        url: "http://fitt-ed.com/wp-json/api/v1/get_all_client_workouts",
+        type: "GET",
+        data: {
+          user_id: userId,
+          client_name: clientName
+        },
+        success: function (res) {
+          var workouts = JSON.parse(res);
+          $.each(workouts, function (i, workoutInfo) {
+            $("#load-workout-container ul").append(
+              $('<li>').attr('class', 'dropdown-submenu').append(
+                $('<a>')
+                .attr('class', 'dropdown-toggle workout-load-select')
+                .attr('data-toggle', "dropdown")
+                .data({
+                  workoutId: workoutInfo.workout_id,
+                  workoutName: workoutInfo.workout_name,
+                  workoutDate: workoutInfo.workout_date
+                })
+                .text(`${workoutInfo.workout_name} - ${workoutInfo.workout_date}`)
+              )
+            )
+          })
+          $('.workout-load-select').on('click', function (e) {
+            getWorkout($(this).data());
+          })
+          $('#load-workout').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
+        }
       })
-      $('.workout-load-select').on('click', function (e) {
-        getWorkout($(this).data());
-      })
-      $('#load-workout').show();
+
     }
 
     /**
@@ -644,52 +672,39 @@
       }}
      */
     function getWorkout(elementData) {
-      var res = {
-        client: 'client whatever',
-        warmup: ['asdf', 'asdf2'],
-        cooldown: ['fdas', 'fdasdd2'],
-        workoutMain: {
-          core: ['crunches'],
-          balance: ['backflips', 'balance duh'],
-          plyo: ['hoppies', 'pyro'],
-          saq: ['asdfsasaq'],
-          resistance: ['macho macho', 'sqaats']
+      jQuery.ajax({
+        url: "http://fitt-ed.com/wp-json/api/v1/get_workout",
+        type: "GET",
+        data: {
+          user_id: userId,
+          workout_id: elementData.workoutId
         },
-        note: 'imma note',
-        selection: {
-          level: 'intermediate',
-          type: 'endurance'
+        success: function (res) {
+          var workout = JSON.parse(res);
+          $.each(workout.warmup, function (i, exer) {
+            addTr(exer, 'warmup')
+          })
+          $.each(workout.cooldown, function (i, exer) {
+            addTr(exer, 'cooldown')
+          })
+          $.each(workout.workoutMain, function (key, section) {
+            $.each(section, function (i, exer) {
+              addTr(exer, `workout-table-${key}`)
+            })
+          })
+          level = workout.selection.level;
+          type = workout.selection.type;
+          mobile ? $('#mobile-note').val(workout.note) : $('#desktop-note').val(workout.note)
+          $('#client-name').text(workout.client);
+          $('#workout-name').text(`${elementData.workoutName} -- ${elementData.workoutDate}`);
+          showInputCardAnimation();
+          whatToShow();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR, textStatus, errorThrown);
         }
-      }
-      // jQuery.ajax({
-      //   url: "http://fitt-ed.com/wp-json/api/v1/get_workout/" + workoutId,
-      //   type: "GET",
-      //   success: function (res) {
-      //     return res;
-      //   },
-      //   error: function (jqXHR, textStatus, errorThrown) {
-      //     console.log(jqXHR, textStatus, errorThrown);
-      //   }
-      // });
+      });
 
-      $.each(res.warmup, function (i, exer) {
-        addTr(exer, 'warmup')
-      })
-      $.each(res.cooldown, function (i, exer) {
-        addTr(exer, 'cooldown')
-      })
-      $.each(res.workoutMain, function (key, section) {
-        $.each(section, function (i, exer) {
-          addTr(exer, `workout-table-${key}`)
-        })
-      })
-      level = res.selection.level;
-      type = res.selection.type;
-      mobile ? $('#mobile-note').val(res.note) : $('#desktop-note').val(res.note)
-      $('#client-name').text(res.client);
-      $('#workout-name').text(`${elementData.workoutName} -- ${elementData.workoutDate}`);
-      showInputCardAnimation();
-      whatToShow();
     }
     //#endregion
   });

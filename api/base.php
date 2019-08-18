@@ -41,7 +41,7 @@ class ApiBaseController extends WP_REST_Controller
         );
         register_rest_route(
             $namespace,
-            '/get_all_client_workouts/(?P<client_name>\d+)',
+            '/get_all_client_workouts',
             array(
                 array(
                     'methods'  => 'GET',
@@ -51,7 +51,7 @@ class ApiBaseController extends WP_REST_Controller
         );
         register_rest_route(
             $namespace,
-            '/get_workout/(?P<workout_id>\d+)',
+            '/get_workout',
             array(
                 array(
                     'methods'  => 'GET',

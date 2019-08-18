@@ -10,7 +10,7 @@ p {
       padding: 16px;
       width: 100vw;
       height: 100vh;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Roboto', sans-serif !important;
       background-image: linear-gradient(grey, black);
       overflow-x: hidden;
 }
@@ -19,11 +19,18 @@ h2 {
       margin-top: 0;
       font-weight: bold;
       color: black;
+      font-size: 30px;
 }
 
 h6 {
       font-weight: bold;
       text-transform: capitalize;
+      font-size: 12px;
+      line-height: 1.1;
+}
+
+input {
+      font-size: .9em;
 }
 
 /* HEADER */
@@ -62,6 +69,7 @@ h6 {
 table>tbody>tr>td {
       padding: 1px 0 !important;
       color: white;
+      font-size: .6rem !important;
 }
 
 .workout-td-display {
@@ -75,8 +83,13 @@ table>tbody>tr>td {
       width: 40%;
 }
 
+.input-td-display>input {
+      line-height: 0px;
+}
+
+
 .input-td-display>* {
-      margin: 0 2%;
+      margin: 0 2% !important;
 }
 
 
@@ -86,6 +99,37 @@ td:hover {
 
 td {
       vertical-align: middle;
+}
+
+.modal {
+      text-align: center;
+      padding: 0 !important;
+}
+
+.modal:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -4px;
+}
+
+.modal-dialog {
+      display: inline-block;
+      text-align: left;
+      vertical-align: middle;
+}
+
+.modal-body>input {
+      text-align: center;
+      margin: 12px;
+}
+
+.dark-skin input[type="date"] {
+      background-color: #1A1A1A;
+      color: #cccccc;
+      border-color: #777777;
+      width: 95%;
 }
 
 
@@ -281,16 +325,23 @@ li.dropdown-submenu {
       margin-top: 60px;
 }
 
+#desktop-note {
+      max-width: 50%;
+      background-color: white;
+}
+
 /* RESULT CARD*/
 .result-card {
       z-index: 2;
       overflow-y: scroll;
+      overflow-x: visible;
       border-radius: 55% / 20%;
       filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
       -webkit-filter: drop-shadow(4px 3px 4px rgba(0, 0, 0, .3));
       padding: 72px 48px 18px 64px;
       height: 85vh;
       background-image: radial-gradient(circle at left, #69c 0%, #0069c7 40%, #003f7a 90%);
+      display: inline-table;
 }
 
 .result-card.animated {
@@ -312,6 +363,11 @@ li.dropdown-submenu {
       display: none;
 }
 
+.load-client-container,
+.load-workout-container {
+      text-transform: capitalize;
+}
+
 ::-webkit-scrollbar {
       width: 0px;
       background: transparent;
@@ -329,7 +385,7 @@ li.dropdown-submenu {
 }
 
 .table {
-      font-size: .8rem;
+      font-size: .6rem;
       margin-bottom: 5px;
 }
 
@@ -339,7 +395,7 @@ thead tr th {
 }
 
 tbody tr td {
-      font-size: .8rem;
+      font-size: .6rem;
 }
 
 .table>tbody>tr>td,
@@ -409,6 +465,8 @@ input.col-input[type=text] {
             height: 80vh;
             margin-top: 2vh;
             left: auto;
+            background-image: radial-gradient(circle at top, #69c 0%, #0069c7 40%, #003f7a 90%);
+
       }
 
       .footerDrawer {
@@ -427,6 +485,7 @@ input.col-input[type=text] {
             left: 25vw;
             position: relative;
             font-size: 20px !important;
+            display: none;
       }
 
       .input-card {
@@ -438,6 +497,8 @@ input.col-input[type=text] {
             top: 0;
             display: none;
             height: 40vh;
+            background-image: radial-gradient(at bottom, #7ad 5%, #69c 35%, #0069c7 65%, #003f7a 90%);
+
       }
 
       .input-card-column {
@@ -507,7 +568,11 @@ input.col-input[type=text] {
 
       h6 {
             margin-bottom: 0;
+            padding: 0;
       }
 
-
+      a.right-resistance~ul {
+            left: -110%;
+            height: 15vh;
+      }
 }
