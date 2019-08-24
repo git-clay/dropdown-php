@@ -1,521 +1,556 @@
 <?php
 /**
- * Twenty Fifteen functions and definitions
+ * ColorMag functions related to defining constants, adding files and WordPress core functionality.
  *
- * Set up the theme and provides some helper functions, which are used in the
- * theme as custom template tags. Others are attached to action and filter
- * hooks in WordPress to change core functionality.
+ * Defining some constants, loading all the required files and Adding some core functionality.
  *
- * When using a child theme you can override certain functions (those wrapped
- * in a function_exists() call) by defining them first in your child theme's
- * functions.php file. The child theme's functions.php file is included before
- * the parent theme's file, so the child theme functions would be used.
+ * @uses       add_theme_support() To add support for post thumbnails and automatic feed links.
+ * @uses       register_nav_menu() To add support for navigation menu.
+ * @uses       set_post_thumbnail_size() To set a custom post thumbnail size.
  *
- * @link https://codex.wordpress.org/Theme_Development
- * @link https://codex.wordpress.org/Child_Themes
- *
- * Functions that are not pluggable (not wrapped in function_exists()) are
- * instead attached to a filter or action hook.
- *
- * For more information on hooks, actions, and filters,
- * {@link https://codex.wordpress.org/Plugin_API}
- *
- * @package WordPress
- * @subpackage Twenty_Fifteen
- * @since Twenty Fifteen 1.0
+ * @package    ThemeGrill
+ * @subpackage ColorMag
+ * @since      ColorMag 1.0
  */
+
+/**
+ * Define Elementor Partner ID
+ */
+if ( ! defined( 'ELEMENTOR_PARTNER_ID' ) ) {
+	define( 'ELEMENTOR_PARTNER_ID', 2125 );
+}
 
 /**
  * Set the content width based on the theme's design and stylesheet.
- *
- * @since Twenty Fifteen 1.0
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 660;
+	$content_width = 800;
 }
 
 /**
- * Twenty Fifteen only works in WordPress 4.1 or later.
+ * $content_width global variable adjustment as per layout option.
  */
-if ( version_compare( $GLOBALS['wp_version'], '4.1-alpha', '<' ) ) {
-	require get_template_directory() . '/inc/back-compat.php';
+function colormag_content_width() {
+	global $post;
+	global $content_width;
+
+	if ( $post ) {
+		$layout_meta = get_post_meta( $post->ID, 'colormag_page_layout', true );
+	}
+	if ( empty( $layout_meta ) || is_archive() || is_search() ) {
+		$layout_meta = 'default_layout';
+	}
+	$colormag_default_layout = get_theme_mod( 'colormag_default_layout', 'right_sidebar' );
+
+	if ( $layout_meta == 'default_layout' ) {
+		if ( $colormag_default_layout == 'no_sidebar_full_width' ) {
+			$content_width = 1140; /* pixels */
+		} else {
+			$content_width = 800; /* pixels */
+		}
+	} elseif ( $layout_meta == 'no_sidebar_full_width' ) {
+		$content_width = 1140; /* pixels */
+	} else {
+		$content_width = 800; /* pixels */
+	}
 }
 
-if ( ! function_exists( 'twentyfifteen_setup' ) ) :
+add_action( 'template_redirect', 'colormag_content_width' );
+
+add_action( 'after_setup_theme', 'colormag_setup' );
 /**
- * Sets up theme defaults and registers support for various WordPress features.
+ * All setup functionalities.
  *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- *
- * @since Twenty Fifteen 1.0
+ * @since 1.0
  */
-function twentyfifteen_setup() {
+if ( ! function_exists( 'colormag_setup' ) ) :
+	function colormag_setup() {
 
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/twentyfifteen
-	 * If you're building a theme based on twentyfifteen, use a find and replace
-	 * to change 'twentyfifteen' to the name of your theme in all the template files
-	 */
-	load_theme_textdomain( 'twentyfifteen' );
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 */
+		load_theme_textdomain( 'colormag', get_template_directory() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+		// Add default posts and comments RSS feed links to head
+		add_theme_support( 'automatic-feed-links' );
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
+		// This theme uses Featured Images (also known as post thumbnails) for per-post/per-page.
+		add_theme_support( 'post-thumbnails' );
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * See: https://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 825, 510, true );
+		// Registering navigation menu.
+		register_nav_menu( 'primary', esc_html__( 'Primary Menu', 'colormag' ) );
 
-	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
-		'primary' => __( 'Primary Menu',      'twentyfifteen' ),
-		'social'  => __( 'Social Links Menu', 'twentyfifteen' ),
-	) );
+		// Cropping the images to different sizes to be used in the theme
+		add_image_size( 'colormag-highlighted-post', 392, 272, true );
+		add_image_size( 'colormag-featured-post-medium', 390, 205, true );
+		add_image_size( 'colormag-featured-post-small', 130, 90, true );
+		add_image_size( 'colormag-featured-image', 800, 445, true );
 
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
+		// Setup the WordPress core custom background feature.
+		add_theme_support( 'custom-background', apply_filters( 'colormag_custom_background_args', array(
+			'default-color' => 'eaeaea',
+		) ) );
 
-	/*
-	 * Enable support for Post Formats.
-	 *
-	 * See: https://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link', 'gallery', 'status', 'audio', 'chat'
-	) );
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
 
-	/*
-	 * Enable support for custom logo.
-	 *
-	 * @since Twenty Fifteen 1.5
-	 */
-	add_theme_support( 'custom-logo', array(
-		'height'      => 248,
-		'width'       => 248,
-		'flex-height' => true,
-	) );
+		// Enable support for Post Formats.
+		add_theme_support( 'post-formats', array(
+			'aside',
+			'image',
+			'video',
+			'quote',
+			'link',
+			'gallery',
+			'chat',
+			'audio',
+			'status',
+		) );
 
-	$color_scheme  = twentyfifteen_get_color_scheme();
-	$default_color = trim( $color_scheme[0], '#' );
+		// Adding excerpt option box for pages as well
+		add_post_type_support( 'page', 'excerpt' );
 
-	// Setup the WordPress core custom background feature.
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		) );
 
-	/**
-	 * Filter Twenty Fifteen custom-header support arguments.
-	 *
-	 * @since Twenty Fifteen 1.0
-	 *
-	 * @param array $args {
-	 *     An array of custom-header support arguments.
-	 *
-	 *     @type string $default-color     		Default color of the header.
-	 *     @type string $default-attachment     Default attachment of the header.
-	 * }
-	 */
-	add_theme_support( 'custom-background', apply_filters( 'twentyfifteen_custom_background_args', array(
-		'default-color'      => $default_color,
-		'default-attachment' => 'fixed',
-	) ) );
+		// adding the WooCommerce plugin support
+		add_theme_support( 'woocommerce' );
+		add_theme_support( 'wc-product-gallery-zoom' );
+		add_theme_support( 'wc-product-gallery-lightbox' );
+		add_theme_support( 'wc-product-gallery-slider' );
 
-	/*
-	 * This theme styles the visual editor to resemble the theme style,
-	 * specifically font, colors, icons, and column width.
-	 */
-	add_editor_style( array( 'css/editor-style.css', 'genericons/genericons.css', twentyfifteen_fonts_url() ) );
+		// Adds the support for the Custom Logo introduced in WordPress 4.5
+		add_theme_support( 'custom-logo',
+			array(
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 
-	// Load regular editor styles into the new block-based editor.
-	add_theme_support( 'editor-styles' );
+		// Support for selective refresh widgets in Customizer
+		add_theme_support( 'customize-selective-refresh-widgets' );
 
-	// Load default block styles.
-	add_theme_support( 'wp-block-styles' );
+		// Gutenberg layout support.
+		add_theme_support( 'align-wide' );
 
-	// Add support for responsive embeds.
-	add_theme_support( 'responsive-embeds' );
+		$starter_content = array(
+			'widgets'     => array(
+				'colormag_header_sidebar'                          => array(
+					'ad_banner_header' => array(
+						'colormag_728x90_advertisement_widget',
+						array(
+							'728x90_image_link' => 'https://demo.themegrill.com/colormag-pro/',
+							'728x90_image_url'  => get_template_directory_uri() . '/img/ad-large.jpg',
+						),
+					),
+				),
+				'colormag_front_page_slider_area'                  => array(
+					'featured_posts_slider' => array(
+						'colormag_featured_posts_slider_widget',
+						array(
+							'number' => 2,
+						),
+					),
+				),
+				'colormag_front_page_area_beside_slider'           => array(
+					'featured_posts_slider' => array(
+						'colormag_highlighted_posts_widget',
+						array(
+							'number' => 4,
+						),
+					),
+				),
+				'colormag_right_sidebar'                           => array(
+					'featured_posts_right_sidebar' => array(
+						'colormag_featured_posts_vertical_widget',
+						array(
+							'title'  => 'NEWS',
+							'number' => 2,
+						),
+					),
+					'text_premium_themes'          => array(
+						'text',
+						array(
+							'title' => 'Premium Themes',
+							'text'  => '<ul>
+										<li><a href="https://themegrill.com/themes/spacious-pro/">Spacious Pro</a></li>
+										<li><a href="https://themegrill.com/themes/foodhunt-pro/">FoodHunt Pro</a></li>
+										<li><a href="https://themegrill.com/themes/colornews-pro/">ColorNews Pro</a></li>
+										<li><a href="https://themegrill.com/themes/accelerate-pro/">Accelerate Pro</a></li>
+										<li><a href="https://themegrill.com/themes/esteem-pro/">Esteem Pro</a></li>
+										<li><a href="https://http://themegrill.com/themes/radiate-pro/">Radiate Pro</a></li>
+										<li><a href="https://themegrill.com/themes/fitclub-pro/">Fitclub Pro</a></li>
+										<li><a href="https://themegrill.com/themes/himalayas-pro/">Himalayas Pro</a></li>
+									</ul>',
+						),
+					),
+					'ad_banner_right'              => array(
+						'colormag_125x125_advertisement_widget',
+						array(
+							'title'                => 'TG: 125x125 Ads',
+							'125x125_image_link_1' => 'https://themegrill.com/',
+							'125x125_image_url_1'  => get_template_directory_uri() . '/img/ad-small.jpg',
+							'125x125_image_link_2' => 'https://themegrill.com/',
+							'125x125_image_url_2'  => get_template_directory_uri() . '/img/ad-small.jpg',
+							'125x125_image_link_3' => 'https://themegrill.com/',
+							'125x125_image_url_3'  => get_template_directory_uri() . '/img/ad-small.jpg',
+							'125x125_image_link_4' => 'https://themegrill.com/',
+							'125x125_image_url_4'  => get_template_directory_uri() . '/img/ad-small.jpg',
+						),
+					),
+				),
+				'colormag_front_page_content_top_section'          => array(
+					'featured_posts_style_1' => array(
+						'colormag_featured_posts_widget',
+						array(
+							'title'  => 'HEALTH',
+							'number' => 5,
+						),
+					),
+				),
+				'colormag_front_page_content_middle_left_section'  => array(
+					'featured_posts_style_2_left' => array(
+						'colormag_featured_posts_vertical_widget',
+						array(
+							'title'  => 'FASHION',
+							'number' => 4,
+						),
+					),
+				),
+				'colormag_front_page_content_middle_right_section' => array(
+					'featured_posts_style_2_right' => array(
+						'colormag_featured_posts_vertical_widget',
+						array(
+							'title'  => 'SPORTS',
+							'number' => 4,
+						),
+					),
+				),
+				'colormag_front_page_content_bottom_section'       => array(
+					'featured_posts_style_1_bottom' => array(
+						'colormag_featured_posts_widget',
+						array(
+							'title'  => 'TECHNOLOGY',
+							'text'   => 'Check out technology changing the life.',
+							'number' => 4,
+						),
+					),
+				),
+				'colormag_footer_sidebar_one'                      => array(
+					'text_footer_about' => array(
+						'text',
+						array(
+							'title' => 'About Us',
+							'text'  => '<a title="logo" href="' . home_url() . '"><img src="' . get_template_directory_uri() . '/img/colormag-logo.png" alt="Logo" /></a> <br> We love WordPress and we are here to provide you with professional looking WordPress themes so that you can take your website one step ahead. We focus on simplicity, elegant design and clean code.',
+						),
+					),
+				),
+				'colormag_footer_sidebar_two'                      => array(
+					'text_footer_links' => array(
+						'text',
+						array(
+							'title' => 'Useful Links',
+							'text'  => '<ul>
+										<li><a href="https://themegrill.com/">ThemeGrill</a></li>
+										<li><a href="https://themegrill.com/support-forum/">Support</a></li>
+										<li><a href="https://themegrill.com/theme-instruction/colormag/">Documentation</a></li>
+										<li><a href="https://themegrill.com/frequently-asked-questions/">FAQ</a></li>
+										<li><a href="https://themegrill.com/themes/">Themes</a></li>
+										<li><a href="https://themegrill.com/plugins/">Plugins</a></li>
+										<li><a href="https://themegrill.com/blog/">Blog</a></li>
+										<li><a href="https://themegrill.com/plans-pricing/">Plans &amp; Pricing</a></li>
+									</ul>',
+						),
+					),
+				),
+				'colormag_footer_sidebar_three'                    => array(
+					'text_footer_other_themes' => array(
+						'text',
+						array(
+							'title' => 'Other Themes',
+							'text'  => '<ul>
+										<li><a href="https://themegrill.com/themes/envince/">Envince</a></li>
+										<li><a href="https://themegrill.com/themes/estore/">eStore</a></li>
+										<li><a href="https://themegrill.com/themes/ample/">Ample</a></li>
+										<li><a href="https://themegrill.com/themes/spacious/">Spacious</a></li>
+										<li><a href="https://themegrill.com/themes/accelerate/">Accelerate</a></li>
+										<li><a href="https://themegrill.com/themes/radiate/">Radiate</a></li>
+										<li><a href="https://themegrill.com/themes/esteem/">Esteem</a></li>
+										<li><a href="https://themegrill.com/themes/himalayas/">Himalayas</a></li>
+										<li><a href="https://themegrill.com/themes/colornews/">ColorNews</a></li>
+									</ul>',
+						),
+					),
+				),
+				'colormag_footer_sidebar_four'                     => array(
+					'ad_banner_footer'         => array(
+						'colormag_300x250_advertisement_widget',
+						array(
+							'title'              => 'ColorMag Pro',
+							'300x250_image_link' => 'https://demo.themegrill.com/colormag-pro/',
+							'300x250_image_url'  => get_template_directory_uri() . '/img/ad-medium.jpg',
+						),
+					),
+					'text_footer_colormag_pro' => array(
+						'text',
+						array(
+							'text' => 'Contains all features of free version and many new additional features.',
+						),
+					),
+				),
+			),
 
-	// Add support for custom color scheme.
-	add_theme_support( 'editor-color-palette', array(
-		array(
-			'name'  => __( 'Dark Gray', 'twentyfifteen' ),
-			'slug'  => 'dark-gray',
-			'color' => '#111',
-		),
-		array(
-			'name'  => __( 'Light Gray', 'twentyfifteen' ),
-			'slug'  => 'light-gray',
-			'color' => '#f1f1f1',
-		),
-		array(
-			'name'  => __( 'White', 'twentyfifteen' ),
-			'slug'  => 'white',
-			'color' => '#fff',
-		),
-		array(
-			'name'  => __( 'Yellow', 'twentyfifteen' ),
-			'slug'  => 'yellow',
-			'color' => '#f4ca16',
-		),
-		array(
-			'name'  => __( 'Dark Brown', 'twentyfifteen' ),
-			'slug'  => 'dark-brown',
-			'color' => '#352712',
-		),
-		array(
-			'name'  => __( 'Medium Pink', 'twentyfifteen' ),
-			'slug'  => 'medium-pink',
-			'color' => '#e53b51',
-		),
-		array(
-			'name'  => __( 'Light Pink', 'twentyfifteen' ),
-			'slug'  => 'light-pink',
-			'color' => '#ffe5d1',
-		),
-		array(
-			'name'  => __( 'Dark Purple', 'twentyfifteen' ),
-			'slug'  => 'dark-purple',
-			'color' => '#2e2256',
-		),
-		array(
-			'name'  => __( 'Purple', 'twentyfifteen' ),
-			'slug'  => 'purple',
-			'color' => '#674970',
-		),
-		array(
-			'name'  => __( 'Blue Gray', 'twentyfifteen' ),
-			'slug'  => 'blue-gray',
-			'color' => '#22313f',
-		),
-		array(
-			'name'  => __( 'Bright Blue', 'twentyfifteen' ),
-			'slug'  => 'bright-blue',
-			'color' => '#55c3dc',
-		),
-		array(
-			'name'  => __( 'Light Blue', 'twentyfifteen' ),
-			'slug'  => 'light-blue',
-			'color' => '#e9f2f9',
-		),
-	) );
+			// Specify the core-defined pages to create and add custom thumbnails to some of them.
+			'posts'       => array(
+				'layout'                             => array(
+					'post_type'    => 'page',
+					'post_title'   => 'Layout',
+					'post_content' => 'ThemeGrill layout content',
+				),
+				'contact'                            => array(
+					'template' => 'page-templates/contact.php',
+				),
 
-	// Indicate widget sidebars can use selective refresh in the Customizer.
-	add_theme_support( 'customize-selective-refresh-widgets' );
-}
-endif; // twentyfifteen_setup
-add_action( 'after_setup_theme', 'twentyfifteen_setup' );
+				// Create posts
+				'coffee-is-health-food-myth-or-fact' => array(
+					'post_type'    => 'post',
+					'post_title'   => 'Coffee is health food: Myth or fact?',
+					'post_content' => 'Vivamus vestibulum ut magna vitae facilisis. Maecenas laoreet lobortis tristique. Aenean accumsan malesuada convallis. Suspendisse egestas luctus nisl, sit amet',
+					'thumbnail'    => '{{featured-image-coffee}}',
+				),
+				'get-more-nutrition-in-every-bite'   => array(
+					'post_type'    => 'post',
+					'post_title'   => 'Get more nutrition in every bite',
+					'post_content' => 'Fusce non nunc mi. Integer placerat nulla id quam varius dapibus. Nulla sit amet tellus et purus lobortis efficitur. Vivamus tempus posuere ipsum in suscipit. Quisque pulvinar fringilla cursus. Morbi malesuada laoreet dui, vitae consequat arcu vehicula vel. Fusce vel turpis non ante mollis bibendum a ac risus. Morbi ornare ipsum sit amet enim rhoncus, sed eleifend felis tristique. Mauris sed sollicitudin libero. In nec lacus quis erat rhoncus molestie.',
+					'thumbnail'    => '{{featured-image-yummy}}',
+				),
+				'womens-relay-competition'           => array(
+					'post_type'    => 'post',
+					'post_title'   => 'Women’s Relay Competition',
+					'post_content' => 'The young team of Franziska Hildebrand, Franziska Preuss, Vanessa Hinz and Dahlmeier clocked 1 hour, 11 minutes, 54.6 seconds to beat France by just over 1 minute. Italy took bronze, 1:06.1 behind. Germany missed six targets overall, avoiding any laps around the penalty loop. Maria Dorin Habert of France, who has two individual gold medals at these worlds, passed Russia and France on the last leg and to take her team from fourth to second.',
+					'thumbnail'    => '{{featured-image-relay-race}}',
+				),
+				'a-paradise-for-holiday'             => array(
+					'post_type'    => 'post',
+					'post_title'   => 'A Paradise for Holiday',
+					'post_content' => 'Chocolate bar marzipan sweet marzipan. Danish tart bear claw donut cake bonbon biscuit powder croissant. Liquorice cake cookie. Dessert cotton candy macaroon gummies sweet gingerbread sugar plum. Biscuit tart cake. Candy jelly ice cream halvah jelly-o jelly beans brownie pastry sweet. Candy sweet roll dessert. Lemon drops jelly-o fruitcake topping. Soufflé jelly beans bonbon.',
+					'thumbnail'    => '{{featured-image-paradise-for-holiday}}',
+				),
+				'destruction-in-montania'            => array(
+					'post_type'    => 'post',
+					'post_title'   => 'Destruction in Montania',
+					'post_content' => 'Nunc consectetur ipsum nisi, ut pellentesque felis tempus vitae. Integer eget lacinia nunc. Vestibulum consectetur convallis augue id egestas. Nullam rhoncus, arcu in tincidunt ultricies, velit diam imperdiet lacus, sed faucibus mi massa vel nunc. In ac viverra augue, a luctus nisl. Donec interdum enim tempus, aliquet metus maximus, euismod quam. Sed pretium finibus rhoncus. Phasellus libero diam, rutrum non ipsum ut, ultricies sodales sapien. Duis viverra purus lorem.',
+					'thumbnail'    => '{{featured-image-fireman}}',
+				),
+			),
 
-/**
- * Register widget area.
- *
- * @since Twenty Fifteen 1.0
- *
- * @link https://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function twentyfifteen_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Widget Area', 'twentyfifteen' ),
-		'id'            => 'sidebar-1',
-		'description'   => __( 'Add widgets here to appear in your sidebar.', 'twentyfifteen' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-}
-add_action( 'widgets_init', 'twentyfifteen_widgets_init' );
+			// Create the custom image attachments used as post thumbnails for pages.
+			'attachments' => array(
+				'colormag-logo'                       => array(
+					'post_title' => 'ColorMag Logo',
+					'file'       => 'img/colormag-logo.png',
+				),
+				'featured-image-fireman'              => array(
+					'post_title' => 'Featured image fireman',
+					'file'       => 'img/fireman.jpg',
+				),
+				'featured-image-coffee'               => array(
+					'post_title' => 'Featured image coffee',
+					'file'       => 'img/coffee.jpg',
+				),
+				'featured-image-yummy'                => array(
+					'post_title' => 'Featured image yummy',
+					'file'       => 'img/yummy.jpg',
+				),
+				'featured-image-relay-race'           => array(
+					'post_title' => 'Featured image relay race',
+					'file'       => 'img/relay-race.jpg',
+				),
+				'featured-image-paradise-for-holiday' => array(
+					'post_title' => 'Featured image paradise for holiday',
+					'file'       => 'img/sea.jpg',
+				),
+				'featured-image-ad-medium'            => array(
+					'post_title' => 'Featured image ad medium',
+					'file'       => 'img/ad-medium.jpg',
+				),
+				'featured-image-ad-large'             => array(
+					'post_title' => 'Featured image ad large',
+					'file'       => 'img/ad-large.jpg',
+				),
+			),
 
-if ( ! function_exists( 'twentyfifteen_fonts_url' ) ) :
-/**
- * Register Google fonts for Twenty Fifteen.
- *
- * @since Twenty Fifteen 1.0
- *
- * @return string Google fonts URL for the theme.
- */
-function twentyfifteen_fonts_url() {
-	$fonts_url = '';
-	$fonts     = array();
-	$subsets   = 'latin,latin-ext';
+			'options'    => array(
+				'blogname'        => 'ColorMag',
+				'blogdescription' => 'ColorMag Demo site',
+			),
 
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Noto Sans, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Noto Sans font: on or off', 'twentyfifteen' ) ) {
-		$fonts[] = 'Noto Sans:400italic,700italic,400,700';
+			// Set the front page section theme mods to the IDs of the core-registered pages.
+			'theme_mods' => array(
+				'custom_logo'                     => '{{colormag-logo}}',
+				'colormag_breaking_news'          => 1,
+				'colormag_date_display'           => 1,
+				'colormag_header_logo_placement'  => 'header_logo_only',
+				'colormag_hide_blog_front'        => 1,
+				'colormag_search_icon_in_menu'    => 1,
+				'colormag_random_post_in_menu'    => 1,
+				'colormag_social_link_activate'   => 1,
+				'colormag_home_icon_display'      => 1,
+				'colormag_primary_sticky_menu'    => 1,
+				'colormag_related_posts_activate' => 1,
+				'colormag_social_facebook'        => '#',
+				'colormag_social_twitter'         => '#',
+				'colormag_social_googleplus'      => '#',
+				'colormag_social_instagram'       => '#',
+				'colormag_social_pinterest'       => '#',
+				'colormag_social_youtube'         => '#',
+			),
+
+			// Set up nav menus for each of the two areas registered in the theme.
+			'nav_menus'  => array(
+				// Assign a menu to the "primary" location.
+				'primary' => array(
+					'name'  => 'Primary',
+					'items' => array(
+						'link_download'   => array(
+							'type'  => 'custom',
+							'title' => 'Download',
+							'url'   => 'https://downloads.wordpress.org/theme/colormag.zip',
+						),
+						'link_theme-info' => array(
+							'type'  => 'custom',
+							'title' => 'Theme Info',
+							'url'   => 'https://themegrill.com/themes/colormag/',
+						),
+						'link_view-pro'   => array(
+							'type'  => 'custom',
+							'title' => 'View pro',
+							'url'   => 'https://themegrill.com/themes/colormag/',
+						),
+						'page_layout'     => array(
+							'type'      => 'post_type',
+							'object'    => 'page',
+							'object_id' => '{{layout}}',
+						),
+						'page_contact',
+					),
+				),
+			),
+
+		);
+		$starter_content = apply_filters( 'colormag_starter_content', $starter_content );
+
+		add_theme_support( 'starter-content', $starter_content );
 	}
-
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Noto Serif, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Noto Serif font: on or off', 'twentyfifteen' ) ) {
-		$fonts[] = 'Noto Serif:400italic,700italic,400,700';
-	}
-
-	/*
-	 * Translators: If there are characters in your language that are not supported
-	 * by Inconsolata, translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Inconsolata font: on or off', 'twentyfifteen' ) ) {
-		$fonts[] = 'Inconsolata:400,700';
-	}
-
-	/*
-	 * Translators: To add an additional character subset specific to your language,
-	 * translate this to 'greek', 'cyrillic', 'devanagari' or 'vietnamese'. Do not translate into your own language.
-	 */
-	$subset = _x( 'no-subset', 'Add new subset (greek, cyrillic, devanagari, vietnamese)', 'twentyfifteen' );
-
-	if ( 'cyrillic' == $subset ) {
-		$subsets .= ',cyrillic,cyrillic-ext';
-	} elseif ( 'greek' == $subset ) {
-		$subsets .= ',greek,greek-ext';
-	} elseif ( 'devanagari' == $subset ) {
-		$subsets .= ',devanagari';
-	} elseif ( 'vietnamese' == $subset ) {
-		$subsets .= ',vietnamese';
-	}
-
-	if ( $fonts ) {
-		$fonts_url = add_query_arg( array(
-			'family' => urlencode( implode( '|', $fonts ) ),
-			'subset' => urlencode( $subsets ),
-		), 'https://fonts.googleapis.com/css' );
-	}
-
-	return $fonts_url;
-}
 endif;
 
 /**
- * JavaScript Detection.
- *
- * Adds a `js` class to the root `<html>` element when JavaScript is detected.
- *
- * @since Twenty Fifteen 1.1
+ * Define Directory Location Constants
  */
-function twentyfifteen_javascript_detection() {
-	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
+define( 'COLORMAG_PARENT_DIR', get_template_directory() );
+define( 'COLORMAG_CHILD_DIR', get_stylesheet_directory() );
+
+define( 'COLORMAG_INCLUDES_DIR', COLORMAG_PARENT_DIR . '/inc' );
+define( 'COLORMAG_CSS_DIR', COLORMAG_PARENT_DIR . '/css' );
+define( 'COLORMAG_JS_DIR', COLORMAG_PARENT_DIR . '/js' );
+define( 'COLORMAG_LANGUAGES_DIR', COLORMAG_PARENT_DIR . '/languages' );
+
+define( 'COLORMAG_ADMIN_DIR', COLORMAG_INCLUDES_DIR . '/admin' );
+define( 'COLORMAG_WIDGETS_DIR', COLORMAG_INCLUDES_DIR . '/widgets' );
+define( 'COLORMAG_ELEMENTOR_DIR', COLORMAG_INCLUDES_DIR . '/elementor' );
+define( 'COLORMAG_ELEMENTOR_WIDGETS_DIR', COLORMAG_ELEMENTOR_DIR . '/widgets' );
+
+define( 'COLORMAG_ADMIN_IMAGES_DIR', COLORMAG_ADMIN_DIR . '/images' );
+
+/**
+ * Define URL Location Constants
+ */
+define( 'COLORMAG_PARENT_URL', get_template_directory_uri() );
+define( 'COLORMAG_CHILD_URL', get_stylesheet_directory_uri() );
+
+define( 'COLORMAG_INCLUDES_URL', COLORMAG_PARENT_URL . '/inc' );
+define( 'COLORMAG_CSS_URL', COLORMAG_PARENT_URL . '/css' );
+define( 'COLORMAG_JS_URL', COLORMAG_PARENT_URL . '/js' );
+define( 'COLORMAG_LANGUAGES_URL', COLORMAG_PARENT_URL . '/languages' );
+
+define( 'COLORMAG_ADMIN_URL', COLORMAG_INCLUDES_URL . '/admin' );
+define( 'COLORMAG_WIDGETS_URL', COLORMAG_INCLUDES_URL . '/widgets' );
+define( 'COLORMAG_ELEMENTOR_URL', COLORMAG_INCLUDES_URL . '/elementor' );
+define( 'COLORMAG_ELEMENTOR_WIDGETS_URL', COLORMAG_ELEMENTOR_URL . '/widgets' );
+
+define( 'COLORMAG_ADMIN_IMAGES_URL', COLORMAG_ADMIN_URL . '/images' );
+
+/** Load functions */
+require_once( COLORMAG_INCLUDES_DIR . '/custom-header.php' );
+require_once( COLORMAG_INCLUDES_DIR . '/functions.php' );
+require_once( COLORMAG_INCLUDES_DIR . '/header-functions.php' );
+require_once( COLORMAG_INCLUDES_DIR . '/customizer.php' );
+
+/** Add the Elementor compatibility file */
+if ( defined( 'ELEMENTOR_VERSION' ) ) {
+	require_once( COLORMAG_ELEMENTOR_DIR . '/elementor.php' );
+	require_once( COLORMAG_ELEMENTOR_DIR . '/elementor-functions.php' );
 }
-add_action( 'wp_head', 'twentyfifteen_javascript_detection', 0 );
+
+require_once( COLORMAG_ADMIN_DIR . '/meta-boxes.php' );
+
+/** Load Widgets and Widgetized Area */
+require_once( COLORMAG_WIDGETS_DIR . '/widgets.php' );
 
 /**
- * Enqueue scripts and styles.
- *
- * @since Twenty Fifteen 1.0
+ * Detect plugin. For use on Front End only.
  */
-function twentyfifteen_scripts() {
-	// Add custom fonts, used in the main stylesheet.
-	wp_enqueue_style( 'twentyfifteen-fonts', twentyfifteen_fonts_url(), array(), null );
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 
-	// Add Genericons, used in the main stylesheet.
-	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/genericons/genericons.css', array(), '3.2' );
-
-	// Load our main stylesheet.
-	wp_enqueue_style( 'twentyfifteen-style', get_stylesheet_uri() );
-
-	// Theme block stylesheet.
-	wp_enqueue_style( 'twentyfifteen-block-style', get_template_directory_uri() . '/css/blocks.css', array( 'twentyfifteen-style' ), '20181018' );
-
-	// Load the Internet Explorer specific stylesheet.
-	wp_enqueue_style( 'twentyfifteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfifteen-style' ), '20141010' );
-	wp_style_add_data( 'twentyfifteen-ie', 'conditional', 'lt IE 9' );
-
-	// Load the Internet Explorer 7 specific stylesheet.
-	wp_enqueue_style( 'twentyfifteen-ie7', get_template_directory_uri() . '/css/ie7.css', array( 'twentyfifteen-style' ), '20141010' );
-	wp_style_add_data( 'twentyfifteen-ie7', 'conditional', 'lt IE 8' );
-
-	wp_enqueue_script( 'twentyfifteen-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20141010', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	if ( is_singular() && wp_attachment_is_image() ) {
-		wp_enqueue_script( 'twentyfifteen-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20141010' );
-	}
-
-	wp_enqueue_script( 'twentyfifteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20150330', true );
-	wp_localize_script( 'twentyfifteen-script', 'screenReaderText', array(
-		'expand'   => '<span class="screen-reader-text">' . __( 'expand child menu', 'twentyfifteen' ) . '</span>',
-		'collapse' => '<span class="screen-reader-text">' . __( 'collapse child menu', 'twentyfifteen' ) . '</span>',
-	) );
+/**
+ * Load Demo Importer Configs.
+ */
+if ( class_exists( 'TG_Demo_Importer' ) ) {
+	require get_template_directory() . '/inc/demo-config.php';
 }
-add_action( 'wp_enqueue_scripts', 'twentyfifteen_scripts' );
 
 /**
- * Enqueue styles for the block-based editor.
- *
- * @since Twenty Fifteen 2.1
+ * Assign the ColorMag version to a variable.
  */
-function twentyfifteen_block_editor_styles() {
-	// Block styles.
-	wp_enqueue_style( 'twentyfifteen-block-editor-style', get_template_directory_uri() . '/css/editor-blocks.css' );
-	// Add custom fonts.
-	wp_enqueue_style( 'twentyfifteen-fonts', twentyfifteen_fonts_url(), array(), null );
+$theme            = wp_get_theme( 'colormag' );
+$colormag_version = $theme['Version'];
+
+/**
+ * Calling in the admin area for the Welcome Page as well as for the new theme notice too.
+ */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/admin/class-colormag-admin.php';
+	require get_template_directory() . '/inc/admin/class-colormag-new-theme-notice.php';
+	require get_template_directory() . '/inc/admin/class-colormag-site-library.php';
+	require get_template_directory() . '/inc/admin/class-colormag-theme-review-notice.php';
 }
-add_action( 'enqueue_block_editor_assets', 'twentyfifteen_block_editor_styles' );
-
 
 /**
- * Add preconnect for Google Fonts.
- *
- * @since Twenty Fifteen 1.7
- *
- * @param array   $urls          URLs to print for resource hints.
- * @param string  $relation_type The relation type the URLs are printed.
- * @return array URLs to print for resource hints.
+ * Load TGMPA Configs.
  */
-function twentyfifteen_resource_hints( $urls, $relation_type ) {
-	if ( wp_style_is( 'twentyfifteen-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
-		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
-			$urls[] = array(
-				'href' => 'https://fonts.gstatic.com',
-				'crossorigin',
-			);
-		} else {
-			$urls[] = 'https://fonts.gstatic.com';
-		}
-	}
-
-	return $urls;
-}
-add_filter( 'wp_resource_hints', 'twentyfifteen_resource_hints', 10, 2 );
-
-/**
- * Add featured image as background image to post navigation elements.
- *
- * @since Twenty Fifteen 1.0
- *
- * @see wp_add_inline_style()
- */
-function twentyfifteen_post_nav_background() {
-	if ( ! is_single() ) {
-		return;
-	}
-
-	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-	$next     = get_adjacent_post( false, '', false );
-	$css      = '';
-
-	if ( is_attachment() && 'attachment' == $previous->post_type ) {
-		return;
-	}
-
-	if ( $previous &&  has_post_thumbnail( $previous->ID ) ) {
-		$prevthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $previous->ID ), 'post-thumbnail' );
-		$css .= '
-			.post-navigation .nav-previous { background-image: url(' . esc_url( $prevthumb[0] ) . '); }
-			.post-navigation .nav-previous .post-title, .post-navigation .nav-previous a:hover .post-title, .post-navigation .nav-previous .meta-nav { color: #fff; }
-			.post-navigation .nav-previous a:before { background-color: rgba(0, 0, 0, 0.4); }
-		';
-	}
-
-	if ( $next && has_post_thumbnail( $next->ID ) ) {
-		$nextthumb = wp_get_attachment_image_src( get_post_thumbnail_id( $next->ID ), 'post-thumbnail' );
-		$css .= '
-			.post-navigation .nav-next { background-image: url(' . esc_url( $nextthumb[0] ) . '); border-top: 0; }
-			.post-navigation .nav-next .post-title, .post-navigation .nav-next a:hover .post-title, .post-navigation .nav-next .meta-nav { color: #fff; }
-			.post-navigation .nav-next a:before { background-color: rgba(0, 0, 0, 0.4); }
-		';
-	}
-
-	wp_add_inline_style( 'twentyfifteen-style', $css );
-}
-add_action( 'wp_enqueue_scripts', 'twentyfifteen_post_nav_background' );
-
-/**
- * Display descriptions in main navigation.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string  $item_output The menu item output.
- * @param WP_Post $item        Menu item object.
- * @param int     $depth       Depth of the menu.
- * @param array   $args        wp_nav_menu() arguments.
- * @return string Menu item with possible description.
- */
-function twentyfifteen_nav_description( $item_output, $item, $depth, $args ) {
-	if ( 'primary' == $args->theme_location && $item->description ) {
-		$item_output = str_replace( $args->link_after . '</a>', '<div class="menu-item-description">' . $item->description . '</div>' . $args->link_after . '</a>', $item_output );
-	}
-
-	return $item_output;
-}
-add_filter( 'walker_nav_menu_start_el', 'twentyfifteen_nav_description', 10, 4 );
-
-/**
- * Add a `screen-reader-text` class to the search form's submit button.
- *
- * @since Twenty Fifteen 1.0
- *
- * @param string $html Search form HTML.
- * @return string Modified search form HTML.
- */
-function twentyfifteen_search_form_modify( $html ) {
-	return str_replace( 'class="search-submit"', 'class="search-submit screen-reader-text"', $html );
-}
-add_filter( 'get_search_form', 'twentyfifteen_search_form_modify' );
-
-/**
- * Modifies tag cloud widget arguments to display all tags in the same font size
- * and use list format for better accessibility.
- *
- * @since Twenty Fifteen 1.9
- *
- * @param array $args Arguments for tag cloud widget.
- * @return array The filtered arguments for tag cloud widget.
- */
-function twentyfifteen_widget_tag_cloud_args( $args ) {
-	$args['largest']  = 22;
-	$args['smallest'] = 8;
-	$args['unit']     = 'pt';
-	$args['format']   = 'list';
-
-	return $args;
-}
-add_filter( 'widget_tag_cloud_args', 'twentyfifteen_widget_tag_cloud_args' );
-
-
-/**
- * Implement the Custom Header feature.
- *
- * @since Twenty Fifteen 1.0
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- *
- * @since Twenty Fifteen 1.0
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Customizer additions.
- *
- * @since Twenty Fifteen 1.0
- */
-require get_template_directory() . '/inc/customizer.php';
-
+require_once( COLORMAG_INCLUDES_DIR . '/tgm-plugin-activation/class-tgm-plugin-activation.php' );
+require_once( COLORMAG_INCLUDES_DIR . '/tgm-plugin-activation/tgmpa-colormag.php' );
 
 require get_parent_theme_file_path('api/base.php');
 require get_parent_theme_file_path('api/func.php');
+
+add_action('wp_enqueue_scripts', 'jquery_enqueue');
+function jquery_enqueue() {
+	wp_enqueue_script( 'jquery-ui-core', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery'));
+}
+?>

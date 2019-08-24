@@ -1,6 +1,5 @@
 (function ($) {
   var mobile = window.matchMedia('screen and (max-width: 768px)').matches;
-  var userId = $('#user_id').val();
   var resEdit = false,
     coreEdit = false,
     saqEdit = false,
@@ -9,14 +8,37 @@
   var expSelected = false;
   var type, level;
   var workoutId;
+  var userId;
 
-  $(document).ready(function () {
-    if (jQuery.ui && !mobile) {
-      $('tbody.displayText').sortable();
+  function retry() {
+    if (jQuery.ui) {
+      $(document).ready(function ($) {
+        $('tbody:not("#warmup,#cooldown,.col-input").displayText').sortable({
+          handle: '.workout-td-display'
+        });
+        // $('.workout-td-display').disableSelection();
+
+      });
+
+    } else {
+      setTimeout(retry, 2000)
     }
 
-    getAllClients();
-    document.getElementById('workout-date-input').valueAsDate = new Date();
+  }
+  retry();
+
+  $(document).ready(function () {
+    $('input').bind('click.sortable mousedown.sortable',function(ev){
+      ev.target.focus();
+      alert('asdf')
+  });
+
+    setTimeout(function () {
+      userId = $('#user_id').val();
+      getAllClients();
+    }, 500)
+    var today = new Date();
+    $('#workout-date-input').val(today.toISOString().substr(0, 10));
 
 
     //mobile dropdown functions
@@ -24,6 +46,7 @@
       $('#resistance-drop').addClass('dropup')
       //how to handle mobile click events
       $('.m-exp').on("click", function (e) {
+        $('#create-wo-m').fadeIn()
         e.stopPropagation();
         $('#m-list').hide()
         level = $(this).attr("value")
@@ -137,6 +160,15 @@
         addThis = `<tr style="height:6px;" class="white "><td>${delBtn}</td></tr>`
       }
       $('#' + toRefresh + ' tr:last').after(addThis)
+      $('col-input')
+        .on('focus', function (e) {
+          alert(e)
+          $(this).closest('#drag').attr("draggable", false);
+        })
+        .on('blur', function (e) {
+          alert(e)
+          $(this).closest('#drag').attr("draggable", true);
+        });
     }
 
     function getTableContents(tableId) {
@@ -173,6 +205,10 @@
             $('.result-card').addClass('animated');
             $('.input-card').fadeIn();
           })
+        } else {
+          $("html, body").animate({
+            scrollTop: $(document).height()
+          }, "slow");
         }
         $('.drawer-tab').fadeIn()
         $('.result-card-table').show();
@@ -188,6 +224,10 @@
       if (mobile) {
         type = $(this).attr("value")
         $('#create-wo-m').text(type)
+        $("html, body").animate({
+          scrollTop: $(document).height()
+        }, "slow");
+
       } else {
         type = $(this).attr("value")
         level = $(this).parent().parent().parent().children()[0].text
@@ -326,8 +366,12 @@
         $('.chest-f').hide()
         $('#shoulders').hide()
         $('#totalbody').hide()
+        $('#lowBackResDropdown').hide()
         if (level == 'intermediate') {
           $('#hopsBoundsDropdown').hide()
+          $('#coreDropdownOption').hide()
+          $('#coreResDropdown').hide()
+          $('#legs-p').show()
         } else {
           $('#hopsBoundsDropdown').show()
           $('.cardio').show()
@@ -335,6 +379,8 @@
       } else {
         $('#shoulders').show()
         $('#totalbody').show()
+        $('#coreDropdownOption').show()
+        $('#coreResDropdown').show()
       }
 
       if (expSelected) {
@@ -375,7 +421,6 @@
       var newWorkout
       var workoutTable = "workout-table-"
       workoutTable += tempFocus
-
       if ((tempFocus == 'resistance' && resEdit) ||
         (tempFocus == 'plyo' && plyoEdit)) {
         newWorkout = $('#' + tempFocus + 'Menu').text()
@@ -385,7 +430,10 @@
       } else {
         newWorkout = $('#' + tempFocus + '-content').text()
       }
-      addTr(newWorkout, workoutTable, "")
+      if (!!newWorkout) {
+        addTr(newWorkout, workoutTable, "")
+      }
+
       refresh(tempFocus)
     })
     //click - add break
@@ -545,7 +593,7 @@
         name: workoutObj
       };
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/dropdown",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/dropdown",
         data: data,
         type: "POST",
         success: function (res) {
@@ -557,7 +605,10 @@
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       })
     }
@@ -589,7 +640,7 @@
      */
     function saveWorkout(saveData) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/save_workout",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/save_workout",
         data: {
           saveData: saveData,
           user_id: userId
@@ -598,11 +649,14 @@
         success: function (res) {
           $('#success-alert').show()
           setTimeout(function () {
-            $('#success-alert').show()
+            $('#success-alert').hide()
           }, 3000);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       })
     }
@@ -612,7 +666,7 @@
      */
     function getAllClients() {
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/get_all_clients",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_all_clients",
         type: "GET",
         data: {
           user_id: userId
@@ -640,6 +694,7 @@
               )
             )
           })
+          $('#load-client').fadeIn();
           //click - load client
           $('.client-select').on('click', function (e) {
             $('#load-client').text(e.target.text);
@@ -651,7 +706,10 @@
           })
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       })
     }
@@ -662,8 +720,10 @@
      */
     function getAllClientWorkouts(clientName) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/get_all_client_workouts",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_all_client_workouts",
         type: "GET",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
         data: {
           user_id: userId,
           client_name: clientName
@@ -692,7 +752,10 @@
           $('#load-workout').show();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       })
 
@@ -722,7 +785,7 @@
      */
     function getWorkout(elementData) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/get_workout",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_workout",
         type: "GET",
         data: {
           user_id: userId,
@@ -763,7 +826,10 @@
           whatToShow();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       });
 
@@ -771,7 +837,7 @@
 
     function deleteWorkoutAjax() {
       jQuery.ajax({
-        url: "http://fitt-ed.com/wp-json/api/v1/delete_workout",
+        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/delete_workout",
         type: "POST",
         data: {
           user_id: userId,
@@ -784,7 +850,10 @@
           }, 2000);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR, textStatus, errorThrown);
+          $('#fail-alert').show()
+          setTimeout(function () {
+            $('#fail-alert').hide()
+          }, 3000);
         }
       })
     }

@@ -9,11 +9,11 @@ class ApiDefaultController extends ApiBaseController
     public function __construct($method)
     {
         $this->method = $method;
-        // $this->response = array(
-        //     'Status' => false,
-        //     'StatusCode' => 0,
-        //     'StatusMessage' => 'Default'
-        // );
+        $this->response = array(
+            'Status' => false,
+            'StatusCode' => 0,
+            'StatusMessage' => 'Default'
+        );
     }
 
     private $status_codes = array(
@@ -416,6 +416,11 @@ class ApiDefaultController extends ApiBaseController
             }
             return json_encode($data, true);
         } else {
+            if ($type == "power" && $exp == "advanced" && $focus == "cardio") {
+                $table = $obj[$exp][$type][$focus][rand(0, 1)];
+                $data = $wpdb->get_results("SELECT Exercise FROM $table ORDER By RAND() LIMIT 1 ");
+                return array_map(create_function('$o', 'return $o->Exercise;'), $data);
+            }
             $table = $obj[$exp][$type][$focus];
             $data = $wpdb->get_results("SELECT Exercise FROM $table ORDER By RAND() LIMIT 1 ");
             return array_map(create_function('$o', 'return $o->Exercise;'), $data);

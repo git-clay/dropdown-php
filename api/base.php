@@ -3,8 +3,8 @@
 class ApiBaseController extends WP_REST_Controller
 {
     //The namespace and version for the REST SERVER
-    var $my_namespace = 'api/v';
-    var $my_version = '1';
+    var $my_namespace = 'wp/v';
+    var $my_version = '2';
     public function register_routes()
     {
         $namespace = $this->my_namespace . $this->my_version;
@@ -74,7 +74,7 @@ class ApiBaseController extends WP_REST_Controller
     public function hook_rest_server()
     {
         add_action('rest_api_init', array($this, 'register_routes'));
-        //add_action('rest_api_init', 'my_customize_rest_cors', 15);
+        add_action('rest_api_init', 'my_customize_rest_cors', 15);
     }
     public function my_customize_rest_cors()
     {
