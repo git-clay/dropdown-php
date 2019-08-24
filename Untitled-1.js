@@ -16,8 +16,6 @@
         $('tbody:not("#warmup,#cooldown,.col-input").displayText').sortable({
           handle: '.workout-td-display'
         });
-        // $('.workout-td-display').disableSelection();
-
       });
 
     } else {
@@ -28,11 +26,6 @@
   retry();
 
   $(document).ready(function () {
-    $('input').bind('click.sortable mousedown.sortable',function(ev){
-      ev.target.focus();
-      alert('asdf')
-  });
-
     setTimeout(function () {
       userId = $('#user_id').val();
       getAllClients();
@@ -159,16 +152,7 @@
         delBtn = "<a class='btn btn-danger delete delete-blank' href='#' onclick='rowDelete(this); return false;'> </a>"
         addThis = `<tr style="height:6px;" class="white "><td>${delBtn}</td></tr>`
       }
-      $('#' + toRefresh + ' tr:last').after(addThis)
-      $('col-input')
-        .on('focus', function (e) {
-          alert(e)
-          $(this).closest('#drag').attr("draggable", false);
-        })
-        .on('blur', function (e) {
-          alert(e)
-          $(this).closest('#drag').attr("draggable", true);
-        });
+      $('#' + toRefresh + ' tr:last').after(addThis).hide().fadeIn('fast')
     }
 
     function getTableContents(tableId) {
@@ -442,7 +426,7 @@
       var workoutTable = "workout-table-" + section
       delBtn = "<a class='btn btn-danger delete delete-blank' href='#' onclick='rowDelete(this); return false;'>X </a>"
       addThis = `<tr style="height:6px;" class="white "><td>${delBtn}</td></tr>`
-      $('#' + workoutTable + ' tr:last').after(addThis)
+      $('#' + workoutTable + ' tr:last').after(addThis).hide().fadeIn('fast')
 
     })
 
