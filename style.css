@@ -424,7 +424,10 @@ li.dropdown-submenu {
       background: transparent;
       /* make scrollbar transparent */
 }
-
+.warm-up-result *,
+.cool-down-result *{
+      cursor: default;
+}
 .warm-up-result>table {
       background: #d9534f;
       color: white;
