@@ -59,10 +59,12 @@
           $('#strength').hide()
           $('#hypertrophy').hide()
           $('#power').hide()
-          $('#power').hide()
         } else if (level == 'intermediate') {
+          $('#power').hide()
 
-        } else {}
+        } else if(level == "novice") {
+
+        }
         $('#exp-m').text(level)
       })
       //how to handle type selection - mobile
