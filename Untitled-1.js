@@ -36,12 +36,11 @@
 
     //mobile dropdown functions
     if (mobile) {
-      $('#resistance-drop').addClass('dropup')
       //how to handle mobile click events
       $('.m-exp').on("click", function (e) {
         $('#create-wo-m').fadeIn()
-        e.stopPropagation();
-        $('#m-list').hide()
+        // e.stopPropagation();
+        // $('#m-list').hide()
         level = $(this).attr("value")
         $('#1').parent().hide()
         $('#2').parent().hide()
@@ -60,9 +59,9 @@
           $('#hypertrophy').hide()
           $('#power').hide()
         } else if (level == 'intermediate') {
-          $('#power').hide()
 
-        } else if(level == "novice") {
+        } else if (level == "novice") {
+          $('#power').hide()
 
         }
         $('#exp-m').text(level)
@@ -271,7 +270,6 @@
         $('.legs-dropdown').show()
       }
 
-
       if (((type == 'strength' || type == 'power') && level == 'advanced') || (type == 'power' && level == 'intermediate')) {
         $('#plyo-dropdown-content').show()
         $('#plyo-content').hide()
@@ -476,6 +474,9 @@
       $('#plyo-selected').text(tagname)
       $('.plyo-tag').hide()
     })
+    $('.resistanceMenu').on('click', function (e) {
+      $(this).blur();
+    })
     //click -resistance dropdown
     $('.resSelection').on("click", function (e) {
       var tagname;
@@ -490,6 +491,22 @@
       $('.resistance-tag').hide()
       resEdit = true;
     })
+
+    $(document).bind('touchend', function (e) {
+      if(mobile){
+        var container = $(".dropdown-menu");
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+          $(".dropdown").removeClass('open');
+          console.log('remove class')
+        }
+        var resSubMenu = $(".right-resistance");
+        
+        if (!resSubMenu.is(e.target) && resSubMenu.has(e.target).length === 0) {
+          $(".right-resistance").hide();
+        }
+      }
+
+    });
 
     //click - toggle active class on client-name-toggle
     $('.client-name-toggle').on('click', function () {

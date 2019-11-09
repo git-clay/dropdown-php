@@ -97,7 +97,7 @@
               </div>
               <div class="display-box row">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="core-r"></button>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="core-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropup small-dropdowns" id="core-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="coreMenu"
                           data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="true">
@@ -112,7 +112,7 @@
                       <button class="coreDropdown" value="low_back">Low Back</button>
                     </li>
                     <li class="dropdown-submenu" id="medballDropdown">
-                      <button class="coreDropdown not-beginner" value="med_ball">Med Ball Power</button>
+                      <button class="coreDropdown not-beginner" value="med_ball">Med Ball</button>
                     </li>
                     <li class="dropdown-submenu submenu-power" id="corePowerDropdown">
                       <button class="coreDropdown not-beginner" value="core-p">Power</button>
@@ -155,7 +155,7 @@
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="plyo-r"></button>
                 <div class="col-xs-8 col-md-9 display-content displayText" id="plyo-content"></div>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns submenu-power hidden" id="plyo-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropup small-dropdowns submenu-power" id="plyo-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-8 col-md-9 displayText" type="button"
                           id="plyoMenu"
                           data-toggle="dropdown"
@@ -163,7 +163,7 @@
                     Plyo Options
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="plyoMenu">
+                  <ul class="dropdown-menu list-unstyled right-dropdown" aria-labelledby="plyoMenu">
                     <li class="dropdown-submenu">
                       <button class="plyoDropdown" value="hops_bounds">Hops/Bounds</button>
                     </li>
@@ -191,14 +191,14 @@
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="saq-r"></button>
                 <div class="col-xs-8 col-md-9 display-content displayText submenu-normal" id="saq-content">
                 </div>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns hidden" id="saq-dropdown-content">
+                <div class="col-xs-8 col-md-9 dropup small-dropdowns hidden" id="saq-dropdown-content">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button" id="saqMenu"
                           data-toggle="dropdown" aria-haspopup="true"
                           aria-expanded="true">
                     SAQ Options
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="saqMenu">
+                  <ul class="dropdown-menu list-unstyled right-dropdown" aria-labelledby="saqMenu">
                     <li class="dropdown-submenu">
                       <button class="saqDropdown" value="agility_ladder">Agility Ladder</button>
                     </li>
@@ -227,21 +227,21 @@
               </div>
               <div class="row display-box">
                 <button class="glyphicon glyphicon-refresh btn btn-warning refresh col-xs-1" id="resistance-r"></button>
-                <div class="col-xs-8 col-md-9 dropdown small-dropdowns" id="resistance-drop">
+                <div class="col-xs-8 col-md-9 dropup small-dropdowns" id="resistance-drop">
                   <button class="btn btn-default dropdown-toggle col-xs-12 displayText" type="button"
                           id="resistanceMenu"
                           data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="true">
+                          aria-haspopup="menu" aria-expanded="false">
                     Resistance Options
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu list-unstyled" aria-labelledby="resistanceMenu">
+                  <ul class="dropdown-menu list-unstyled right-dropdown" aria-labelledby="resistanceMenu">
                     <!-- Arms dropdown -->
                     <li class="dropdown-submenu not-beginner arms">
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Arms
+                      <a class="dropdown-toggle">Arms
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu">
                           <button class="resSelection" value="biceps">Biceps</button>
                         </li>
@@ -258,10 +258,10 @@
                       <button class="resSelection" value="back">Back</button>
                     </li>
                     <li class="dropdown-submenu submenu-power back-dropdown" id='backSubMenu'>
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Back
+                      <a class="dropdown-toggle">Back
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu">
                           <button class="resSelection endurance" value="back-f">Functional</button>
                         </li>
@@ -283,10 +283,10 @@
                       <button class="resSelection" value="chest">Chest</button>
                     </li>
                     <li class="dropdown-submenu submenu-power chest-dropdown" id='chestSubMenu'>
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Chest
+                      <a class="dropdown-toggle ">Chest
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu chest-f">
                           <button class="resSelection" value="chest">Functional</button>
                         </li>
@@ -300,10 +300,10 @@
                     </li>
                     <!-- Core dropdown -->
                     <li class="dropdown-submenu">
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Core
+                      <a class="dropdown-toggle ">Core
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu dd-core" id="coreResDropdown">
                           <button class="resSelection" value="core">Core</button>
                         </li>
@@ -323,10 +323,11 @@
                       <button class="resSelection" value="legs">Legs</button>
                     </li>
                     <li class="dropdown-submenu legs-dropdown not-beginner">
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Legs
+                      <a class="dropdown-toggle ">
+                        Legs
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu legs-f">
                           <button class="resSelection" value="legs">Functional</button>
                         </li>
@@ -350,12 +351,12 @@
                     </li>
                     <!-- Shoulders dropdown -->
                     <li class="dropdown-submenu">
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Shoulders
+                      <a class="dropdown-toggle ">Shoulders
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu submenu-endurance" id="">
-                          <button class="resSelection" value="shoulders">Functional</button>
+                          <button class="resSelection" value="shoulders-f">Functional</button>
                         </li>
                         <li class="dropdown-submenu submenu-power" id="">
                           <button class="resSelection" value="shoulders-p">Power</button>
@@ -376,10 +377,10 @@
                       <button class="resSelection" value="total_body">Total Body</button>
                     </li>
                     <li class="dropdown-submenu totalbody-dropdown" id='totalBodySubMenu'>
-                      <a class="dropdown-toggle right-resistance" data-toggle="dropdown">Total Body
+                      <a class="dropdown-toggle ">Total Body
                         <span class="caret"></span>
                       </a>
-                      <ul class="dropdown-menu list-unstyled">
+                      <ul class="dropdown-menu list-unstyled right-resistance">
                         <li class="dropdown-submenu submenu-power">
                           <button class="resSelection" value="hops_bounds">Power</button>
                         </li>
