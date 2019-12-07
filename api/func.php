@@ -111,6 +111,7 @@ class ApiDefaultController extends ApiBaseController
                     "quads":"legs_strength_quads",
                     "rear_delts":"arms_rear_shoulders",
                     "shoulders":"arms_shoulders",
+                    "shoulders-f":"arms_shoulders",
                     "shoulders-s":"arms_shoulders_strength",
                     "triceps":"arms_triceps"
                 },
@@ -335,7 +336,7 @@ class ApiDefaultController extends ApiBaseController
                     "plyo":"balanceplyometric_plyo_strength",
                     "quads":"legs_strength_quads",
                     "rear_delts":"arms_rear_delts",
-                    "shoulders":"arms_shoulders_strength",
+                    "shoulders":"arms_shoulders",
                     "shoulders-f":"arms_shoulders",
                     "triceps":"arms_triceps",
                     "total_body":"fullbody"
@@ -391,7 +392,7 @@ class ApiDefaultController extends ApiBaseController
                     "plyo":"balanceplyometric_plyo_strength",
                     "quads":"legs_strength_quads",
                     "rear_delts":"arms_rear_delts",
-                    "shoulders":"arms_shoulders_strength",
+                    "shoulders":"arms_shoulders",
                     "shoulders-f":"arms_shoulders",
                     "total_body":"fullbody",
                     "triceps":"arms_triceps"
