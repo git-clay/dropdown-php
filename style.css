@@ -195,6 +195,23 @@ li.dropdown-submenu {
       -moz-border-radius: 0 6px 6px;
       border-radius: 0 6px 6px 6px;
 }
+.right-resistance{
+      background: none;
+      border: none;
+      box-shadow: none;
+}
+.right-resistance>li{
+      background: white;
+
+}
+.right-resistance>li:first-child {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+}
+.right-resistance>li:last-child {
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+}
 
 .dropdown-submenu:hover>.dropdown-menu {
       display: table;
