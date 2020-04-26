@@ -596,7 +596,7 @@
         name: workoutObj
       };
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/dropdown",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/dropdown",
         data: data,
         type: "POST",
         success: function (res) {
@@ -643,7 +643,7 @@
      */
     function saveWorkout(saveData) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/save_workout",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/save_workout",
         data: {
           saveData: saveData,
           user_id: userId
@@ -669,7 +669,7 @@
      */
     function getAllClients() {
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_all_clients",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/get_all_clients",
         type: "GET",
         data: {
           user_id: userId
@@ -723,7 +723,7 @@
      */
     function getAllClientWorkouts(clientName) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_all_client_workouts",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/get_all_client_workouts",
         type: "GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -788,7 +788,7 @@
      */
     function getWorkout(elementData) {
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/get_workout",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/get_workout",
         type: "GET",
         data: {
           user_id: userId,
@@ -840,7 +840,7 @@
 
     function deleteWorkoutAjax() {
       jQuery.ajax({
-        url: "http://fitt-ed.com/index.php/wp-json/wp/v2/delete_workout",
+        url: "https://fitt-ed.com/index.php/wp-json/wp/v2/delete_workout",
         type: "POST",
         data: {
           user_id: userId,
