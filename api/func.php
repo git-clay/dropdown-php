@@ -392,7 +392,7 @@ class ApiDefaultController extends ApiBaseController
                     "plyo":"balanceplyometric_plyo_strength",
                     "quads":"legs_strength_quads",
                     "rear_delts":"arms_rear_delts",
-                    "shoulders":"arms_shoulders",
+                    "shoulders":"arms_shoulders_strength",
                     "shoulders-f":"arms_shoulders_functional",
                     "total_body":"fullbody",
                     "triceps":"arms_triceps"
